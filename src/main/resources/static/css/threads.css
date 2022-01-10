@@ -1,0 +1,11 @@
+.beforeIndent{
+  margin-left : 10px;
+}
+
+.threadname{
+  width: 75%;
+}
+
+.threadcounts{
+  width: 25%;
+}

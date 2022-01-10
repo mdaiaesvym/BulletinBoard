@@ -3,12 +3,34 @@
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{layout/layout}">
   <head>
+    <link rel="stylesheet" th:href="@{/css/threads.css}">
   </head>
 
   <body>
     <!--コンテンツ-->
     <div layout:fragment="content">
-      あああ
+      <div class="row">
+        <button type="button" class="btn btn-secondary my-5 offset-md-2"><i class="fas fa-plus"></i><span class="beforeIndent">スレッド作成</span></button>
+      
+
+      <table class="table table-hover offset-md-2 col-md-8">
+        <tbody>
+          <tr>
+            <td class="threadname">スレッド名</td>
+            <td class="threadcounts"><i class="fas fa-comments"></i>100</td>
+          </tr>
+          <tr>
+            <td class="threadname">スレッド名</td>
+            <td class="threadcounts"><i class="fas fa-comments"></i>100</td>
+          </tr>
+          <tr>
+            <td class="threadname">スレッド名</td>
+            <td class="threadcounts"><i class="fas fa-comments"></i>100</td>
+          </tr>
+        </tbody>
+      </table>
+
+      </div>
     </div>
   </body>
 </html>
