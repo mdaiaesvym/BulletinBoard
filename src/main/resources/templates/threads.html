@@ -9,9 +9,9 @@ layout:decorate="~{layout/layout}">
   <body>
     <!--コンテンツ-->
     <div layout:fragment="content">
+      <div class="container-fluid">
       <div class="row">
-        <a class="btn btn-secondary my-5 offset-md-2" th:href="@{/makeThread}"><i class="fas fa-plus"></i><span class="beforeIndent">スレッド作成</span></a>
-      
+        <a class="btn btn-secondary my-5 offset-md-2" th:href="@{/makeThread}"><i class="fas fa-plus"></i><span class="beforeIndent" th:text="#{makeThread}">スレッド作成</span></a>
       <table class="table table-hover offset-md-2 col-md-8">
         <tbody>
           <tr>
@@ -28,8 +28,8 @@ layout:decorate="~{layout/layout}">
           </tr>
         </tbody>
       </table>
-
       </div>
+    </div>
     </div>
   </body>
 </html>
