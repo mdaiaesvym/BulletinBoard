@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MakeThread {
 
-	@GetMapping("/makethread")
+	@GetMapping("/makeThread")
 	public String getMakeThread() {
-		return "makethread";
+		return "makeThread";
 	}
 }
