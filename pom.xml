@@ -94,6 +94,18 @@
 		    <groupId>nz.net.ultraq.thymeleaf</groupId>
 		    <artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+		<dependency>
+		    <groupId>org.mybatis.spring.boot</groupId>
+		    <artifactId>mybatis-spring-boot-starter</artifactId>
+		    <version>2.2.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.modelmapper.extensions/modelmapper-spring -->
+		<dependency>
+		    <groupId>org.modelmapper.extensions</groupId>
+		    <artifactId>modelmapper-spring</artifactId>
+		    <version>2.4.5</version>
+		</dependency>
 		
 	</dependencies>
 
