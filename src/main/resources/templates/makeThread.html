@@ -20,14 +20,14 @@ layout:decorate="~{layout/layout}">
             <textarea id="message" class="form-control" rows="10" th:field="*{message}"></textarea>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="anonymous" value="0" th:field="*{contributor}">
+            <input class="form-check-input" type="radio" id="anonymous" value="0" th:field="*{contributor}" onclick="contributorNameOpenHidden()">
             <label class="form-check-label" for="anonymous">匿名で投稿</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="onymous" value="1" th:field="*{contributor}">
+            <input class="form-check-input" type="radio" id="onymous" value="1" th:field="*{contributor}" onclick="contributorNameOpenHidden()">
             <label class="form-check-label" for="onymous">記名で投稿</label>
           </div>
-          <div class="form-group w-25">
+          <div id="contributorNameForm" class="form-group w-25">
             <label class="font-weight-bold" for="contributorName" th:text="#{contributorName}">投稿者名</label>
             <input type="text" class="form-control" id="contributorName">
           </div>
