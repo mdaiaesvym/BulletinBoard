@@ -7,5 +7,5 @@ public class MakeThreadForm {
 
 	private String threadName;
 	private String message;
-	private Integer whoami=0;
+	private Integer contributor=0;
 }
