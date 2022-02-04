@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.form.MakeThreadForm;
 import com.example.demo.model.MakeThread;
+import com.example.demo.model.Message;
 import com.example.demo.service.MakeThreadService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,11 +31,20 @@ public class MakeThreadController {
 	
 	@PostMapping("/threads")
 	public String postMakeThred(@ModelAttribute MakeThreadForm form) {
+		
+		Message message = new Message();
+		
 		log.info(form.toString());
 		
 		//formをMakeTheradクラスに変換
 		MakeThread thread = modelMapper.map(form,MakeThread.class);
 		makeThreadService.makeThread(thread);
+		
+		//formをMessageクラスに変換
+		message = modelMapper.map(form, Message.class);
+		//オートインクリメント取得
+		message.setThreadNumber(makeThreadService.getAutoIncrement());
+		makeThreadService.addMessage(message);
 		
 		return "threads";
 	}
