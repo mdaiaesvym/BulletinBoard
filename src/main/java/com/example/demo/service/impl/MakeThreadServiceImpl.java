@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.form.MakeThreadForm;
 import com.example.demo.model.MakeThread;
 import com.example.demo.model.Message;
 import com.example.demo.repository.BulletinBoardMapper;
@@ -27,6 +28,13 @@ public class MakeThreadServiceImpl implements MakeThreadService{
 	@Override
 	public int getAutoIncrement() {
 		return mapper.selectAutoIncrement();
+	}
+
+	@Override
+	public void isContributorName(MakeThreadForm makethreadForm) {
+		if(makethreadForm.getCheckContributorName() == 0) {
+			makethreadForm.setContributorName("匿名");
+		}
 	}
 
 }

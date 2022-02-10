@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.form.MakeThreadForm;
 import com.example.demo.model.MakeThread;
 import com.example.demo.model.Message;
 
@@ -13,4 +14,7 @@ public interface MakeThreadService {
 	
 	/**オートインクリメント取得*/
 	public int getAutoIncrement();
+	
+	/**投稿者名の判定*/
+	public void isContributorName(MakeThreadForm threadForm);
 }

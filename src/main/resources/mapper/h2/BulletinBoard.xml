@@ -34,7 +34,7 @@
   	#{threadNumber},
   	#{message},
   	CURRENT_TIMESTAMP,
-  	#{contributor},
+  	#{contributorName},
   	CURRENT_TIMESTAMP
   )
   </insert>

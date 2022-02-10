@@ -38,12 +38,16 @@ public class MakeThreadController {
 		
 		//formをMakeTheradクラスに変換
 		MakeThread thread = modelMapper.map(form,MakeThread.class);
+		//テーブル「threads」に追加
 		makeThreadService.makeThread(thread);
 		
+		//匿名・記名の確認
+		makeThreadService.isContributorName(form);
 		//formをMessageクラスに変換
 		message = modelMapper.map(form, Message.class);
 		//オートインクリメント取得
 		message.setThreadNumber(makeThreadService.getAutoIncrement());
+		//テーブル「messages」に追加
 		makeThreadService.addMessage(message);
 		
 		return "threads";

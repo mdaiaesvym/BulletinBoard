@@ -7,5 +7,6 @@ public class MakeThreadForm {
 
 	private String threadName;
 	private String message;
-	private Integer contributor=0;
+	private Integer checkContributorName=0;
+	private String contributorName;
 }

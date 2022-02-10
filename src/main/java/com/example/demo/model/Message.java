@@ -7,5 +7,5 @@ public class Message {
 
 	private Integer threadNumber;
 	private String message;
-	private String contributor;
+	private String contributorName;
 }
