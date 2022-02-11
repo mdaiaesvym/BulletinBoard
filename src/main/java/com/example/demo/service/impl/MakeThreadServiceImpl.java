@@ -1,11 +1,13 @@
 package com.example.demo.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.form.MakeThreadForm;
-import com.example.demo.model.MakeThread;
 import com.example.demo.model.Message;
+import com.example.demo.model.Thread;
 import com.example.demo.repository.BulletinBoardMapper;
 import com.example.demo.service.MakeThreadService;
 
@@ -16,7 +18,7 @@ public class MakeThreadServiceImpl implements MakeThreadService{
 	private BulletinBoardMapper mapper;
 
 	@Override
-	public void makeThread(MakeThread thread) {
+	public void makeThread(Thread thread) {
 		mapper.insertThread(thread);
 	}
 
@@ -35,6 +37,11 @@ public class MakeThreadServiceImpl implements MakeThreadService{
 		if(makethreadForm.getCheckContributorName() == 0) {
 			makethreadForm.setContributorName("匿名");
 		}
+	}
+
+	@Override
+	public List<Thread> getThreadNames() {
+		return mapper.selectThreadNames();
 	}
 
 }

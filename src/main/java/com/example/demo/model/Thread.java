@@ -3,7 +3,7 @@ package com.example.demo.model;
 import lombok.Data;
 
 @Data
-public class MakeThread {
+public class Thread {
 
 	private String threadName;
 }

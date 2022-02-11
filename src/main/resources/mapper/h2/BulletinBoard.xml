@@ -17,6 +17,11 @@
   )
   </insert>
   
+  <!--スレッド名取得-->
+  <select id="selectThreadNames" resultType="Thread">
+  select thread_name from threads order by thread_number asc;
+  </select>
+
   <!-- オートインクリメントの値を取得 -->
   <select id="selectAutoIncrement" resultType="int">
   select max(thread_number) from threads;
