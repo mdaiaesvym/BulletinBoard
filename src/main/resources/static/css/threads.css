@@ -2,6 +2,10 @@
   margin-left : 10px;
 }
 
+.afterIndent{
+  margin-right : 5px;
+}
+
 .threadname{
   width: 75%;
 }
