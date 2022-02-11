@@ -15,9 +15,9 @@ layout:decorate="~{layout/layout}">
       <table class="table table-hover offset-md-2 col-md-8">
         <tbody>
           <!--スレッド名のセット-->
-          <tr th:each="thread:${threadNameList}">
+          <tr th:each="thread:${threadList}">
             <td th:text="${thread.threadName}" class="threadname threadname-size font-weight-bold">スレッド名</td>
-            <td class="threadcounts"><i class="fas fa-comments"></i>100</td>
+            <td class="threadcounts"><i class="fas fa-comments"></i><th:block th:text="${thread.messageCount}" ></th:block></td>
           </tr>
         </tbody>
       </table>

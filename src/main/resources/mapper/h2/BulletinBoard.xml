@@ -17,9 +17,11 @@
   )
   </insert>
   
-  <!--スレッド名取得-->
-  <select id="selectThreadNames" resultType="Thread">
-  select thread_name from threads order by thread_number asc;
+  <!--スレッド名、メッセージ数取得-->
+  <select id="selectThreadList" resultType="Thread">
+  select thread_name,count(*) as message_count from messages 
+  inner join threads on messages.thread_number = threads.thread_number
+  group by messages.thread_number order by messages.thread_number;
   </select>
 
   <!-- オートインクリメントの値を取得 -->
@@ -43,4 +45,5 @@
   	CURRENT_TIMESTAMP
   )
   </insert>
+
 </mapper>

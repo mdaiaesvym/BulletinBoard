@@ -6,4 +6,5 @@ import lombok.Data;
 public class Thread {
 
 	private String threadName;
+	private Integer messageCount;
 }

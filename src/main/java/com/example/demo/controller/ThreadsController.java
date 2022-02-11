@@ -18,11 +18,11 @@ public class ThreadsController {
 	@GetMapping("/threads")
 	public String getThreads(Model model) {
 		
-		//スレッド名取得
-		List<Thread> threadNameList = makeThreadService.getThreadNames();
+		//スレッド名・メッセージ数取得
+		List<Thread> threadNameCount = makeThreadService.getThreadNameCount();
 		//Modelに登録
-		model.addAttribute("threadNameList",threadNameList);
-
+		model.addAttribute("threadList",threadNameCount);
+		
 		return "threads";
 	}
 }

@@ -11,8 +11,8 @@ public interface MakeThreadService {
 	/**スレッド追加*/
 	public void makeThread(Thread thread);
 	
-	/**スレッド名取得*/
-	public List<Thread> getThreadNames();
+	/**スレッド名・スレッドごとのメッセージ数取得*/
+	public List<Thread> getThreadNameCount();
 	
 	/**メッセージ追加*/
 	public void addMessage(Message message);

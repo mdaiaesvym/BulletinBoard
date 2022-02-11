@@ -40,8 +40,8 @@ public class MakeThreadServiceImpl implements MakeThreadService{
 	}
 
 	@Override
-	public List<Thread> getThreadNames() {
-		return mapper.selectThreadNames();
+	public List<Thread> getThreadNameCount() {
+		return mapper.selectThreadList();
 	}
 
 }

@@ -13,8 +13,8 @@ public interface BulletinBoardMapper {
 	/**スレッド追加*/
 	public void insertThread(Thread thread);
 
-	/**スレッド名取得*/
-	public List<Thread> selectThreadNames();
+	/**スレッド名・メッセージ数取得*/
+	public List<Thread> selectThreadList();
 	
 	/**メッセージ追加*/
 	public void insertMessage(Message message);
