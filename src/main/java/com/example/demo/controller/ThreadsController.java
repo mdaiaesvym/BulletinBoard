@@ -18,7 +18,7 @@ public class ThreadsController {
 	@GetMapping("/threads")
 	public String getThreads(Model model) {
 		
-		//スレッド名・メッセージ数取得
+		//スレッド名・メッセージ数・メッセージ最終更新日時取得
 		List<Thread> threadNameCount = makeThreadService.getThreadNameCount();
 		//Modelに登録
 		model.addAttribute("threadList",threadNameCount);
