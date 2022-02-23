@@ -15,7 +15,7 @@ layout:decorate="~{layout/layout}">
           <div class="offset-md-2 col-md-8" th:each="thread:${threadList}">
             <div th:text="${thread.threadName}" class="threadname threadname-size font-weight-bold">スレッド名</div>
             <span class="threadcounts font-weight-bold"><i class="fas fa-comments afterIndent"></i><th:block th:text="${thread.messageCount}"></th:block>コメント</span>
-            <span class="beforeIndent">最終更新日時：</span><span th:text="${thread.updatedAt}"></span>
+            <span class="beforeIndent">最終更新日時：</span><span th:text="${#dates.format(thread.updatedAt,'yyyy/MM/dd HH:mm:ss')}"></span>
           <hr>
           </div>
       </div>
