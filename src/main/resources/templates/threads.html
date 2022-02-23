@@ -12,17 +12,14 @@ layout:decorate="~{layout/layout}">
       <div class="container-fluid">
       <div class="row">
         <a class="btn btn-secondary my-5 offset-md-2" th:href="@{/makeThread}"><i class="fas fa-plus"></i><span class="beforeIndent" th:text="#{makeThread}">スレッド作成</span></a>
-      <table class="table table-hover offset-md-2 col-md-8">
-        <tbody>
-          <!--スレッド名のセット-->
-          <tr th:each="thread:${threadList}">
-            <td th:text="${thread.threadName}" class="threadname threadname-size font-weight-bold">スレッド名</td>
-            <td class="threadcounts font-weight-bold"><i class="fas fa-comments afterIndent"></i><th:block th:text="${thread.messageCount}"></th:block></td>
-          </tr>
-        </tbody>
-      </table>
+          <div class="offset-md-2 col-md-8" th:each="thread:${threadList}">
+            <div th:text="${thread.threadName}" class="threadname threadname-size font-weight-bold">スレッド名</div>
+            <span class="threadcounts font-weight-bold"><i class="fas fa-comments afterIndent"></i><th:block th:text="${thread.messageCount}"></th:block>コメント</span>
+            <span class="beforeIndent">最終更新日時：</span><span th:text="${thread.updatedAt}"></span>
+          <hr>
+          </div>
       </div>
-    </div>
+      </div>
     </div>
   </body>
 </html>
