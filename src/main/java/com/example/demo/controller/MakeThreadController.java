@@ -34,8 +34,6 @@ public class MakeThreadController {
 		
 		Message message = new Message();
 		
-		log.info(form.toString());
-		
 		//formをTheradクラスに変換
 		Thread thread = modelMapper.map(form,Thread.class);
 		//テーブル「threads」に追加
