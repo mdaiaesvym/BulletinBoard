@@ -48,8 +48,13 @@
 
   <!--メッセージ一覧取得-->
   <select id="selectMessageList" resultType="Message">
-  select message,created_name as contributorName from messages 
+  select message,created_name as contributorName,updated_at from messages 
   where thread_number = #{threadNumber} order by created_at asc;
+  </select>
+
+  <!--スレッド名取得-->
+  <select id="selectThreadName" resultType="String">
+  select thread_name from threads where thread_number = #{threadNumber};
   </select>
 
 </mapper>

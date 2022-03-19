@@ -8,4 +8,7 @@ public interface MessageService {
 
 	/**メッセージ一覧取得*/
 	public List<Message> getMessageas(String threadNumber);
+	
+	/**スレッド名取得*/
+	public String getThreadName(String threadNumber);
 }

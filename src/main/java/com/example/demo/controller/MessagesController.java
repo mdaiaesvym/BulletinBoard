@@ -24,6 +24,10 @@ public class MessagesController {
 		List<Message> message = messageService.getMessageas(threadNumber);
 		model.addAttribute("messageList", message);
 		
+		/**スレッド名取得*/
+		String threadName = messageService.getThreadName(threadNumber);
+		model.addAttribute("threadName",threadName);
+		
 		return "messages";
 	}
 }

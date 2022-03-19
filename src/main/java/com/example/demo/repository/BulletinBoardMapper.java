@@ -24,4 +24,7 @@ public interface BulletinBoardMapper {
 	
 	/**メッセージ一覧取得*/
 	public List<Message> selectMessageList(String threadNumber);
+	
+	/**スレッド名取得*/
+	public String selectThreadName(String threadNumber);
 }

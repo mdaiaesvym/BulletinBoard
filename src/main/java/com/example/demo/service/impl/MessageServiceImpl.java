@@ -20,5 +20,10 @@ public class MessageServiceImpl implements MessageService{
 		return mapper.selectMessageList(threadNumber);
 	}
 
+	@Override
+	public String getThreadName(String threadNumber) {
+		return mapper.selectThreadName(threadNumber);
+	}
+
 	
 }
