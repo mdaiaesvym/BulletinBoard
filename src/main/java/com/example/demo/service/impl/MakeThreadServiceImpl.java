@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class MakeThreadServiceImpl implements MakeThreadService{
 
 	@Override
 	public void isContributorName(MakeThreadForm makethreadForm) {
-		if(makethreadForm.getCheckContributorName() == 0) {
+		if(Objects.equals(makethreadForm.getCheckContributorName(), 0)) {
 			makethreadForm.setContributorName("匿名");
 		}
 	}
