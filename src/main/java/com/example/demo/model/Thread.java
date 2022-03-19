@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class Thread {
 
+	private String threadNumber;
 	private String threadName;
 	private Integer messageCount;
 	private Date updatedAt;

@@ -13,7 +13,7 @@ public interface BulletinBoardMapper {
 	/**スレッド追加*/
 	public void insertThread(Thread thread);
 
-	/**スレッド名・メッセージ数取得*/
+	/**スレッドナンバー・スレッド名・メッセージ数取得*/
 	public List<Thread> selectThreadList();
 	
 	/**メッセージ追加*/
@@ -22,4 +22,6 @@ public interface BulletinBoardMapper {
 	/**オートインクリメント取得*/
 	public int selectAutoIncrement();
 	
+	/**メッセージ一覧取得*/
+	public List<Message> selectMessageList(String threadNumber);
 }

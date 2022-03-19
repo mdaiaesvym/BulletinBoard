@@ -13,58 +13,19 @@ layout:decorate="~{layout/layout}">
           <div class="col-md-8 offset-md-2">
             <h2 class="font-weight-bold my-5">スレッド名</h2>
             <!--メッセージのセット-->
-            <div>
-              <span>
-                匿名
+            <div th:each="message:${messageList}">
+              <span th:text="${message.contributorName}">
+                名無しさん
               </span>
               <span>
                 2022/01/01(土) 10:00:00
               </span>
                 <i class="fas fa-reply replay-mark"></i>
               <div class="my-3">
-                <span class="font-weight-bold message-size">メッセージ</span>
+                <span class="font-weight-bold message-size" th:text="${message.message}">メッセージ</span>
               </div>
+              <hr>
             </div>
-            <hr>
-            <div>
-              <span>
-                匿名
-              </span>
-              <span>
-                2022/01/01(土) 10:00:00
-              </span>
-                <i class="fas fa-reply replay-mark"></i>
-              <div class="my-3">
-                <span class="font-weight-bold message-size">メッセージ</span>
-              </div>
-            </div>
-            <hr>
-            <div>
-              <span>
-                匿名
-              </span>
-              <span>
-                2022/01/01(土) 10:00:00
-              </span>
-                <i class="fas fa-reply replay-mark"></i>
-              <div class="my-3">
-                <span class="font-weight-bold message-size">メッセージ</span>
-              </div>
-            </div>
-            <hr>
-            <div>
-              <span>
-                匿名
-              </span>
-              <span>
-                2022/01/01(土) 10:00:00
-              </span>
-                <i class="fas fa-reply replay-mark"></i>
-              <div class="my-3">
-                <span class="font-weight-bold message-size">メッセージ</span>
-              </div>
-            </div>
-            <hr>
 
             <!--メッセージフォーム-->
             <form>

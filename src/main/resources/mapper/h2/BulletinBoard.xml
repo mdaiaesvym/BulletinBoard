@@ -17,9 +17,9 @@
   )
   </insert>
   
-  <!--スレッド名、メッセージ数、最終メッセージ更新日時取得-->
+  <!--スレッドナンバー、スレッド名、メッセージ数、最終メッセージ更新日時取得-->
   <select id="selectThreadList" resultType="Thread">
-  select threads.thread_name,count(*) as message_count,max(messages.updated_at) as updated_at from messages 
+  select threads.thread_number,threads.thread_name,count(*) as message_count,max(messages.updated_at) as updated_at from messages 
   inner join threads on messages.thread_number = threads.thread_number
   group by messages.thread_number order by max(messages.updated_at) desc;
   </select>
@@ -45,5 +45,11 @@
   	CURRENT_TIMESTAMP
   )
   </insert>
+
+  <!--メッセージ一覧取得-->
+  <select id="selectMessageList" resultType="Message">
+  select message,created_name as contributorName from messages 
+  where thread_number = #{threadNumber} order by created_at asc;
+  </select>
 
 </mapper>
