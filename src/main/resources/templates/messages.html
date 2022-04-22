@@ -14,11 +14,11 @@ layout:decorate="~{layout/layout}">
             <h2 class="font-weight-bold my-5" th:text="${threadName}">スレッド名</h2>
             <!--メッセージのセット-->
             <div th:each="message:${messageList}">
-              <span th:text="${message.contributorName}">
-                名無しさん
-              </span>
               <span th:text="${#dates.format(message.updatedAt,'yyyy/MM/dd HH:mm:ss')}">
                 2022/01/01(土) 10:00:00
+              </span>
+              <span th:text="${message.contributorName}">
+                名無しさん
               </span>
                 <i class="fas fa-reply replay-mark"></i>
               <div class="my-3">
@@ -28,26 +28,27 @@ layout:decorate="~{layout/layout}">
             </div>
 
             <!--メッセージフォーム-->
-            <form>
+            <form method="post" th:action="@{/messages} + '/' + ${threadNumber}" th:object="${makeMessageForm}">
               <div class="form-group">
-              <label class="font-weight-bold text-secondary" th:text="#{postMessage}" for="message">メッセージ投稿</label>
-                <textarea id="message" class="form-control" rows="5"></textarea>
+                <label class="font-weight-bold" for="message" th:text="#{message}">メッセージ</label>
+                <textarea id="message" class="form-control" rows="5" th:field="*{message}"></textarea>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="contributor" id="anonymous" onclick="contributorNameOpenHidden()" checked>
+                <input class="form-check-input" type="radio" id="anonymous" value="0" th:field="*{checkContributorName}" onclick="contributorNameOpenHidden()">
                 <label class="form-check-label" for="anonymous">匿名で投稿</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="contributor" id="onymous" onclick="contributorNameOpenHidden()">
+                <input class="form-check-input" type="radio" id="onymous" value="1" th:field="*{checkContributorName}" onclick="contributorNameOpenHidden()">
                 <label class="form-check-label" for="onymous">記名で投稿</label>
               </div>
               <div id="contributorNameForm" class="form-group w-25">
-                <label class="font-weight-bold text-secondary" for="contributorName" th:text="#{contributorName}">投稿者名</label>
-                <input type="text" class="form-control" id="contributorName">
+                <label class="font-weight-bold" for="contributorName" th:text="#{contributorName}">投稿者名</label>
+                <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}">
               </div>
               <div class="text-left mt-2">
-                <input type="submit" class="btn btn-secondary" th:value="#{post}">
+                <input type="submit" class="btn btn-secondary" th:value="#{post}" name="postMessage">
               </div>
+              <input type="hidden" name="threadNumber" value="1" th:value="${threadNumber}">
             </form>
           </div>
         </div>

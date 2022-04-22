@@ -48,7 +48,7 @@
 
   <!--メッセージ一覧取得-->
   <select id="selectMessageList" resultType="Message">
-  select message,created_name as contributorName,updated_at from messages 
+  select thread_number,message,created_name as contributorName,updated_at from messages 
   where thread_number = #{threadNumber} order by created_at asc;
   </select>
 

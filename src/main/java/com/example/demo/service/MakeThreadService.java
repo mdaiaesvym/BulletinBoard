@@ -17,9 +17,10 @@ public interface MakeThreadService {
 	/**メッセージ追加*/
 	public void addMessage(Message message);
 	
+	/**投稿者名の判定*/
+	public void isContributorName(MakeThreadForm makethreadForm);
+	
 	/**オートインクリメント取得*/
 	public int getAutoIncrement();
 	
-	/**投稿者名の判定*/
-	public void isContributorName(MakeThreadForm threadForm);
 }

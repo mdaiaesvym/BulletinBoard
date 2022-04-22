@@ -9,7 +9,7 @@ layout:decorate="~{layout/layout}">
     <div layout:fragment="content">
       <div class="container-fluid">
       <!--スレッド名フォーム-->
-      <form class="row" method="post" action="/threads" th:object="${makeThreadForm}">
+      <form class="row" method="post" th:action="@{/threads}" th:object="${makeThreadForm}">
         <div class="col-md-6 offset-md-3 mt-5">
           <div class="form-group">
             <label class="font-weight-bold" for="threadname" th:text="#{threadName}">スレッド名</label>
@@ -32,7 +32,7 @@ layout:decorate="~{layout/layout}">
             <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}">
           </div>
           <div class="text-left mt-2">
-            <input type="submit" class="btn btn-secondary" th:value="#{makeThread}">
+            <input type="submit" class="btn btn-secondary" th:value="#{makeThread}" name="makeThread">
           </div>
         </div>
       </form>

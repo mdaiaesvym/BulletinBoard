@@ -1,14 +1,12 @@
-package com.example.demo.model;
-
-import java.util.Date;
+package com.example.demo.form;
 
 import lombok.Data;
 
 @Data
-public class Message {
-
+public class MakeMessageForm {
+	
 	private Integer threadNumber;
 	private String message;
-	private Date updatedAt;
+	private Integer checkContributorName=0;
 	private String contributorName;
 }
