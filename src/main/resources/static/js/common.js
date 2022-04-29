@@ -17,3 +17,12 @@ function contributorNameOpenHidden(){
     contributorNameForm.style.display = "";
   }
 }
+
+//匿名で投稿の場合、投稿者名に「匿名」を入れる
+function setAnonymous(){
+  var checkContributorName = document.querySelector("input[name=checkContributorName]:checked");
+
+  if(checkContributorName.value==="0"){
+    document.getElementById("contributorName").value="匿名"
+  }
+}

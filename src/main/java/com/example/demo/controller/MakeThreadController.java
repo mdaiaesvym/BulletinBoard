@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +30,7 @@ public class MakeThreadController {
 	 * @return
 	 */
 	@GetMapping("/makeThread")
-	public String getMakeThread(@ModelAttribute MakeThreadForm form) {
+	public String getMakeThread(@ModelAttribute("makeThreadForm") MakeThreadForm form) {
 		return "/makeThread";
 	}
 
@@ -39,7 +41,12 @@ public class MakeThreadController {
 	 * @return
 	 */
 	@PostMapping(value = "/threads", params = "makeThread")
-	public String postMakeThred(@ModelAttribute MakeThreadForm form) {
+	public String postMakeThred(@ModelAttribute("makeThreadForm") @Validated MakeThreadForm form,
+			BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			return getMakeThread(form);
+		}
 
 		Message message = new Message();
 
