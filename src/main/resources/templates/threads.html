@@ -14,7 +14,7 @@ layout:decorate="~{layout/layout}">
         <a class="btn btn-secondary my-5 offset-md-2" th:href="@{/makeThread}"><i class="fas fa-plus"></i><span class="beforeIndent" th:text="#{makeThread}">スレッド作成</span></a>
           <div th:each="thread:${threadList}" class="offset-md-2 col-md-8">
             <a th:href="@{'/messages/' + ${thread.threadNumber}}" class="linkStyle">
-              <div th:text="${thread.threadName}" class="threadname threadname-size font-weight-bold">スレッド名</div>
+              <div th:text="${thread.threadName}" class="threadname threadname-size font-weight-bold box-format">スレッド名</div>
               <span class="threadcounts font-weight-bold"><i class="fas fa-comments afterIndent"></i><th:block th:text="${thread.messageCount}"></th:block>コメント</span>
               <span class="beforeIndent">最終更新日時：</span><span th:text="${#dates.format(thread.updatedAt,'yyyy/MM/dd HH:mm:ss')}"></span>
             </a>
