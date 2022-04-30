@@ -13,14 +13,15 @@ layout:decorate="~{layout/layout}">
           <div class="col-md-8 offset-md-2">
             <h2 class="font-weight-bold my-5" th:text="${threadName}">スレッド名</h2>
             <!--メッセージのセット-->
-            <div th:each="message:${messageList}">
+            <div th:each="message,status:${messageList}">
+              <span th:text="'#' + ${status.count} + '.'"></span>
               <span th:text="${#dates.format(message.updatedAt,'yyyy/MM/dd HH:mm:ss')}">
                 2022/01/01(土) 10:00:00
               </span>
               <span th:text="${message.contributorName}">
                 名無しさん
               </span>
-                <i class="fas fa-reply replay-mark"></i>
+              <i class="fas fa-reply replay-mark"></i>
               <div class="my-3">
                 <span class="font-weight-bold message-size" th:text="${message.message}">メッセージ</span>
               </div>
@@ -56,6 +57,7 @@ layout:decorate="~{layout/layout}">
         </div>
       </div>
     </div>
+    <script th:src="@{/js/messages.js}" defer></script>
   </body>
 
 </html>
