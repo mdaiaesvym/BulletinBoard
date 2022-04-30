@@ -21,7 +21,9 @@ layout:decorate="~{layout/layout}">
               <span th:text="${message.contributorName}">
                 名無しさん
               </span>
-              <i class="fas fa-reply replay-mark"></i>
+              <i class="fas fa-reply replay-mark pointer" th:onclick="|replay(__${status.count}__)|">
+                <span>返信</span>
+              </i>
               <div class="my-3">
                 <span class="font-weight-bold message-size" th:text="${message.message}">メッセージ</span>
               </div>
@@ -56,8 +58,8 @@ layout:decorate="~{layout/layout}">
           </div>
         </div>
       </div>
+      <script th:src="@{/js/messages.js}" defer></script>
     </div>
-    <script th:src="@{/js/messages.js}" defer></script>
   </body>
 
 </html>
