@@ -14,7 +14,7 @@ layout:decorate="~{layout/layout}">
             <h2 class="font-weight-bold my-5" th:text="${threadName}">スレッド名</h2>
             <!--メッセージのセット-->
             <div th:each="message,status:${messageList}">
-              <span th:text="'#' + ${status.count} + '.'"></span>
+              <span th:text="'#' + ${status.count} + '.'" th:id="|messageNum${status.count}|"></span>
               <span th:text="${#dates.format(message.updatedAt,'yyyy/MM/dd HH:mm:ss')}">
                 2022/01/01(土) 10:00:00
               </span>
@@ -25,7 +25,7 @@ layout:decorate="~{layout/layout}">
                 <span>返信</span>
               </i>
               <div class="my-3">
-                <span class="font-weight-bold message-size box-format" th:text="${message.message}">メッセージ</span>
+                <span class="font-weight-bold message-size box-format message" th:text="${message.message}">メッセージ</span>
               </div>
               <hr>
             </div>
@@ -59,6 +59,25 @@ layout:decorate="~{layout/layout}">
         </div>
       </div>
       <script th:src="@{/js/messages.js}" defer></script>
+      <script type="text/javascript" th:inline="javascript">
+        //正規表現設定「>>数字」
+        const regex = new RegExp('\>\>\\d*',"g");
+        messages = document.querySelectorAll(".message")
+
+        for(const message of messages){
+          //正規表現とマッチしたら
+          if(regex.test(message.textContent)){
+            //メッセージ取得
+            var messageText = message.textContent
+            //マッチした数字配列取得
+            var matchNums = messageText.match(regex)
+            for(const matchNum of matchNums){
+              var linkNum = matchNum.substr(2)
+              message.innerHTML = messageText.replace(regex,"<a href=" + [[${threadNumber}]] + "#messageNum"+ linkNum +">" + matchNum + "</a>")
+            }
+          }
+        }
+      </script>
     </div>
   </body>
 
