@@ -1,46 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{layout/layout}">
-  <head>
-  </head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+  <head> </head>
 
   <body>
     <div layout:fragment="content">
       <div class="container-fluid">
-      <!--スレッド名フォーム-->
-      <form class="row" method="post" th:action="@{/threads}" th:object="${makeThreadForm}">
-        <div class="col-md-6 offset-md-3 mt-5">
-          <div class="form-group">
-            <label class="font-weight-bold" for="threadname" th:text="#{threadName}">スレッド名</label>
-            <input type="text" class="form-control" id="threadname" th:field="*{threadName}" th:errorclass="is-invalid">
-            <div th:errors="*{threadName}" class="text-danger"></div>
+        <!--スレッド名フォーム-->
+        <form class="row" method="post" th:action="@{/threads}" th:object="${makeThreadForm}">
+          <div class="col-md-6 offset-md-3 mt-5">
+            <div class="form-group">
+              <label class="font-weight-bold" for="threadname" th:text="#{threadName}">スレッド名</label>
+              <input type="text" class="form-control" id="threadname" th:field="*{threadName}" th:errorclass="is-invalid" />
+              <div th:errors="*{threadName}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+              <label class="font-weight-bold" for="message" th:text="#{message}">メッセージ</label>
+              <textarea id="message" class="form-control" rows="10" th:field="*{message}" th:errorclass="is-invalid"></textarea>
+              <div th:errors="*{message}" class="text-danger"></div>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="anonymous" value="0" th:field="*{checkContributorName}" onclick="contributorNameOpenHidden()" />
+              <label class="form-check-label" for="anonymous">匿名で投稿</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="onymous" value="1" th:field="*{checkContributorName}" onclick="contributorNameOpenHidden()" />
+              <label class="form-check-label" for="onymous">記名で投稿</label>
+            </div>
+            <div id="contributorNameForm" class="form-group w-25">
+              <label class="font-weight-bold" for="contributorName" th:text="#{contributorName}">投稿者名</label>
+              <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
+              <div th:errors="*{contributorName}" class="text-danger"></div>
+            </div>
+            <div class="text-left mt-2">
+              <input type="submit" class="btn btn-secondary" th:value="#{makeThread}" name="makeThread" onclick="setAnonymous()" />
+            </div>
           </div>
-          <div class="form-group">
-            <label class="font-weight-bold" for="message" th:text="#{message}">メッセージ</label>
-            <textarea id="message" class="form-control" rows="10" th:field="*{message}" th:errorclass="is-invalid"></textarea>
-            <div th:errors="*{message}" class="text-danger"></div>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="anonymous" value="0" th:field="*{checkContributorName}" onclick="contributorNameOpenHidden()">
-            <label class="form-check-label" for="anonymous">匿名で投稿</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="onymous" value="1" th:field="*{checkContributorName}" onclick="contributorNameOpenHidden()">
-            <label class="form-check-label" for="onymous">記名で投稿</label>
-          </div>
-          <div id="contributorNameForm" class="form-group w-25">
-            <label class="font-weight-bold" for="contributorName" th:text="#{contributorName}">投稿者名</label>
-            <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid">
-            <div th:errors="*{contributorName}" class="text-danger"></div>
-          </div>
-          <div class="text-left mt-2">
-            <input type="submit" class="btn btn-secondary" th:value="#{makeThread}" name="makeThread" onclick="setAnonymous()">
-          </div>
-        </div>
-      </form>
+        </form>
       </div>
     </div>
   </body>
-
 </html>

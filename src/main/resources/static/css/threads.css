@@ -1,28 +1,28 @@
-.beforeIndent{
-  margin-left : 10px;
+.beforeIndent {
+  margin-left: 10px;
 }
 
-.afterIndent{
-  margin-right : 5px;
+.afterIndent {
+  margin-right: 5px;
 }
 
-.threadname{
+.threadname {
   width: 75%;
 }
 
-.threadcounts{
+.threadcounts {
   width: 25%;
 }
 
-.threadname-size{
+.threadname-size {
   font-size: 20px;
 }
 
-.linkStyle{
-  color:black;
+.linkStyle {
+  color: black;
 }
 
-.linkStyle:hover{
-  color:silver;
-  text-decoration:none;
+.linkStyle:hover {
+  color: silver;
+  text-decoration: none;
 }

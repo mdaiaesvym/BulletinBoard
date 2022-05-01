@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{layout/layout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
   <head>
-    <link rel="stylesheet" th:href="@{/css/messages.css}">
+    <link rel="stylesheet" th:href="@{/css/messages.css}" />
   </head>
 
   <body>
@@ -15,19 +13,15 @@ layout:decorate="~{layout/layout}">
             <!--メッセージのセット-->
             <div th:each="message,status:${messageList}">
               <span th:text="'#' + ${status.count} + '.'" th:id="|messageNum${status.count}|"></span>
-              <span th:text="${#dates.format(message.updatedAt,'yyyy/MM/dd HH:mm:ss')}">
-                2022/01/01(土) 10:00:00
-              </span>
-              <span th:text="${message.contributorName}">
-                名無しさん
-              </span>
+              <span th:text="${#dates.format(message.updatedAt,'yyyy/MM/dd HH:mm:ss')}"> 2022/01/01(土) 10:00:00 </span>
+              <span th:text="${message.contributorName}"> 名無しさん </span>
               <i class="fas fa-reply replay-mark pointer" th:onclick="|replay(__${status.count}__)|">
                 <span>返信</span>
               </i>
               <div class="my-3">
                 <span class="font-weight-bold message-size box-format message" th:text="${message.message}">メッセージ</span>
               </div>
-              <hr>
+              <hr />
             </div>
 
             <!--メッセージフォーム-->
@@ -38,22 +32,22 @@ layout:decorate="~{layout/layout}">
                 <div th:errors="*{message}" class="text-danger"></div>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="anonymous" value="0" th:field="*{checkContributorName}" onclick="contributorNameOpenHidden()">
+                <input class="form-check-input" type="radio" id="anonymous" value="0" th:field="*{checkContributorName}" onclick="contributorNameOpenHidden()" />
                 <label class="form-check-label" for="anonymous">匿名で投稿</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="onymous" value="1" th:field="*{checkContributorName}" onclick="contributorNameOpenHidden()">
+                <input class="form-check-input" type="radio" id="onymous" value="1" th:field="*{checkContributorName}" onclick="contributorNameOpenHidden()" />
                 <label class="form-check-label" for="onymous">記名で投稿</label>
               </div>
               <div id="contributorNameForm" class="form-group w-25">
                 <label class="font-weight-bold" for="contributorName" th:text="#{contributorName}">投稿者名</label>
-                <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid">
+                <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
                 <div th:errors="*{contributorName}" class="text-danger"></div>
               </div>
               <div class="text-left mt-2">
-                <input type="submit" class="btn btn-secondary" th:value="#{post}" name="postMessage" onclick="setAnonymous()">
+                <input type="submit" class="btn btn-secondary" th:value="#{post}" name="postMessage" onclick="setAnonymous()" />
               </div>
-              <input type="hidden" name="threadNumber" value="1" th:value="${threadNumber}">
+              <input type="hidden" name="threadNumber" value="1" th:value="${threadNumber}" />
             </form>
           </div>
         </div>
@@ -80,5 +74,4 @@ layout:decorate="~{layout/layout}">
       </script>
     </div>
   </body>
-
 </html>
