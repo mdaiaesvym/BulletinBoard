@@ -1,7 +1,7 @@
 //初期表示
-window.onload = function(){
-  contributorNameOpenHidden();
-}
+window.addEventListener('DOMContentLoaded', function(){
+  contributorNameOpenHidden()
+});
 
 //投稿者名の表示・非表示
 function contributorNameOpenHidden(){
