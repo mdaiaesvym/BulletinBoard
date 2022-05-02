@@ -67,10 +67,10 @@
             for (const matchNum of matchNums) {
               //「>>」を省く
               var linkNum = matchNum.substr(2);
-              console.log(message.innerHTML)
-              message.innerHTML = messageText.replace(matchNum, "<a href=" + [[${threadNumber}]] +"#messageNum" + linkNum + ">" + matchNum + "</a>");
-              messageText=messageText.replace(matchNum, "<a href=" + [[${threadNumber}]] +"#messageNum" + linkNum + ">" + matchNum + "</a>");
-              console.log(message.innerHTML)
+              //変更後のテキスト
+              var linkText = "<a href=" + [[${threadNumber}]] +"#messageNum" + linkNum + ">" + matchNum + "</a>"
+              message.innerHTML = messageText.replace(matchNum, linkText);
+              messageText = messageText.replace(matchNum, linkText);
             }
           }
         }
