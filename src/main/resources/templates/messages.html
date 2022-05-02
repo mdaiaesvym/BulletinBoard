@@ -54,20 +54,19 @@
       </div>
       <script th:src="@{/js/messages.js}" defer></script>
       <script type="text/javascript" th:inline="javascript">
-        //正規表現設定「>>数字」
-        const regex = new RegExp('\>\>\\d*',"g");
-        messages = document.querySelectorAll(".message")
-
-        for(const message of messages){
+        //正規表現設定「>>数字
+        const regex = new RegExp("\>\>\\d*", "g");
+        messages = document.querySelectorAll(".message");
+        for (const message of messages) {
           //正規表現とマッチしたら
-          if(regex.test(message.textContent)){
+          if (regex.test(message.textContent)) {
             //メッセージ取得
-            var messageText = message.textContent
+            var messageText = message.textContent;
             //マッチした数字配列取得
-            var matchNums = messageText.match(regex)
-            for(const matchNum of matchNums){
-              var linkNum = matchNum.substr(2)
-              message.innerHTML = messageText.replace(regex,"<a href=" + [[${threadNumber}]] + "#messageNum"+ linkNum +">" + matchNum + "</a>")
+            var matchNums = messageText.match(regex);
+            for (const matchNum of matchNums) {
+              var linkNum = matchNum.substr(2);
+              message.innerHTML = messageText.replace(regex, "<a href=" + [[${threadNumber}]] +"#messageNum" + linkNum + ">" + matchNum + "</a>");
             }
           }
         }
