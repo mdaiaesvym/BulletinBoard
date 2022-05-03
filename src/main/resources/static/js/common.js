@@ -25,3 +25,12 @@ function setAnonymous() {
     document.getElementById("contributorName").value = "匿名";
   }
 }
+
+//全角スペースを半角スペースに置換
+function changeSpace() {
+  changeTexts = document.querySelectorAll(".change-space");
+  console.log(changeTexts);
+  for (const changeText of changeTexts) {
+    changeText.value = changeText.value.replace(/　/g, " ");
+  }
+}

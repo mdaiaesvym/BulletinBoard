@@ -10,12 +10,12 @@
           <div class="col-md-6 offset-md-3 mt-5">
             <div class="form-group">
               <label class="font-weight-bold" for="threadname" th:text="#{threadName}">スレッド名</label>
-              <input type="text" class="form-control" id="threadname" th:field="*{threadName}" th:errorclass="is-invalid" />
+              <input type="text" class="form-control change-space" id="threadname" th:field="*{threadName}" th:errorclass="is-invalid" />
               <div th:errors="*{threadName}" class="text-danger"></div>
             </div>
             <div class="form-group">
               <label class="font-weight-bold" for="message" th:text="#{message}">メッセージ</label>
-              <textarea id="message" class="form-control" rows="10" th:field="*{message}" th:errorclass="is-invalid"></textarea>
+              <textarea id="message" class="form-control change-space" rows="10" th:field="*{message}" th:errorclass="is-invalid"></textarea>
               <div th:errors="*{message}" class="text-danger"></div>
             </div>
             <div class="form-check form-check-inline">
@@ -28,11 +28,11 @@
             </div>
             <div id="contributorNameForm" class="form-group w-25">
               <label class="font-weight-bold" for="contributorName" th:text="#{contributorName}">投稿者名</label>
-              <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
+              <input type="text" class="form-control change-space" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
               <div th:errors="*{contributorName}" class="text-danger"></div>
             </div>
             <div class="text-left mt-2 mb-5">
-              <input type="submit" class="btn btn-secondary" th:value="#{makeThread}" name="makeThread" onclick="setAnonymous()" />
+              <input type="submit" class="btn btn-secondary" th:value="#{makeThread}" name="makeThread" onclick="setAnonymous();changeSpace()" />
             </div>
           </div>
         </form>

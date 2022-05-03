@@ -1,3 +1,4 @@
+//メッセージ入力フォームに返信先の番号を入れ、メッセージ入力フォームにフォーカスする
 function replay(count) {
   messageArea = document.getElementById("message");
 
