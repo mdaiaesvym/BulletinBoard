@@ -44,7 +44,7 @@
                 <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
                 <div th:errors="*{contributorName}" class="text-danger"></div>
               </div>
-              <div class="text-left mt-2">
+              <div class="text-left mt-2 mb-5">
                 <input type="submit" class="btn btn-secondary" th:value="#{post}" name="postMessage" onclick="setAnonymous()" />
               </div>
               <input type="hidden" name="threadNumber" value="1" th:value="${threadNumber}" />

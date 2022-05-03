@@ -31,7 +31,7 @@
               <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
               <div th:errors="*{contributorName}" class="text-danger"></div>
             </div>
-            <div class="text-left mt-2">
+            <div class="text-left mt-2 mb-5">
               <input type="submit" class="btn btn-secondary" th:value="#{makeThread}" name="makeThread" onclick="setAnonymous()" />
             </div>
           </div>
