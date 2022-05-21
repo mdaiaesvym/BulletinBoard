@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
   <head>
     <link rel="stylesheet" th:href="@{/css/messages.css}" />
-    <title th:text="#{messageList.window}"></title>
+    <title th:text="#{app.window(#{messageList.window})}"></title>
   </head>
 
   <body>
