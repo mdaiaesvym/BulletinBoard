@@ -28,13 +28,13 @@
 
 ### 構成
 
-- spring boot：2.6.2
+- spring boot：Ver2.6.2
   - maven
   - h2 
 - html
 - css
-  - boot strap：4.6.1
-- font awesome：5.10.0
+  - boot strap：Ver4.6.1
+- font awesome：Ver5.10.0
 - javascript
 
 ### 使用方法
