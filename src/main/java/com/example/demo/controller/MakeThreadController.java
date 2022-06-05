@@ -40,7 +40,7 @@ public class MakeThreadController {
 	 * @param form
 	 * @return
 	 */
-	@PostMapping(value = "/threads", params = "makeThread")
+	@PostMapping(value = "/makeThread", params = "makeThread")
 	public String postMakeThred(@ModelAttribute("makeThreadForm") @Validated MakeThreadForm form,
 			BindingResult bindingResult) {
 
