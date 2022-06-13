@@ -41,11 +41,11 @@ public class MessagesController {
 	public String getMessages(Model model, @ModelAttribute MakeMessageForm form,
 			@PathVariable("threadNumber") String threadNumber) {
 
-		/** 対象スレッドのメッセージ一覧を取得 */
+		// 対象スレッドのメッセージ一覧を取得
 		List<Message> message = messageService.getMessageas(threadNumber);
 		model.addAttribute("messageList", message);
 
-		/** スレッド名取得 */
+		// スレッド名取得
 		String threadName = messageService.getThreadName(threadNumber);
 		model.addAttribute("threadName", threadName);
 
