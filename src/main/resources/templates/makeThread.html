@@ -28,7 +28,7 @@
               <input class="form-check-input" type="radio" id="onymous" value="1" th:field="*{checkContributorName}" onclick="contributorNameOpenHidden()" />
               <label class="form-check-label" for="onymous">記名で投稿</label>
             </div>
-            <div id="contributorNameForm" class="form-group w-25">
+            <div id="contributorNameForm" class="form-group w-25" hidden>
               <label class="font-weight-bold" for="contributorName" th:text="#{contributorName}">投稿者名</label>
               <input type="text" class="form-control change-space" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
               <div th:errors="*{contributorName}" class="text-danger"></div>

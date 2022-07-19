@@ -10,9 +10,10 @@ function contributorNameOpenHidden() {
   var contributorNameTextArea = document.getElementById("contributorName");
 
   if (anonymous.checked) {
-    contributorNameForm.style.display = "none";
+    contributorNameForm.setAttribute("hidden", "");
     contributorNameTextArea.value = "";
   } else {
+    contributorNameForm.removeAttribute("hidden");
     contributorNameForm.style.display = "";
   }
 }
