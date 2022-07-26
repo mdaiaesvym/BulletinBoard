@@ -50,7 +50,7 @@ public class MessagesController {
 		//スレッド数取得
 		Integer threadCounts = messageService.getThreadCount();
 
-		if (threadCounts.compareTo(Integer.valueOf(threadNumber)) > 0 && Integer.valueOf(threadNumber) > 0) {
+		if (threadCounts.compareTo(Integer.valueOf(threadNumber)) >= 0 && Integer.valueOf(threadNumber) > 0) {
 
 			// 対象スレッドのメッセージ一覧を取得
 			List<Message> message = messageService.getMessageas(threadNumber);
