@@ -33,4 +33,9 @@ public class MessageServiceImpl implements MessageService {
 			makeMessageForm.setContributorName("匿名");
 		}
 	}
+
+	@Override
+	public Integer getThreadCount() {
+		return mapper.selectThreadCount();
+	}
 }

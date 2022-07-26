@@ -57,4 +57,9 @@
   select thread_name from threads where thread_number = #{threadNumber};
   </select>
 
+  <!--スレッド数取得-->
+  <select id="selectThreadCount" resultType="Integer">
+  select count(*) from threads;
+  </select>
+
 </mapper>

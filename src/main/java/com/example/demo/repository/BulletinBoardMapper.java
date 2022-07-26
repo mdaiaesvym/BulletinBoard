@@ -15,16 +15,19 @@ public interface BulletinBoardMapper {
 
 	/**スレッドナンバー・スレッド名・メッセージ数取得*/
 	public List<Thread> selectThreadList();
-	
+
 	/**メッセージ追加*/
 	public void insertMessage(Message message);
-	
+
 	/**オートインクリメント取得*/
 	public int selectAutoIncrement();
-	
+
 	/**メッセージ一覧取得*/
 	public List<Message> selectMessageList(String threadNumber);
-	
+
 	/**スレッド名取得*/
 	public String selectThreadName(String threadNumber);
+
+	/**スレッド数取得*/
+	public Integer selectThreadCount();
 }

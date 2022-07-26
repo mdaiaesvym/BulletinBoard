@@ -7,6 +7,9 @@ import com.example.demo.model.Message;
 
 public interface MessageService {
 
+	/**スレッド数取得*/
+	public Integer getThreadCount();
+
 	/** メッセージ一覧取得 */
 	public List<Message> getMessageas(String threadNumber);
 

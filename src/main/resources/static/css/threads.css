@@ -26,3 +26,12 @@
   color: silver;
   text-decoration: none;
 }
+
+.errorMessage {
+  color: white;
+  background-color: #f06060;
+  border-radius: 5px;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
