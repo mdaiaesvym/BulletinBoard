@@ -44,7 +44,7 @@ public class MessagesController {
 	 * @return
 	 */
 	@GetMapping("/messages/{threadNumber}")
-	public String getMessages(Model model, @ModelAttribute MakeMessageForm form,
+	public String getMessages(Model model, @ModelAttribute("makeMessageForm") MakeMessageForm form,
 			@PathVariable("threadNumber") String threadNumber, RedirectAttributes redirectAttributes) {
 
 		//スレッド数取得
@@ -76,7 +76,8 @@ public class MessagesController {
 	 * @param model
 	 */
 	@PostMapping(value = "/messages/{threadNumber}", params = "postMessage")
-	public String postMessage(@ModelAttribute @Validated MakeMessageForm form, BindingResult bindingResult,
+	public String postMessage(@ModelAttribute("makeMessageForm") @Validated MakeMessageForm form,
+			BindingResult bindingResult,
 			Model model, RedirectAttributes redirectAttributes) {
 
 		// 入力チェック
