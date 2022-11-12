@@ -39,7 +39,7 @@ public class MessagesControllerTest {
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
-        .param("message", "メッセージテスト").param("checkContributorName", "1")
+        .param("message", "メッセージテスト").param("isContributorName", "1")
         .param("contributorName", "投稿者テスト"))
         // エラーがないことのテスト
         .andExpect(model().hasNoErrors())
@@ -55,7 +55,7 @@ public class MessagesControllerTest {
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
-        .param("message", "").param("checkContributorName", "1").param("contributorName", "投稿者テスト")
+        .param("message", "").param("isContributorName", "1").param("contributorName", "投稿者テスト")
         .param("threadNumber", "1"))
         // エラーがあることのテスト
         .andExpect(model().hasErrors())
@@ -71,7 +71,7 @@ public class MessagesControllerTest {
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
-        .param("message", "メッセージテスト").param("checkContributorName", "1")
+        .param("message", "メッセージテスト").param("isContributorName", "1")
         .param("contributorName", ""))
         // エラーがあることのテスト
         .andExpect(model().hasErrors())

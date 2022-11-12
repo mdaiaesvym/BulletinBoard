@@ -33,7 +33,7 @@ public class MakeThreadServiceImpl implements MakeThreadService {
 
   @Override
   public void isContributorName(MakeThreadForm makethreadForm) {
-    if (Objects.equals(makethreadForm.getCheckContributorName(), 0)) {
+    if (Objects.equals(makethreadForm.getIsContributorName(), 0)) {
       makethreadForm.setContributorName("匿名");
     }
   }

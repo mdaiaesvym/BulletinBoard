@@ -18,7 +18,7 @@ public class MakeThreadForm {
   private String message;
 
   // 投稿者名フラグ
-  private Integer checkContributorName = 0;
+  private Integer isContributorName = 0;
 
   @NotBlank
   @Length(min = 1, max = 100)

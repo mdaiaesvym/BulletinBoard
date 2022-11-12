@@ -27,7 +27,7 @@ public class MessageServiceImpl implements MessageService {
 
   @Override
   public void isContributorName(MakeMessageForm makeMessageForm) {
-    if (Objects.equals(makeMessageForm.getCheckContributorName(), 0)) {
+    if (Objects.equals(makeMessageForm.getIsContributorName(), 0)) {
       makeMessageForm.setContributorName("匿名");
     }
   }
