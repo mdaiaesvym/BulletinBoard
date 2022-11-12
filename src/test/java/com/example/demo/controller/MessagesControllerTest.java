@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +14,7 @@ import com.example.demo.service.MessageService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class MessagesControllerTest {
 
   @Autowired
@@ -22,6 +25,8 @@ public class MessagesControllerTest {
 
   @Test
   public void アクセス成功() throws Exception {
+    when(messageService.getThreadCount()).thenReturn(10);
+
     mockMvc.perform(get("/messages/1"))
         // リクエスト成功をテスト
         .andExpect(status().isOk())
@@ -51,12 +56,13 @@ public class MessagesControllerTest {
 
   @Test
   public void メッセージ投稿失敗_メッセージが空() throws Exception {
+    when(messageService.getThreadCount()).thenReturn(10);
+
     mockMvc.perform(post("/messages/1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
-        .param("message", "").param("isContributorName", "1").param("contributorName", "投稿者テスト")
-        .param("threadNumber", "1"))
+        .param("message", "").param("isContributorName", "1").param("contributorName", "投稿者テスト"))
         // エラーがあることのテスト
         .andExpect(model().hasErrors())
         // リクエスト成功をテスト
@@ -67,6 +73,8 @@ public class MessagesControllerTest {
 
   @Test
   public void メッセージ投稿失敗_投稿者が空() throws Exception {
+    when(messageService.getThreadCount()).thenReturn(10);
+
     mockMvc.perform(post("/messages/1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
