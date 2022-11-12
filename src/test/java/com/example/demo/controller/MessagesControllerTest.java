@@ -71,8 +71,7 @@ public class MessagesControllerTest {
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
-        .param("message", "メッセージテスト").param("isContributorName", "1")
-        .param("contributorName", ""))
+        .param("message", "メッセージテスト").param("isContributorName", "1").param("contributorName", ""))
         // エラーがあることのテスト
         .andExpect(model().hasErrors())
         // リクエスト成功をテスト
