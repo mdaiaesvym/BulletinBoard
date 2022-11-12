@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class MakeMessageForm {
 
-	private Integer threadNumber;
+	private String threadNumber;
 
 	@NotBlank
 	@Length(min = 1, max = 1000)
