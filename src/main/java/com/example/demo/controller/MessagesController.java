@@ -88,7 +88,8 @@ public class MessagesController {
 
 		// 入力チェック
 		if (bindingResult.hasErrors()) {
-			return getMessages(model, makeMessageForm, makeMessageForm.getThreadNumber().toString(), redirectAttributes);
+			return getMessages(model, makeMessageForm, makeMessageForm.getThreadNumber().toString(),
+					redirectAttributes);
 		}
 
 		Message message = new Message();
