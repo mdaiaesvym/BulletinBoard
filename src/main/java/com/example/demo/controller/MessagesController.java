@@ -44,25 +44,31 @@ public class MessagesController {
 	 * @return
 	 */
 	@GetMapping("/messages/{threadNumber}")
-	public String getMessages(Model model, @ModelAttribute("makeMessageForm") MakeMessageForm form,
+	public String getMessages(Model model, @ModelAttribute("makeMessageForm") MakeMessageForm makeMessageForm,
 			@PathVariable("threadNumber") String threadNumber, RedirectAttributes redirectAttributes) {
 
 		//スレッド数取得
 		Integer threadCounts = messageService.getThreadCount();
 
-		if (threadCounts.compareTo(Integer.valueOf(threadNumber)) >= 0 && Integer.valueOf(threadNumber) > 0) {
+		try {
+			if (threadCounts.compareTo(Integer.valueOf(threadNumber)) >= 0 && Integer.valueOf(threadNumber) > 0) {
 
-			// 対象スレッドのメッセージ一覧を取得
-			List<Message> message = messageService.getMessageas(threadNumber);
-			model.addAttribute("messageList", message);
+				// 対象スレッドのメッセージ一覧を取得
+				List<Message> message = messageService.getMessageas(threadNumber);
+				model.addAttribute("messageList", message);
 
-			// スレッド名取得
-			String threadName = messageService.getThreadName(threadNumber);
-			model.addAttribute("threadName", threadName);
+				// スレッド名取得
+				String threadName = messageService.getThreadName(threadNumber);
+				model.addAttribute("threadName", threadName);
 
-			model.addAttribute("threadNumber", threadNumber);
+				model.addAttribute("threadNumber", threadNumber);
 
-			return "/messages";
+				return "/messages";
+			}
+		} catch (NumberFormatException e) {
+			redirectAttributes.addFlashAttribute("errorMessage",
+					messageSource.getMessage("messages.urlErrormessage", null, Locale.getDefault()));
+			return "redirect:/threads";
 		}
 
 		redirectAttributes.addFlashAttribute("errorMessage",
@@ -76,24 +82,24 @@ public class MessagesController {
 	 * @param model
 	 */
 	@PostMapping(value = "/messages/{threadNumber}", params = "postMessage")
-	public String postMessage(@ModelAttribute("makeMessageForm") @Validated MakeMessageForm form,
+	public String postMessage(@ModelAttribute("makeMessageForm") @Validated MakeMessageForm makeMessageForm,
 			BindingResult bindingResult,
 			Model model, RedirectAttributes redirectAttributes) {
 
 		// 入力チェック
 		if (bindingResult.hasErrors()) {
-			return getMessages(model, form, form.getThreadNumber().toString(), redirectAttributes);
+			return getMessages(model, makeMessageForm, makeMessageForm.getThreadNumber().toString(), redirectAttributes);
 		}
 
 		Message message = new Message();
 
 		// 匿名・記名の確認
-		messageService.isContributorName(form);
+		messageService.isContributorName(makeMessageForm);
 		// formをMessageクラスに変換
-		message = modelMapper.map(form, Message.class);
+		message = modelMapper.map(makeMessageForm, Message.class);
 		// テーブル「messages」に追加
 		makeThreadService.addMessage(message);
 
-		return "redirect:/messages/" + form.getThreadNumber();
+		return "redirect:/messages/" + makeMessageForm.getThreadNumber();
 	}
 }

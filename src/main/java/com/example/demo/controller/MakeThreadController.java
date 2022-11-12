@@ -26,39 +26,39 @@ public class MakeThreadController {
 	/**
 	 * 画面表示メソッド
 	 * 
-	 * @param form
+	 * @param makeThreadForm
 	 * @return
 	 */
 	@GetMapping("/makeThread")
-	public String getMakeThread(@ModelAttribute("makeThreadForm") MakeThreadForm form) {
+	public String getMakeThread(@ModelAttribute("makeThreadForm") MakeThreadForm makeThreadForm) {
 		return "/makeThread";
 	}
 
 	/**
 	 * スレッド作成メソッド
 	 * 
-	 * @param form
+	 * @param makeThreadForm
 	 * @return
 	 */
 	@PostMapping(value = "/makeThread", params = "makeThread")
-	public String postMakeThred(@ModelAttribute("makeThreadForm") @Validated MakeThreadForm form,
+	public String postMakeThred(@ModelAttribute("makeThreadForm") @Validated MakeThreadForm makeThreadForm,
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return getMakeThread(form);
+			return getMakeThread(makeThreadForm);
 		}
 
 		Message message = new Message();
 
 		// formをTheradクラスに変換
-		Thread thread = modelMapper.map(form, Thread.class);
+		Thread thread = modelMapper.map(makeThreadForm, Thread.class);
 		// テーブル「threads」に追加
 		makeThreadService.makeThread(thread);
 
 		// 匿名・記名の確認
-		makeThreadService.isContributorName(form);
+		makeThreadService.isContributorName(makeThreadForm);
 		// formをMessageクラスに変換
-		message = modelMapper.map(form, Message.class);
+		message = modelMapper.map(makeThreadForm, Message.class);
 		// オートインクリメント取得
 		message.setThreadNumber(makeThreadService.getAutoIncrement());
 		// テーブル「messages」に追加
