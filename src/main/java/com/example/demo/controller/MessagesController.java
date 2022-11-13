@@ -67,12 +67,12 @@ public class MessagesController {
       }
     } catch (NumberFormatException e) {
       redirectAttributes.addFlashAttribute("errorMessage",
-          messageSource.getMessage("messages.urlErrormessage", null, Locale.getDefault()));
+          messageSource.getMessage("threads.urlErrormessage", null, Locale.getDefault()));
       return "redirect:/threads";
     }
 
     redirectAttributes.addFlashAttribute("errorMessage",
-        messageSource.getMessage("messages.urlErrormessage", null, Locale.getDefault()));
+        messageSource.getMessage("threads.urlErrormessage", null, Locale.getDefault()));
     return "redirect:/threads";
   }
 
@@ -102,8 +102,8 @@ public class MessagesController {
     makeThreadService.addMessage(message);
 
     // 成功メッセージ
-    redirectAttributes.addFlashAttribute("successMessage",
-        messageSource.getMessage("messages.postSuccesstMessage", null, Locale.getDefault()));
+    redirectAttributes.addFlashAttribute("postSuccessMessage",
+        messageSource.getMessage("messages.postSuccessMessage", null, Locale.getDefault()));
 
     return "redirect:/messages/" + makeMessageForm.getThreadNumber();
   }

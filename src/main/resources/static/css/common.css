@@ -2,3 +2,21 @@
   white-space: pre-wrap;
   overflow-wrap: break-word;
 }
+
+.errorMessage {
+  color: white;
+  background-color: #f06060;
+  border-radius: 5px;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.successMessage {
+  color: white;
+  background-color: #33ccff;
+  border-radius: 5px;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

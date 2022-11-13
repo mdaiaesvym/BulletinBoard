@@ -9,7 +9,7 @@
     <div layout:fragment="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="offset-md-2 col-md-8 mt-5 successMessage" th:if="${successMessage != null}" th:text="${successMessage}">存在しないか、すでに削除されているページへのアクセスを検知しました</div>
+          <div class="offset-md-2 col-md-8 mt-5 successMessage" th:if="${postSuccessMessage != null}" th:text="${postSuccessMessage}">メッセージが投稿されました</div>
           <div class="col-md-8 offset-md-2">
             <h2 class="font-weight-bold my-5" th:text="${threadName}">スレッド名</h2>
             <!--メッセージのセット-->

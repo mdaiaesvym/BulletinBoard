@@ -1,13 +1,16 @@
 package com.example.demo.controller;
 
+import java.util.Locale;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.form.MakeThreadForm;
 import com.example.demo.model.Message;
 import com.example.demo.model.Thread;
@@ -21,6 +24,9 @@ public class MakeThreadController {
 
   @Autowired
   private ModelMapper modelMapper;
+
+  @Autowired
+  private MessageSource messageSource;
 
   /**
    * 画面表示メソッド
@@ -42,7 +48,7 @@ public class MakeThreadController {
   @PostMapping(value = "/makeThread", params = "makeThread")
   public String postMakeThred(
       @ModelAttribute("makeThreadForm") @Validated MakeThreadForm makeThreadForm,
-      BindingResult bindingResult) {
+      BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
     if (bindingResult.hasErrors()) {
       return getMakeThread(makeThreadForm);
@@ -63,6 +69,10 @@ public class MakeThreadController {
     message.setThreadNumber(makeThreadService.getAutoIncrement());
     // テーブル「messages」に追加
     makeThreadService.addMessage(message);
+
+    // 成功メッセージ
+    redirectAttributes.addFlashAttribute("postSuccessThread",
+        messageSource.getMessage("threads.postSuccessThread", null, Locale.getDefault()));
 
     return "redirect:/threads";
   }
