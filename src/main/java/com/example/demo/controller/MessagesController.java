@@ -101,6 +101,10 @@ public class MessagesController {
     // テーブル「messages」に追加
     makeThreadService.addMessage(message);
 
+    // 成功メッセージ
+    redirectAttributes.addFlashAttribute("successMessage",
+        messageSource.getMessage("messages.postSuccesstMessage", null, Locale.getDefault()));
+
     return "redirect:/messages/" + makeMessageForm.getThreadNumber();
   }
 }
