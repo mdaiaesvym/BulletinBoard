@@ -14,7 +14,7 @@
           <div class="offset-md-2 col-md-8 mt-5 successMessage" th:if="${postSuccessThread != null}" th:text="${postSuccessThread}">メッセージが投稿されました</div>
           <a class="btn btn-secondary my-5 offset-md-2" th:href="@{/makeThread}"> <i class="fas fa-plus"></i><span class="beforeIndent" th:text="#{makeThread}">スレッド作成</span> </a>
           <div th:each="thread:${threadList}" class="offset-md-2 col-md-8">
-            <a th:href="@{'/messages/' + ${thread.threadNumber}}" class="linkStyle">
+            <a th:href="@{/messages?threadNumber=__${thread.threadNumber}__}" class="linkStyle">
               <div th:text="${thread.threadName}" class="threadname threadname-size font-weight-bold box-format">スレッド名</div>
               <span class="threadcounts font-weight-bold"><i class="fas fa-comments afterIndent"></i><th:block th:text="${thread.messageCount}"></th:block>コメント</span>
               <span class="beforeIndent">最終更新日時：</span><span th:text="${#dates.format(thread.updatedAt,'yyyy/MM/dd HH:mm:ss')}"></span>

@@ -27,7 +27,7 @@
             </div>
 
             <!--メッセージフォーム-->
-            <form method="post" th:action="@{/messages} + '/' + ${threadNumber}" th:object="${makeMessageForm}">
+            <form method="post" th:action="@{/messages} + '?threadNumber=' + ${threadNumber}" th:object="${makeMessageForm}">
               <div class="form-group">
                 <label class="font-weight-bold" for="message" th:text="#{message}">メッセージ</label>
                 <textarea id="message" class="form-control change-space" rows="5" th:field="*{message}" th:errorclass="is-invalid"></textarea>

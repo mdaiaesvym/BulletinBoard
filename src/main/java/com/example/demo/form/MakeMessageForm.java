@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class MakeMessageForm {
 
-  // ページ番号
+  // スレッド番号
   private String threadNumber;
 
   @NotBlank
