@@ -36,24 +36,19 @@ public class MessagesController {
    */
   @GetMapping("/messages")
   public String getMessages(Model model, RedirectAttributes redirectAttributes,
-      @ModelAttribute("makeMessageForm") MakeMessageForm makeMessageForm) {
+      @ModelAttribute("makeMessageForm") MakeMessageForm form) {
 
     // スレッド数取得
     Integer threadCounts = messageService.getThreadCount();
     // スレッド番号取得
-    String threadNumber = makeMessageForm.getThreadNumber();
+    String threadNumber = form.getThreadNumber();
 
     try {
       if (threadCounts.compareTo(Integer.valueOf(threadNumber)) >= 0
-          && Integer.valueOf(makeMessageForm.getThreadNumber()) > 0) {
+          && Integer.valueOf(form.getThreadNumber()) > 0) {
 
-        // 対象スレッドのメッセージ一覧を取得
-        List<Message> message = messageService.getMessageas(threadNumber);
-        model.addAttribute("messageList", message);
-
-        // スレッド名取得
-        String threadName = messageService.getThreadName(threadNumber);
-        model.addAttribute("threadName", threadName);
+        // 共通処理呼び出し
+        showCommon(model, form);
 
         model.addAttribute("threadNumber", threadNumber);
 
@@ -76,22 +71,13 @@ public class MessagesController {
    * @param model
    */
   @PostMapping(value = "/messages", params = "postMessage")
-  public String postMessage(
-      @ModelAttribute("makeMessageForm") @Validated MakeMessageForm makeMessageForm,
+  public String postMessage(@ModelAttribute("makeMessageForm") @Validated MakeMessageForm form,
       BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-
-    // スレッド番号取得
-    String threadNumber = makeMessageForm.getThreadNumber();
 
     // 入力チェック
     if (bindingResult.hasErrors()) {
-      // 対象スレッドのメッセージ一覧を取得
-      List<Message> message = messageService.getMessageas(threadNumber);
-      model.addAttribute("messageList", message);
-
-      // スレッド名取得
-      String threadName = messageService.getThreadName(threadNumber);
-      model.addAttribute("threadName", threadName);
+      // 共通処理呼び出し
+      showCommon(model, form);
 
       return "/messages";
     }
@@ -99,9 +85,9 @@ public class MessagesController {
     Message message = new Message();
 
     // 匿名・記名の確認
-    messageService.isContributorName(makeMessageForm);
+    messageService.isContributorName(form);
     // formをMessageクラスに変換
-    message = modelMapper.map(makeMessageForm, Message.class);
+    message = modelMapper.map(form, Message.class);
     // テーブル「messages」に追加
     makeThreadService.addMessage(message);
 
@@ -110,5 +96,24 @@ public class MessagesController {
         messageSource.getMessage("messages.postSuccessMessage", null, Locale.getDefault()));
 
     return "redirect:/messages";
+  }
+
+  /**
+   * 画面表示の共通処理
+   * 
+   * @param model
+   * @param form
+   */
+  private void showCommon(Model model, MakeMessageForm form) {
+    // スレッド番号取得
+    String threadNumber = form.getThreadNumber();
+
+    // 対象スレッドのメッセージ一覧を取得
+    List<Message> message = messageService.getMessageas(threadNumber);
+    model.addAttribute("messageList", message);
+
+    // スレッド名取得
+    String threadName = messageService.getThreadName(threadNumber);
+    model.addAttribute("threadName", threadName);
   }
 }
