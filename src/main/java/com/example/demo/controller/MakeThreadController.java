@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,30 +49,35 @@ public class MakeThreadController {
   @PostMapping(value = "/makeThread", params = "makeThread")
   public String postMakeThred(
       @ModelAttribute("makeThreadForm") @Validated MakeThreadForm makeThreadForm,
-      BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+      BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 
+    // 入力チェック
     if (bindingResult.hasErrors()) {
-      return getMakeThread(makeThreadForm);
+      // 失敗メッセージ
+      model.addAttribute("errorMessage",
+          messageSource.getMessage("threads.postFailThread", null, Locale.getDefault()));
+
+      return "/makeThread";
     }
 
     Message message = new Message();
 
     // formをTheradクラスに変換
     Thread thread = modelMapper.map(makeThreadForm, Thread.class);
-    // テーブル「threads」に追加
+    // スレッド作成処理
     makeThreadService.makeThread(thread);
 
     // 匿名・記名の確認
     makeThreadService.isContributorName(makeThreadForm);
     // formをMessageクラスに変換
     message = modelMapper.map(makeThreadForm, Message.class);
-    // オートインクリメント取得
-    message.setThreadNumber(makeThreadService.getAutoIncrement());
-    // テーブル「messages」に追加
+    // スレッド数を取得
+    message.setThreadNumber(makeThreadService.getThreadMaxNumber());
+    // メッセージ作成処理
     makeThreadService.addMessage(message);
 
     // 成功メッセージ
-    redirectAttributes.addFlashAttribute("postSuccessThread",
+    redirectAttributes.addFlashAttribute("infoMessage",
         messageSource.getMessage("threads.postSuccessThread", null, Locale.getDefault()));
 
     return "redirect:/threads";

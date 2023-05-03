@@ -34,7 +34,7 @@
   </select>
 
   <!-- オートインクリメントの値を取得 -->
-  <select id="selectAutoIncrement" resultType="int">
+  <select id="threadMaxNumber" resultType="int">
   select max(thread_number) from threads;
   </select>
   

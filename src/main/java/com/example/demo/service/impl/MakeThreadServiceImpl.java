@@ -27,8 +27,8 @@ public class MakeThreadServiceImpl implements MakeThreadService {
   }
 
   @Override
-  public int getAutoIncrement() {
-    return mapper.selectAutoIncrement();
+  public int getThreadMaxNumber() {
+    return mapper.threadMaxNumber();
   }
 
   @Override

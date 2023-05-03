@@ -19,7 +19,7 @@ public interface MakeThreadService {
   /** 投稿者名の判定 */
   public void isContributorName(MakeThreadForm makethreadForm);
 
-  /** オートインクリメント取得 */
-  public int getAutoIncrement();
+  /** スレッド数の最大値を取得 */
+  public int getThreadMaxNumber();
 
 }

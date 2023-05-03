@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.form.MakeMessageForm;
 import com.example.demo.model.Message;
@@ -36,33 +37,25 @@ public class MessagesController {
    */
   @GetMapping("/messages")
   public String getMessages(Model model, RedirectAttributes redirectAttributes,
+      @RequestParam(name = "threadNumber", required = false) String threadNumber,
       @ModelAttribute("makeMessageForm") MakeMessageForm form) {
 
     // スレッド数取得
     Integer threadCounts = messageService.getThreadCount();
-    // スレッド番号取得
-    String threadNumber = form.getThreadNumber();
 
-    try {
-      if (threadCounts.compareTo(Integer.valueOf(threadNumber)) >= 0
-          && Integer.valueOf(form.getThreadNumber()) > 0) {
+    // 存在するページにアクセスした場合
+    if (threadCounts.compareTo(Integer.valueOf(threadNumber)) >= 0
+        && Integer.valueOf(form.getThreadNumber()) > 0) {
+      // 共通処理呼び出し
+      showCommon(model, form);
 
-        // 共通処理呼び出し
-        showCommon(model, form);
-
-        model.addAttribute("threadNumber", threadNumber);
-
-        return "/messages";
-      }
-    } catch (NumberFormatException e) {
+      return "/messages";
+    } else {
       redirectAttributes.addFlashAttribute("errorMessage",
           messageSource.getMessage("threads.urlErrormessage", null, Locale.getDefault()));
+
       return "redirect:/threads";
     }
-
-    redirectAttributes.addFlashAttribute("errorMessage",
-        messageSource.getMessage("threads.urlErrormessage", null, Locale.getDefault()));
-    return "redirect:/threads";
   }
 
   /**
@@ -79,6 +72,10 @@ public class MessagesController {
       // 共通処理呼び出し
       showCommon(model, form);
 
+      // 失敗メッセージ
+      model.addAttribute("errorMessage",
+          messageSource.getMessage("messages.postFailMessage", null, Locale.getDefault()));
+
       return "/messages";
     }
 
@@ -88,11 +85,14 @@ public class MessagesController {
     messageService.isContributorName(form);
     // formをMessageクラスに変換
     message = modelMapper.map(form, Message.class);
-    // テーブル「messages」に追加
+    // メッセージ追加処理
     makeThreadService.addMessage(message);
 
+    // リダイレクト用にスレッド番号を設定
+    redirectAttributes.addAttribute("threadNumber", form.getThreadNumber());
+
     // 成功メッセージ
-    redirectAttributes.addFlashAttribute("postSuccessMessage",
+    redirectAttributes.addFlashAttribute("infoMessage",
         messageSource.getMessage("messages.postSuccessMessage", null, Locale.getDefault()));
 
     return "redirect:/messages";

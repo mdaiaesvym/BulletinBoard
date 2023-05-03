@@ -18,7 +18,7 @@ public interface BulletinBoardMapper {
   public void insertMessage(Message message);
 
   /** オートインクリメント取得 */
-  public int selectAutoIncrement();
+  public int threadMaxNumber();
 
   /** メッセージ一覧取得 */
   public List<Message> selectMessageList(String threadNumber);

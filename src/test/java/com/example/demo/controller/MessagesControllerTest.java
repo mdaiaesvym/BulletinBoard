@@ -27,7 +27,7 @@ public class MessagesControllerTest {
   public void アクセス成功() throws Exception {
     when(messageService.getThreadCount()).thenReturn(10);
 
-    mockMvc.perform(get("/messages/1"))
+    mockMvc.perform(get("/messages?threadNumber=1"))
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
@@ -58,11 +58,12 @@ public class MessagesControllerTest {
   public void メッセージ投稿失敗_メッセージが空() throws Exception {
     when(messageService.getThreadCount()).thenReturn(10);
 
-    mockMvc.perform(post("/messages/1")
+    mockMvc.perform(post("/messages")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
-        .param("message", "").param("isContributorName", "1").param("contributorName", "投稿者テスト"))
+        .param("threadNumber", "1").param("message", "").param("isContributorName", "1")
+        .param("contributorName", "投稿者テスト"))
         // エラーがあることのテスト
         .andExpect(model().hasErrors())
         // リクエスト成功をテスト
