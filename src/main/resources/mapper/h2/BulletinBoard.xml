@@ -19,9 +19,18 @@
   
   <!--スレッドナンバー、スレッド名、メッセージ数、最終メッセージ更新日時取得-->
   <select id="selectThreadList" resultType="Thread">
-  select threads.thread_number,threads.thread_name,count(*) as message_count,max(messages.updated_at) as updated_at from messages 
-  inner join threads on messages.thread_number = threads.thread_number
-  group by messages.thread_number order by max(messages.updated_at) desc;
+  select
+    threads.thread_number,
+    threads.thread_name,count(*) as message_count,
+    max(messages.updated_at) as updated_at
+  from
+    messages 
+  inner join
+    threads on messages.thread_number = threads.thread_number
+  group by
+    messages.thread_number
+  order by
+    max(messages.updated_at) desc;
   </select>
 
   <!-- オートインクリメントの値を取得 -->
@@ -48,18 +57,34 @@
 
   <!--メッセージ一覧取得-->
   <select id="selectMessageList" resultType="Message">
-  select thread_number,message,created_name as contributorName,updated_at from messages 
-  where thread_number = #{threadNumber} order by created_at asc;
+  select 
+    thread_number,
+    message,
+    created_name as contributorName,
+    updated_at
+  from
+    messages 
+  where
+    thread_number = #{threadNumber}
+  order by created_at asc;
   </select>
 
   <!--スレッド名取得-->
   <select id="selectThreadName" resultType="String">
-  select thread_name from threads where thread_number = #{threadNumber};
+  select
+    thread_name
+  from
+    threads
+  where
+    thread_number = #{threadNumber};
   </select>
 
   <!--スレッド数取得-->
   <select id="selectThreadCount" resultType="Integer">
-  select count(*) from threads;
+  select
+    count(*)
+  from
+    threads;
   </select>
 
 </mapper>
