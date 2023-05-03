@@ -107,6 +107,7 @@ public class MessagesController {
   private void showCommon(Model model, MakeMessageForm form) {
     // スレッド番号取得
     String threadNumber = form.getThreadNumber();
+    model.addAttribute("threadNumber", threadNumber);
 
     // 対象スレッドのメッセージ一覧を取得
     List<Message> message = messageService.getMessageas(threadNumber);
