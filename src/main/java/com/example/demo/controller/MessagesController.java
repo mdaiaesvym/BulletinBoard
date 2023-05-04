@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.example.demo.controller.Utils.ControllerMessage;
+import com.example.demo.controller.utils.ControllerMessage;
 import com.example.demo.form.MakeMessageForm;
 import com.example.demo.model.Message;
 import com.example.demo.service.MakeThreadService;

@@ -1,4 +1,4 @@
-package com.example.demo.controller.Utils;
+package com.example.demo.controller.utils;
 
 import java.util.Locale;
 import org.springframework.context.MessageSource;
