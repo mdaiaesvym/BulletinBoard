@@ -67,7 +67,7 @@ public class MakeThreadController {
     // formをMessageクラスにマッピング
     Message message = new Message();
     message = modelMapper.map(makeThreadForm, Message.class);
-    // スレッド数を取得
+    // スレッド番号を設定
     message.setThreadNumber(makeThreadService.getThreadMaxNumber());
     // メッセージ作成処理
     makeThreadService.addMessage(message);
