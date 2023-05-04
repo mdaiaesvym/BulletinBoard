@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.Locale;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,22 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.example.demo.controller.Utils.ControllerMessage;
 import com.example.demo.form.MakeThreadForm;
 import com.example.demo.model.Message;
 import com.example.demo.model.Thread;
 import com.example.demo.service.MakeThreadService;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class MakeThreadController {
 
-  @Autowired
-  private MakeThreadService makeThreadService;
-
-  @Autowired
-  private ModelMapper modelMapper;
-
-  @Autowired
-  private MessageSource messageSource;
+  private final MakeThreadService makeThreadService;
+  private final ModelMapper modelMapper;
+  private final ControllerMessage controllerMessage;
 
   /**
    * 画面表示メソッド
@@ -54,8 +49,7 @@ public class MakeThreadController {
     // 入力チェック
     if (bindingResult.hasErrors()) {
       // 失敗メッセージ
-      model.addAttribute("errorMessage",
-          messageSource.getMessage("threads.postFailThread", null, Locale.getDefault()));
+      controllerMessage.addErrorMessage(model, "threads.postFailThread");
 
       return "/makeThread";
     }
@@ -77,8 +71,7 @@ public class MakeThreadController {
     makeThreadService.addMessage(message);
 
     // 成功メッセージ
-    redirectAttributes.addFlashAttribute("infoMessage",
-        messageSource.getMessage("threads.postSuccessThread", null, Locale.getDefault()));
+    controllerMessage.addInfoMessage(redirectAttributes, "threads.postSuccessThread");
 
     return "redirect:/threads";
   }

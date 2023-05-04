@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Locale;
 import org.modelmapper.ModelMapper;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.example.demo.controller.Utils.ControllerMessage;
 import com.example.demo.form.MakeMessageForm;
 import com.example.demo.model.Message;
 import com.example.demo.service.MakeThreadService;
@@ -26,7 +25,7 @@ public class MessagesController {
   private final MakeThreadService makeThreadService;
   private final MessageService messageService;
   private final ModelMapper modelMapper;
-  private final MessageSource messageSource;
+  private final ControllerMessage controllerMessage;
 
   /**
    * 画面表示メソッド
@@ -51,8 +50,8 @@ public class MessagesController {
 
       return "/messages";
     } else {
-      redirectAttributes.addFlashAttribute("errorMessage",
-          messageSource.getMessage("threads.urlErrormessage", null, Locale.getDefault()));
+      // 失敗メッセージ
+      controllerMessage.addErrorMessage(redirectAttributes, "threads.urlErrormessage");
 
       return "redirect:/threads";
     }
@@ -73,8 +72,7 @@ public class MessagesController {
       showCommon(model, form);
 
       // 失敗メッセージ
-      model.addAttribute("errorMessage",
-          messageSource.getMessage("messages.postFailMessage", null, Locale.getDefault()));
+      controllerMessage.addErrorMessage(model, "messages.postFailMessage");
 
       return "/messages";
     }
@@ -92,8 +90,7 @@ public class MessagesController {
     redirectAttributes.addAttribute("threadNumber", form.getThreadNumber());
 
     // 成功メッセージ
-    redirectAttributes.addFlashAttribute("infoMessage",
-        messageSource.getMessage("messages.postSuccessMessage", null, Locale.getDefault()));
+    controllerMessage.addInfoMessage(redirectAttributes, "messages.postSuccessMessage");
 
     return "redirect:/messages";
   }
