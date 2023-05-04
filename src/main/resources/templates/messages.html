@@ -71,7 +71,7 @@
               //「>>」を省く
               var linkNum = matchNum.substr(2);
               //変更後のテキスト
-              var linkText = "<a href=" + [[${threadNumber}]] +"#messageNum" + linkNum + ">" + matchNum + "</a>"
+              var linkText = "<a href=messages?threadNumber=" + [[${threadNumber}]] +"#messageNum" + linkNum + ">" + matchNum + "</a>"
               message.innerHTML = messageText.replace(matchNum, linkText);
               messageText = messageText.replace(matchNum, linkText);
             }
