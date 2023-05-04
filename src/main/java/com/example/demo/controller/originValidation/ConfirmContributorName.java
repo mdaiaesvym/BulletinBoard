@@ -14,7 +14,8 @@ import javax.validation.Payload;
 @Constraint(validatedBy = ContributorNameValidation.class)
 public @interface ConfirmContributorName {
 
-  String message() default "投稿者名を入力してください";
+  // 独自メッセージ設定
+  String message() default "{msg.confirmContributorName}";
 
   Class<?>[] groups() default {};
 

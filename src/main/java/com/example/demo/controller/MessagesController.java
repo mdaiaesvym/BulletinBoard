@@ -27,6 +27,9 @@ public class MessagesController {
   private final ModelMapper modelMapper;
   private final ControllerMessage controllerMessage;
 
+  private final String MESSAGES = "messages";
+  private final String THREADS = "threads";
+
   /**
    * 画面表示メソッド
    * 
@@ -34,7 +37,7 @@ public class MessagesController {
    * @param threadNumber
    * @return
    */
-  @GetMapping("/messages")
+  @GetMapping(MESSAGES)
   public String getMessages(Model model, RedirectAttributes redirectAttributes,
       @RequestParam(name = "threadNumber", required = false) String threadNumber,
       @ModelAttribute("makeMessageForm") MakeMessageForm form) {
@@ -48,12 +51,12 @@ public class MessagesController {
       // 共通処理呼び出し
       showCommon(model, form);
 
-      return "/messages";
+      return MESSAGES;
     } else {
       // 失敗メッセージ
       controllerMessage.addErrorMessage(redirectAttributes, "threads.urlErrormessage");
 
-      return "redirect:/threads";
+      return "redirect:" + THREADS;
     }
   }
 
@@ -62,7 +65,7 @@ public class MessagesController {
    * 
    * @param model
    */
-  @PostMapping(value = "/messages", params = "postMessage")
+  @PostMapping(value = MESSAGES, params = "postMessage")
   public String postMessage(@ModelAttribute("makeMessageForm") @Validated MakeMessageForm form,
       BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 
@@ -74,7 +77,7 @@ public class MessagesController {
       // 失敗メッセージ
       controllerMessage.addErrorMessage(model, "messages.postFailMessage");
 
-      return "/messages";
+      return MESSAGES;
     }
 
     Message message = new Message();
@@ -92,7 +95,7 @@ public class MessagesController {
     // 成功メッセージ
     controllerMessage.addInfoMessage(redirectAttributes, "messages.postSuccessMessage");
 
-    return "redirect:/messages";
+    return "redirect:" + MESSAGES;
   }
 
   /**

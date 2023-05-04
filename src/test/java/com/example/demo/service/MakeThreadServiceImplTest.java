@@ -16,7 +16,7 @@ public class MakeThreadServiceImplTest {
     MakeThreadForm makethreadForm = new MakeThreadForm();
     makethreadForm.setHasContributorName(false);
 
-    makeThreadServiceImpl.isContributorName(makethreadForm);
+    makeThreadServiceImpl.setContributorName(makethreadForm);
     assertThat(makethreadForm.getContributorName(), is("匿名"));
   }
 
@@ -27,7 +27,7 @@ public class MakeThreadServiceImplTest {
     makethreadForm.setHasContributorName(true);
     makethreadForm.setContributorName("テスト投稿者");
 
-    makeThreadServiceImpl.isContributorName(makethreadForm);
+    makeThreadServiceImpl.setContributorName(makethreadForm);
     assertThat(makethreadForm.getContributorName(), is("テスト投稿者"));
   }
 }

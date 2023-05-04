@@ -14,6 +14,17 @@ public class ControllerMessage {
   private final MessageSource messageSource;
 
   /**
+   * 成功メッセージの追加
+   * 
+   * @param redirectAttributes
+   * @param message
+   */
+  public void addInfoMessage(RedirectAttributes redirectAttributes, String message) {
+    redirectAttributes.addFlashAttribute("infoMessage",
+        messageSource.getMessage(message, null, Locale.getDefault()));
+  }
+
+  /**
    * 失敗メッセージの追加
    * 
    * @param model
@@ -24,16 +35,6 @@ public class ControllerMessage {
         messageSource.getMessage(message, null, Locale.getDefault()));
   }
 
-  /**
-   * 成功メッセージの追加
-   * 
-   * @param redirectAttributes
-   * @param message
-   */
-  public void addInfoMessage(RedirectAttributes redirectAttributes, String message) {
-    redirectAttributes.addFlashAttribute("infoMessage",
-        messageSource.getMessage(message, null, Locale.getDefault()));
-  }
 
   /**
    * 失敗メッセージの追加

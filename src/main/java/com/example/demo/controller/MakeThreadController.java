@@ -24,15 +24,18 @@ public class MakeThreadController {
   private final ModelMapper modelMapper;
   private final ControllerMessage controllerMessage;
 
+  private final String MAKETHREAD = "makeThread";
+  private final String THREADS = "threads";
+
   /**
    * 画面表示メソッド
    * 
    * @param makeThreadForm
    * @return
    */
-  @GetMapping("/makeThread")
+  @GetMapping(MAKETHREAD)
   public String getMakeThread(@ModelAttribute("makeThreadForm") MakeThreadForm makeThreadForm) {
-    return "/makeThread";
+    return MAKETHREAD;
   }
 
   /**
@@ -41,7 +44,7 @@ public class MakeThreadController {
    * @param makeThreadForm
    * @return
    */
-  @PostMapping(value = "/makeThread", params = "makeThread")
+  @PostMapping(value = MAKETHREAD, params = "makeThread")
   public String postMakeThred(
       @ModelAttribute("makeThreadForm") @Validated MakeThreadForm makeThreadForm,
       BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
@@ -51,17 +54,17 @@ public class MakeThreadController {
       // 失敗メッセージ
       controllerMessage.addErrorMessage(model, "threads.postFailThread");
 
-      return "/makeThread";
+      return MAKETHREAD;
     }
 
-    // formをTheradクラスに変換
+    // formをTheradクラスにマッピング
     Thread thread = modelMapper.map(makeThreadForm, Thread.class);
     // スレッド作成処理
     makeThreadService.makeThread(thread);
 
-    // 匿名・記名の確認
-    makeThreadService.isContributorName(makeThreadForm);
-    // formをMessageクラスに変換
+    // 投稿者名に匿名を設定
+    makeThreadService.setContributorName(makeThreadForm);
+    // formをMessageクラスにマッピング
     Message message = new Message();
     message = modelMapper.map(makeThreadForm, Message.class);
     // スレッド数を取得
@@ -72,6 +75,6 @@ public class MakeThreadController {
     // 成功メッセージ
     controllerMessage.addInfoMessage(redirectAttributes, "threads.postSuccessThread");
 
-    return "redirect:/threads";
+    return "redirect:" + THREADS;
   }
 }

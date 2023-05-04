@@ -2,7 +2,6 @@ package com.example.demo.controller.originValidation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
@@ -37,7 +36,10 @@ public class ContributorNameValidation
     // 投稿者名取得
     String contributorName = (String) beanWrapper.getPropertyValue(this.contributorName);
 
-    if (hasContributorName && StringUtils.isEmpty(contributorName)) {
+    // バリデーションエラー
+    // ・投稿者名フラグオン
+    // ・投稿者名が1未満、100超過
+    if (hasContributorName && contributorName.length() < 1 || contributorName.length() > 100) {
 
       context.buildConstraintViolationWithTemplate(message).addPropertyNode("contributorName")
           .addConstraintViolation();

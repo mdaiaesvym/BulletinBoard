@@ -16,8 +16,8 @@ public interface MakeThreadService {
   /** メッセージ追加 */
   public void addMessage(Message message);
 
-  /** 投稿者名の判定 */
-  public void isContributorName(MakeThreadForm makethreadForm);
+  /** 投稿者名に匿名を設定 */
+  public void setContributorName(MakeThreadForm makethreadForm);
 
   /** スレッド数の最大値を取得 */
   public int getThreadMaxNumber();
