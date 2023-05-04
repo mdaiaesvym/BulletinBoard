@@ -17,7 +17,6 @@ function contributorNameOpenHidden() {
     contributorNameTextArea.value = "";
   } else {
     contributorNameForm.removeAttribute("hidden");
-    contributorNameForm.style.display = "";
   }
 }
 
