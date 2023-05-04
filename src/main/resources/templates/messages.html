@@ -30,7 +30,7 @@
             <!--メッセージフォーム-->
             <form method="post" th:action="@{/messages} + '?threadNumber=' + ${threadNumber}" th:object="${makeMessageForm}">
               <div class="form-group">
-                <label class="font-weight-bold" for="message" th:text="#{message}">メッセージ</label>
+                <label class="font-weight-bold" for="message" th:text="#{message} + #{asterisk}">メッセージ</label>
                 <textarea id="message" class="form-control change-space" rows="5" th:field="*{message}" th:errorclass="is-invalid"></textarea>
                 <div th:errors="*{message}" class="text-danger"></div>
               </div>
@@ -43,7 +43,7 @@
                 <label class="form-check-label" for="onymous">記名で投稿</label>
               </div>
               <div id="contributorNameForm" class="form-group w-25" hidden>
-                <label class="font-weight-bold" for="contributorName" th:text="#{contributorName}">投稿者名</label>
+                <label class="font-weight-bold" for="contributorName" th:text="#{contributorName} + #{asterisk}">投稿者名</label>
                 <input type="text" class="form-control change-space" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
                 <div th:errors="*{contributorName}" class="text-danger"></div>
               </div>
