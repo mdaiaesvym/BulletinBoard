@@ -35,11 +35,11 @@
                 <div th:errors="*{message}" class="text-danger"></div>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="anonymous" value="0" th:field="*{hasContributorName}" onclick="contributorNameOpenHidden()" />
+                <input class="form-check-input" type="radio" id="anonymous" value="false" th:field="*{hasContributorName}" onclick="contributorNameOpenHidden()" />
                 <label class="form-check-label" for="anonymous">匿名で投稿</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="onymous" value="1" th:field="*{hasContributorName}" onclick="contributorNameOpenHidden()" />
+                <input class="form-check-input" type="radio" id="onymous" value="true" th:field="*{hasContributorName}" onclick="contributorNameOpenHidden()" />
                 <label class="form-check-label" for="onymous">記名で投稿</label>
               </div>
               <div id="contributorNameForm" class="form-group w-25" hidden>
@@ -48,7 +48,7 @@
                 <div th:errors="*{contributorName}" class="text-danger"></div>
               </div>
               <div class="text-left mt-2 mb-5">
-                <input type="submit" class="btn btn-secondary" th:value="#{post}" name="postMessage" onclick="setAnonymous();changeSpace()" />
+                <input type="submit" class="btn btn-secondary" th:value="#{post}" name="postMessage" onclick="changeSpace()" />
               </div>
             </form>
           </div>

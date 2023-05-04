@@ -18,15 +18,6 @@ function contributorNameOpenHidden() {
   }
 }
 
-//匿名で投稿の場合、投稿者名に「匿名」を入れる
-function setAnonymous() {
-  var isContributorName = document.querySelector("input[name=isContributorName]:checked");
-
-  if (isContributorName.value === "0") {
-    document.getElementById("contributorName").value = "匿名";
-  }
-}
-
 //全角スペースを半角スペースに置換
 function changeSpace() {
   changeTexts = document.querySelectorAll(".change-space");
