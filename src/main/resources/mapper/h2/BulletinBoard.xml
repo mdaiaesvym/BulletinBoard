@@ -35,7 +35,10 @@
 
   <!-- オートインクリメントの値を取得 -->
   <select id="threadMaxNumber" resultType="int">
-  select max(thread_number) from threads;
+  select
+    max(thread_number)
+  from
+    threads;
   </select>
   
   <!-- メッセージ登録 -->
