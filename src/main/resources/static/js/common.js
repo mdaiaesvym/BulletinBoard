@@ -1,4 +1,4 @@
-//初期表示
+//初期実行
 window.addEventListener("DOMContentLoaded", function () {
   const anonymous = document.querySelector("#anonymous");
   anonymous.addEventListener("change", () => contributorNameOpenHidden());
