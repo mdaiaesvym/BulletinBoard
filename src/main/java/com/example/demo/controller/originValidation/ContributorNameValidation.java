@@ -36,14 +36,13 @@ public class ContributorNameValidation
     // 投稿者名取得
     String contributorName = (String) beanWrapper.getPropertyValue(this.contributorName);
 
-    // バリデーションエラー
-    // ・投稿者名フラグオン
-    // ・投稿者名が1未満、100超過
+    // 投稿者名フラグオン && 投稿者名の長さが1未満 || 投稿者名の長さが100超過
     if (hasContributorName && contributorName.length() < 1 || contributorName.length() > 100) {
 
       context.buildConstraintViolationWithTemplate(message).addPropertyNode("contributorName")
           .addConstraintViolation();
 
+      // バリデーションエラー
       return false;
     }
 

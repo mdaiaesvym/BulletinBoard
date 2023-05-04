@@ -80,11 +80,11 @@ public class MessagesController {
       return MESSAGES;
     }
 
-    Message message = new Message();
 
     // 投稿者名に匿名を設定
     messageService.setContributorName(form);
     // formをMessageクラスにマッピング
+    Message message = new Message();
     message = modelMapper.map(form, Message.class);
     // メッセージ追加処理
     makeThreadService.addMessage(message);
