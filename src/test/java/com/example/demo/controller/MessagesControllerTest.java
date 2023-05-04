@@ -31,7 +31,7 @@ public class MessagesControllerTest {
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
-        .andExpect(view().name("/messages"))
+        .andExpect(view().name("messages"))
         // modelに存在することのテスト
         .andExpect(model().attribute("messageList", messageService.getMessageas("1")))
         .andExpect(model().attribute("threadName", messageService.getThreadName("1")))
@@ -40,18 +40,18 @@ public class MessagesControllerTest {
 
   @Test
   public void メッセージ投稿成功() throws Exception {
-    mockMvc.perform(post("/messages/1")
+    mockMvc.perform(post("/messages?threadNumber=1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
-        .param("message", "メッセージテスト").param("isContributorName", "1")
+        .param("message", "メッセージテスト").param("hasContributorName", "1")
         .param("contributorName", "投稿者テスト"))
         // エラーがないことのテスト
         .andExpect(model().hasNoErrors())
         // リダイレクトに成功することのテスト
         .andExpect(status().isFound())
         // リダイレクト先URLのテスト
-        .andExpect(redirectedUrl("/messages/1"));
+        .andExpect(redirectedUrl("messages?threadNumber=1"));
   }
 
   @Test
@@ -62,31 +62,31 @@ public class MessagesControllerTest {
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
-        .param("threadNumber", "1").param("message", "").param("isContributorName", "1")
+        .param("threadNumber", "1").param("message", "").param("hasContributorName", "1")
         .param("contributorName", "投稿者テスト"))
         // エラーがあることのテスト
         .andExpect(model().hasErrors())
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
-        .andExpect(view().name("/messages"));
+        .andExpect(view().name("messages"));
   }
 
   @Test
   public void メッセージ投稿失敗_投稿者が空() throws Exception {
     when(messageService.getThreadCount()).thenReturn(10);
 
-    mockMvc.perform(post("/messages/1")
+    mockMvc.perform(post("/messages?threadNumber=1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
-        .param("message", "メッセージテスト").param("isContributorName", "1").param("contributorName", ""))
+        .param("message", "メッセージテスト").param("hasContributorName", "1").param("contributorName", ""))
         // エラーがあることのテスト
         .andExpect(model().hasErrors())
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
-        .andExpect(view().name("/messages"));
+        .andExpect(view().name("messages"));
   }
 
 }

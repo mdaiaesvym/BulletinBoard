@@ -27,7 +27,7 @@ public class ThreadsControllerTest {
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
-        .andExpect(view().name("/threads"))
+        .andExpect(view().name("threads"))
         // modelに存在することをテスト
         .andExpect(model().attribute("threadList", makeThreadService.getThreadNameCount()));
   }

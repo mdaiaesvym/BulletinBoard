@@ -9,12 +9,26 @@ public interface MessageService {
   /** スレッド数取得 */
   public Integer getThreadCount();
 
-  /** メッセージ一覧取得 */
+  /**
+   * メッセージ一覧取得
+   * 
+   * @param threadNumber
+   * @return
+   */
   public List<Message> getMessageas(String threadNumber);
 
-  /** スレッド名取得 */
+  /**
+   * スレッド名取得
+   * 
+   * @param threadNumber
+   * @return
+   */
   public String getThreadName(String threadNumber);
 
-  /** 投稿者名の判定 */
-  public void isContributorName(MakeMessageForm makeMessageForm);
+  /**
+   * 投稿者名に匿名を設定
+   * 
+   * @param makeMessageForm
+   */
+  public void setContributorName(MakeMessageForm makeMessageForm);
 }

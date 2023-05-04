@@ -15,7 +15,7 @@ public class MessageServiceImplTest {
     MakeMessageForm makeMessageForm = new MakeMessageForm();
     makeMessageForm.setHasContributorName(false);
 
-    messageServiceImpl.isContributorName(makeMessageForm);
+    messageServiceImpl.setContributorName(makeMessageForm);
     assertThat(makeMessageForm.getContributorName(), is("匿名"));
   }
 
@@ -26,7 +26,7 @@ public class MessageServiceImplTest {
     makeMessageForm.setHasContributorName(true);
     makeMessageForm.setContributorName("テスト投稿者");
 
-    messageServiceImpl.isContributorName(makeMessageForm);
+    messageServiceImpl.setContributorName(makeMessageForm);
     assertThat(makeMessageForm.getContributorName(), is("テスト投稿者"));
   }
 }

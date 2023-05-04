@@ -22,7 +22,7 @@ public class MakeThreadControllerTest {
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
-        .andExpect(view().name("/makeThread"));
+        .andExpect(view().name("makeThread"));
   }
 
   @Test
@@ -33,13 +33,13 @@ public class MakeThreadControllerTest {
         .param("makeThread", "")
         // formに値を設定
         .param("threadName", "スレッド名テスト").param("message", "メッセージテスト")
-        .param("isContributorName", "1").param("contributorName", "投稿者テスト"))
+        .param("hasContributorName", "1").param("contributorName", "投稿者テスト"))
         // エラーがないことのテスト
         .andExpect(model().hasNoErrors())
         // リダイレクトに成功することのテスト
         .andExpect(status().isFound())
         // リダイレクト先URLのテスト
-        .andExpect(redirectedUrl("/threads"));
+        .andExpect(redirectedUrl("threads"));
   }
 
   @Test
@@ -49,14 +49,14 @@ public class MakeThreadControllerTest {
         // params = "makeThread"の呼び出し
         .param("makeThread", "")
         // formに値を設定
-        .param("threadName", "").param("message", "メッセージテスト").param("isContributorName", "1")
+        .param("threadName", "").param("message", "メッセージテスト").param("hasContributorName", "1")
         .param("contributorName", "投稿者テスト"))
         // エラーがあることのテスト
         .andExpect(model().hasErrors())
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
-        .andExpect(view().name("/makeThread"));
+        .andExpect(view().name("makeThread"));
   }
 
   @Test
@@ -66,14 +66,14 @@ public class MakeThreadControllerTest {
         // params = "makeThread"の呼び出し
         .param("makeThread", "")
         // formに値を設定
-        .param("threadName", "スレッド名テスト").param("message", "").param("isContributorName", "1")
+        .param("threadName", "スレッド名テスト").param("message", "").param("hasContributorName", "1")
         .param("contributorName", "投稿者テスト"))
         // エラーがあることのテスト
         .andExpect(model().hasErrors())
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
-        .andExpect(view().name("/makeThread"));
+        .andExpect(view().name("makeThread"));
   }
 
   @Test
@@ -84,12 +84,12 @@ public class MakeThreadControllerTest {
         .param("makeThread", "")
         // formに値を設定
         .param("threadName", "スレッド名テスト").param("message", "メッセージテスト")
-        .param("isContributorName", "1").param("contributorName", ""))
+        .param("hasContributorName", "1").param("contributorName", ""))
         // エラーがあることのテスト
         .andExpect(model().hasErrors())
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
-        .andExpect(view().name("/makeThread"));
+        .andExpect(view().name("makeThread"));
   }
 }
