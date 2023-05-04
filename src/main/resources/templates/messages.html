@@ -45,7 +45,7 @@
               <div id="contributorNameForm" class="form-group w-25" th:hidden="*{!hasContributorName}">
                 <label class="font-weight-bold" for="contributorName" th:text="#{contributorName} + #{asterisk}">投稿者名</label>
                 <input type="text" class="form-control change-space" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
-                <div th:errors="*{contributorName}" class="text-danger"></div>
+                <div th:errors="*{contributorName}" class="text-danger text-nowrap"></div>
               </div>
               <div class="text-left mt-2 mb-5">
                 <input type="submit" class="btn btn-secondary" th:value="#{post}" name="postMessage" onclick="changeSpace()" />
