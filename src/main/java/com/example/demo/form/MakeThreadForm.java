@@ -1,27 +1,23 @@
 package com.example.demo.form;
 
-import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 import lombok.Data;
 
 @Data
 public class MakeThreadForm {
 
-  @NotBlank
-  @Length(min = 1, max = 100)
   // スレッド名
+  @Length(min = 1, max = 100)
   private String threadName;
 
-  @NotBlank
-  @Length(min = 1, max = 1000)
   // メッセージ
+  @Length(min = 1, max = 1000)
   private String message;
 
   // 投稿者名フラグ
-  private Integer isContributorName = 0;
+  private boolean hasContributorName = false;
 
-  @NotBlank
-  @Length(min = 1, max = 100)
   // 投稿者名
+  @Length(min = 1, max = 100)
   private String contributorName;
 }

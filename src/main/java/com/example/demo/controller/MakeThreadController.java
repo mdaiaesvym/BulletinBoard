@@ -54,8 +54,6 @@ public class MakeThreadController {
       return "/makeThread";
     }
 
-    Message message = new Message();
-
     // formをTheradクラスに変換
     Thread thread = modelMapper.map(makeThreadForm, Thread.class);
     // スレッド作成処理
@@ -64,6 +62,7 @@ public class MakeThreadController {
     // 匿名・記名の確認
     makeThreadService.isContributorName(makeThreadForm);
     // formをMessageクラスに変換
+    Message message = new Message();
     message = modelMapper.map(makeThreadForm, Message.class);
     // スレッド数を取得
     message.setThreadNumber(makeThreadService.getThreadMaxNumber());

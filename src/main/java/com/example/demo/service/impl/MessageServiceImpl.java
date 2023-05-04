@@ -1,7 +1,6 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
-import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.form.MakeMessageForm;
@@ -27,7 +26,7 @@ public class MessageServiceImpl implements MessageService {
 
   @Override
   public void isContributorName(MakeMessageForm makeMessageForm) {
-    if (Objects.equals(makeMessageForm.getIsContributorName(), 0)) {
+    if (!makeMessageForm.isHasContributorName()) {
       makeMessageForm.setContributorName("匿名");
     }
   }

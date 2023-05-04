@@ -9,14 +9,14 @@ public class MakeMessageForm {
   // スレッド番号
   private String threadNumber;
 
-  @Length(min = 1, max = 1000)
   // メッセージ
+  @Length(min = 1, max = 1000)
   private String message;
 
   // 投稿者名フラグ
-  private Integer isContributorName = 0;
+  private boolean hasContributorName = false;
 
-  @Length(min = 1, max = 100)
   // 投稿者名
+  @Length(min = 1, max = 100)
   private String contributorName;
 }
