@@ -1,4 +1,4 @@
-package com.example.demo.controller.originValidation;
+package com.example.demo.controller.originAnnotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -15,7 +15,7 @@ import javax.validation.Payload;
 public @interface ConfirmContributorName {
 
   // 独自メッセージ設定
-  String message() default "{msg.confirmContributorName}";
+  String message() default "{msg.empty.confirmContributorName}";
 
   Class<?>[] groups() default {};
 
