@@ -36,25 +36,13 @@ public class ContributorNameValidation
     // 投稿者名取得
     String contributorName = (String) beanWrapper.getPropertyValue(this.contributorName);
 
-    // 投稿者名フラグがオン
-    if (hasContributorName) {
-      // 投稿者名が空
-      if (contributorName.isEmpty()) {
-        context.buildConstraintViolationWithTemplate(message).addPropertyNode("contributorName")
-            .addConstraintViolation();
+    // 投稿者名フラグがオン && 投稿者名が空
+    if (hasContributorName && contributorName.isEmpty()) {
+      context.buildConstraintViolationWithTemplate(message).addPropertyNode("contributorName")
+          .addConstraintViolation();
 
-        // バリデーションエラー
-        return false;
-      }
-
-      // 投稿者名が100文字を超過
-      if (contributorName.length() > 100) {
-        context.buildConstraintViolationWithTemplate("{msg.length.confirmContributorName}")
-            .addPropertyNode("contributorName").addConstraintViolation();
-
-        // バリデーションエラー
-        return false;
-      }
+      // バリデーションエラー
+      return false;
     }
 
     return true;

@@ -22,5 +22,6 @@ public class MakeMessageForm {
   private boolean hasContributorName = false;
 
   // 投稿者名
+  @Length(max = 100)
   private String contributorName;
 }
