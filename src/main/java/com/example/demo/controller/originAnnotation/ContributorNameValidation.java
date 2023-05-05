@@ -2,6 +2,7 @@ package com.example.demo.controller.originAnnotation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
@@ -37,7 +38,7 @@ public class ContributorNameValidation
     String contributorName = (String) beanWrapper.getPropertyValue(this.contributorName);
 
     // 投稿者名フラグがオン && 投稿者名が空
-    if (hasContributorName && contributorName.isEmpty()) {
+    if (hasContributorName && StringUtils.isBlank(contributorName)) {
       context.buildConstraintViolationWithTemplate(message).addPropertyNode("contributorName")
           .addConstraintViolation();
 

@@ -1,6 +1,6 @@
 package com.example.demo.form;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 import com.example.demo.controller.originAnnotation.ConfirmContributorName;
 import lombok.Data;
@@ -14,7 +14,7 @@ public class MakeMessageForm {
   private String threadNumber;
 
   // メッセージ
-  @NotEmpty
+  @NotBlank
   @Length(max = 1000)
   private String message;
 

@@ -15,7 +15,7 @@ import javax.validation.Payload;
 public @interface ConfirmContributorName {
 
   // 独自メッセージ設定
-  String message() default "{msg.empty.confirmContributorName}";
+  String message() default "{msg.blank.confirmContributorName}";
 
   Class<?>[] groups() default {};
 
