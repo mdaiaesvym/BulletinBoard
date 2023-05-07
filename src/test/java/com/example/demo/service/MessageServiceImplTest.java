@@ -11,7 +11,7 @@ public class MessageServiceImplTest {
 
   @SuppressWarnings("deprecation")
   @Test
-  public void 値が0ならば匿名() {
+  public void 値がfalseならば匿名() {
     MakeMessageForm makeMessageForm = new MakeMessageForm();
     makeMessageForm.setHasContributorName(false);
 
@@ -21,7 +21,7 @@ public class MessageServiceImplTest {
 
   @SuppressWarnings("deprecation")
   @Test
-  public void 値が1ならば設定値() {
+  public void 値がtrueならば設定値() {
     MakeMessageForm makeMessageForm = new MakeMessageForm();
     makeMessageForm.setHasContributorName(true);
     makeMessageForm.setContributorName("テスト投稿者");

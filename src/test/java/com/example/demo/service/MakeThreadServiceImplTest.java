@@ -12,7 +12,7 @@ public class MakeThreadServiceImplTest {
 
   @SuppressWarnings("deprecation")
   @Test
-  public void 値が0ならば匿名() {
+  public void 値がfalseならば匿名() {
     MakeThreadForm makethreadForm = new MakeThreadForm();
     makethreadForm.setHasContributorName(false);
 
@@ -22,7 +22,7 @@ public class MakeThreadServiceImplTest {
 
   @SuppressWarnings("deprecation")
   @Test
-  public void 値が1ならば設定値() {
+  public void 値がtrueならば設定値() {
     MakeThreadForm makethreadForm = new MakeThreadForm();
     makethreadForm.setHasContributorName(true);
     makethreadForm.setContributorName("テスト投稿者");
