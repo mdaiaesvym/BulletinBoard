@@ -10,8 +10,8 @@
     <div layout:fragment="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="offset-md-2 col-md-8 mt-5 successMessage" th:if="${infoMessage != null}" th:text="${infoMessage}"></div>
-          <div class="offset-md-2 col-md-8 mt-5 errorMessage" th:if="${errorMessage != null}" th:text="${errorMessage}"></div>
+          <div class="offset-md-2 col-md-8 mt-5 alert alert-info" th:if="${infoMessage != null}" th:text="${infoMessage}"></div>
+          <div class="offset-md-2 col-md-8 mt-5 alert alert-danger" th:if="${errorMessage != null}" th:text="${errorMessage}"></div>
           <a class="btn btn-secondary my-5 offset-md-2" th:href="@{/makeThread}"> <i class="fas fa-plus"></i><span class="beforeIndent" th:text="#{makeThread}">スレッド作成</span> </a>
           <div th:each="thread:${threadList}" class="offset-md-2 col-md-8">
             <a th:href="@{/messages?threadNumber=__${thread.threadNumber}__}" class="linkStyle">
