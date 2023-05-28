@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class ControllerMessage {
+public class MessageUtil {
 
   private final MessageSource messageSource;
 

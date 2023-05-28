@@ -9,6 +9,6 @@ CREATE TABLE IF NOT EXISTS messages
 message_number INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 message VARCHAR(1000) NOT NULL,
 created_at datetime NOT NULL,
-created_name VARCHAR(100) NOT NULL,
+created_name VARCHAR(100) NOT NULL DEFAULT '匿名',
 updated_at datetime NOT NULL,
 FOREIGN KEY(thread_number) REFERENCES threads(thread_number));

@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import com.example.demo.service.MakeThreadService;
+import com.example.demo.service.ThreadService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -18,7 +18,7 @@ public class ThreadsControllerTest {
   private MockMvc mockMvc;
 
   @MockBean
-  MakeThreadService makeThreadService;
+  ThreadService threadService;
 
   @Test
   public void アクセス成功() throws Exception {
@@ -29,6 +29,6 @@ public class ThreadsControllerTest {
         // ビュー名をテスト
         .andExpect(view().name("threads"))
         // modelに存在することをテスト
-        .andExpect(model().attribute("threadList", makeThreadService.getThreadNameCount()));
+        .andExpect(model().attribute("threadList", threadService.getThreadNameCount()));
   }
 }

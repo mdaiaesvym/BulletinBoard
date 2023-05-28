@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.example.demo.controller.utils.ControllerMessage;
+import com.example.demo.controller.utils.MessageUtil;
 import com.example.demo.form.MakeMessageForm;
 import com.example.demo.model.Message;
-import com.example.demo.service.MakeThreadService;
 import com.example.demo.service.MessageService;
 import lombok.RequiredArgsConstructor;
 
@@ -22,10 +21,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MessagesController {
 
-  private final MakeThreadService makeThreadService;
   private final MessageService messageService;
   private final ModelMapper modelMapper;
-  private final ControllerMessage controllerMessage;
+  private final MessageUtil messageUtil;
 
   private final String MESSAGES = "messages";
   private final String THREADS = "threads";
@@ -54,7 +52,7 @@ public class MessagesController {
       return MESSAGES;
     } else {
       // 失敗メッセージ
-      controllerMessage.addErrorMessage(redirectAttributes, "threads.urlErrormessage");
+      messageUtil.addErrorMessage(redirectAttributes, "threads.urlErrormessage");
 
       return "redirect:" + THREADS;
     }
@@ -75,22 +73,19 @@ public class MessagesController {
       showCommon(model, form);
 
       // 失敗メッセージ
-      controllerMessage.addErrorMessage(model, "messages.postFailMessage");
+      messageUtil.addErrorMessage(model, "messages.postFailMessage");
 
       return MESSAGES;
     }
 
-
-    // 投稿者名に匿名を設定
-    messageService.setContributorName(form);
     // formをMessageクラスにマッピング
     Message message = new Message();
     message = modelMapper.map(form, Message.class);
 
     // メッセージ追加処理
-    if (makeThreadService.addMessage(message)) {
+    if (messageService.addMessage(message)) {
       // 成功メッセージ
-      controllerMessage.addInfoMessage(redirectAttributes, "messages.postSuccessMessage");
+      messageUtil.addInfoMessage(redirectAttributes, "messages.postSuccessMessage");
       // リダイレクト用にスレッド番号を設定
       redirectAttributes.addAttribute("threadNumber", form.getThreadNumber());
 
@@ -100,7 +95,7 @@ public class MessagesController {
       showCommon(model, form);
 
       // 失敗メッセージ
-      controllerMessage.addErrorMessage(model, "messages.postFailMessage");
+      messageUtil.addErrorMessage(model, "messages.postFailMessage");
 
       return MESSAGES;
     }

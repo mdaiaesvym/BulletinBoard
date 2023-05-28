@@ -1,13 +1,23 @@
 package com.example.demo.service;
 
 import java.util.List;
-import com.example.demo.form.MakeMessageForm;
 import com.example.demo.model.Message;
 
 public interface MessageService {
 
-  /** スレッド数取得 */
+  /**
+   * スレッド数取得
+   * 
+   * @return
+   */
   public Integer getThreadCount();
+
+  /**
+   * メッセージ追加
+   * 
+   * @param message
+   */
+  public boolean addMessage(Message message);
 
   /**
    * メッセージ一覧取得
@@ -24,11 +34,4 @@ public interface MessageService {
    * @return
    */
   public String getThreadName(String threadNumber);
-
-  /**
-   * 投稿者名に匿名を設定
-   * 
-   * @param makeMessageForm
-   */
-  public void setContributorName(MakeMessageForm makeMessageForm);
 }

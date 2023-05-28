@@ -9,20 +9,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.example.demo.controller.utils.ControllerMessage;
+import com.example.demo.controller.utils.MessageUtil;
 import com.example.demo.form.MakeThreadForm;
 import com.example.demo.model.Message;
 import com.example.demo.model.Thread;
-import com.example.demo.service.MakeThreadService;
+import com.example.demo.service.MessageService;
+import com.example.demo.service.ThreadService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 public class MakeThreadController {
 
-  private final MakeThreadService makeThreadService;
+  private final ThreadService threadService;
+  private final MessageService messageService;
   private final ModelMapper modelMapper;
-  private final ControllerMessage controllerMessage;
+  private final MessageUtil messageUtil;
 
   private final String MAKETHREAD = "makeThread";
   private final String THREADS = "threads";
@@ -52,7 +54,7 @@ public class MakeThreadController {
     // 入力チェック
     if (bindingResult.hasErrors()) {
       // 失敗メッセージ
-      controllerMessage.addErrorMessage(model, "threads.postFailThread");
+      messageUtil.addErrorMessage(model, "threads.postFailThread");
 
       return MAKETHREAD;
     }
@@ -61,30 +63,28 @@ public class MakeThreadController {
     Thread thread = modelMapper.map(makeThreadForm, Thread.class);
 
     // スレッド作成処理
-    if (!makeThreadService.makeThread(thread)) {
+    if (!threadService.makeThread(thread)) {
       // 失敗メッセージ
-      controllerMessage.addErrorMessage(model, "threads.postFailThread");
+      messageUtil.addErrorMessage(model, "threads.postFailThread");
 
       return MAKETHREAD;
     }
 
-    // 投稿者名に匿名を設定
-    makeThreadService.setContributorName(makeThreadForm);
     // formをMessageクラスにマッピング
     Message message = new Message();
     message = modelMapper.map(makeThreadForm, Message.class);
     // スレッド番号を設定
-    message.setThreadNumber(makeThreadService.getThreadMaxNumber());
+    message.setThreadNumber(threadService.getThreadMaxNumber());
 
     // メッセージ作成処理
-    if (makeThreadService.addMessage(message)) {
+    if (messageService.addMessage(message)) {
       // 成功メッセージ
-      controllerMessage.addInfoMessage(redirectAttributes, "threads.postSuccessThread");
+      messageUtil.addInfoMessage(redirectAttributes, "threads.postSuccessThread");
 
       return "redirect:" + THREADS;
     } else {
       // 失敗メッセージ
-      controllerMessage.addErrorMessage(model, "threads.postFailThread");
+      messageUtil.addErrorMessage(model, "threads.postFailThread");
 
       return MAKETHREAD;
     }
