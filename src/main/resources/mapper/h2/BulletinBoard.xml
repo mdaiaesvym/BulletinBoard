@@ -47,13 +47,13 @@
   	thread_number,
   	message,
   	created_at,
-  	created_name,
+    <if test="contributorName != null and contributorName != ''" >created_name,</if>
   	updated_at
   ) values (
   	#{threadNumber},
   	#{message},
   	CURRENT_TIMESTAMP,
-  	#{contributorName},
+    <if test="contributorName != null and contributorName != ''" >#{contributorName},</if>
   	CURRENT_TIMESTAMP
   )
   </insert>
