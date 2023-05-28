@@ -12,7 +12,7 @@ public interface MakeThreadService {
    * 
    * @param thread
    */
-  public void makeThread(Thread thread);
+  public boolean makeThread(Thread thread);
 
   /**
    * スレッド名・スレッドごとのメッセージ数取得
@@ -26,7 +26,7 @@ public interface MakeThreadService {
    * 
    * @param message
    */
-  public void addMessage(Message message);
+  public boolean addMessage(Message message);
 
   /**
    * 投稿者名に匿名を設定

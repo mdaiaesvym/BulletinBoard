@@ -16,13 +16,13 @@ public class MakeThreadServiceImpl implements MakeThreadService {
   private BulletinBoardMapper mapper;
 
   @Override
-  public void makeThread(Thread thread) {
-    mapper.insertThread(thread);
+  public boolean makeThread(Thread thread) {
+    return mapper.insertThread(thread);
   }
 
   @Override
-  public void addMessage(Message message) {
-    mapper.insertMessage(message);
+  public boolean addMessage(Message message) {
+    return mapper.insertMessage(message);
   }
 
   @Override

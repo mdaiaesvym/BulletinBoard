@@ -86,16 +86,24 @@ public class MessagesController {
     // formをMessageクラスにマッピング
     Message message = new Message();
     message = modelMapper.map(form, Message.class);
+
     // メッセージ追加処理
-    makeThreadService.addMessage(message);
+    if (makeThreadService.addMessage(message)) {
+      // 成功メッセージ
+      controllerMessage.addInfoMessage(redirectAttributes, "messages.postSuccessMessage");
+      // リダイレクト用にスレッド番号を設定
+      redirectAttributes.addAttribute("threadNumber", form.getThreadNumber());
 
-    // リダイレクト用にスレッド番号を設定
-    redirectAttributes.addAttribute("threadNumber", form.getThreadNumber());
+      return "redirect:" + MESSAGES;
+    } else {
+      // 共通処理呼び出し
+      showCommon(model, form);
 
-    // 成功メッセージ
-    controllerMessage.addInfoMessage(redirectAttributes, "messages.postSuccessMessage");
+      // 失敗メッセージ
+      controllerMessage.addErrorMessage(model, "messages.postFailMessage");
 
-    return "redirect:" + MESSAGES;
+      return MESSAGES;
+    }
   }
 
   /**

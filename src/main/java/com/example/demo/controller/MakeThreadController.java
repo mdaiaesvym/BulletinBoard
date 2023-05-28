@@ -59,8 +59,14 @@ public class MakeThreadController {
 
     // formをTheradクラスにマッピング
     Thread thread = modelMapper.map(makeThreadForm, Thread.class);
+
     // スレッド作成処理
-    makeThreadService.makeThread(thread);
+    if (!makeThreadService.makeThread(thread)) {
+      // 失敗メッセージ
+      controllerMessage.addErrorMessage(model, "threads.postFailThread");
+
+      return MAKETHREAD;
+    }
 
     // 投稿者名に匿名を設定
     makeThreadService.setContributorName(makeThreadForm);
@@ -69,12 +75,19 @@ public class MakeThreadController {
     message = modelMapper.map(makeThreadForm, Message.class);
     // スレッド番号を設定
     message.setThreadNumber(makeThreadService.getThreadMaxNumber());
+
     // メッセージ作成処理
-    makeThreadService.addMessage(message);
+    if (makeThreadService.addMessage(message)) {
+      // 成功メッセージ
+      controllerMessage.addInfoMessage(redirectAttributes, "threads.postSuccessThread");
 
-    // 成功メッセージ
-    controllerMessage.addInfoMessage(redirectAttributes, "threads.postSuccessThread");
+      return "redirect:" + THREADS;
+    } else {
+      // 失敗メッセージ
+      controllerMessage.addErrorMessage(model, "threads.postFailThread");
 
-    return "redirect:" + THREADS;
+      return MAKETHREAD;
+    }
+
   }
 }
