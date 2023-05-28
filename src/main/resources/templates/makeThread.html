@@ -9,7 +9,6 @@
       <div class="container-fluid">
         <!--スレッド名フォーム-->
         <form class="row" method="post" th:action="@{/makeThread}" th:object="${makeThreadForm}">
-          <div class="offset-md-2 col-md-8 mt-5 alert alert-danger" th:if="${errorMessage != null}" th:text="${errorMessage}"></div>
           <div class="col-md-6 offset-md-3 mt-5">
             <div class="form-group">
               <label class="font-weight-bold" for="threadname" th:text="#{threadName} + #{asterisk}">スレッド名</label>

@@ -9,8 +9,6 @@
     <div layout:fragment="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="offset-md-2 col-md-8 mt-5 alert alert-info" th:if="${infoMessage != null}" th:text="${infoMessage}"></div>
-          <div class="offset-md-2 col-md-8 mt-5 alert alert-danger" th:if="${errorMessage != null}" th:text="${errorMessage}"></div>
           <div class="col-md-8 offset-md-2">
             <h2 class="font-weight-bold my-5" th:text="${threadName}">スレッド名</h2>
             <!--メッセージのセット-->

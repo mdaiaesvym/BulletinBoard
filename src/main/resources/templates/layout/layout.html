@@ -17,6 +17,12 @@
       <a class="navbar-brand mx-auto" th:href="@{/threads}" th:text="#{bulletinBoard}">掲示板</a>
     </nav>
 
+    <!--メッセージ-->
+    <div th:fragment="message">
+      <div class="offset-md-2 col-md-8 mt-5 alert alert-info" th:if="${infoMessage != null}" th:text="${infoMessage}"></div>
+      <div class="offset-md-2 col-md-8 mt-5 alert alert-danger" th:if="${errorMessage != null}" th:text="${errorMessage}"></div>
+    </div>
+
     <!--コンテンツ-->
     <div layout:replace="~{threads::content}"></div>
     <!--共通JS読み込み-->
