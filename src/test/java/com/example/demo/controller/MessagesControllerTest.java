@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,11 @@ public class MessagesControllerTest {
 
   @MockBean
   MessageService messageService;
+
+  @BeforeEach
+  public void setUp() {
+    when(messageService.addMessage(any())).thenReturn(true);
+  }
 
   @Test
   public void アクセス成功() throws Exception {
