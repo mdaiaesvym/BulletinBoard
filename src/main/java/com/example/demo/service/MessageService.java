@@ -25,7 +25,7 @@ public interface MessageService {
    * @param threadNumber
    * @return
    */
-  public List<Message> getMessageas(String threadNumber);
+  public List<Message> getMessageas(Integer threadNumber);
 
   /**
    * スレッド名取得
@@ -33,5 +33,5 @@ public interface MessageService {
    * @param threadNumber
    * @return
    */
-  public String getThreadName(String threadNumber);
+  public String getThreadName(Integer threadNumber);
 }

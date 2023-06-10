@@ -11,7 +11,7 @@ import lombok.Data;
 public class MakeMessageForm {
 
   // スレッド番号
-  private String threadNumber;
+  private Integer threadNumber;
 
   // メッセージ
   @NotBlank

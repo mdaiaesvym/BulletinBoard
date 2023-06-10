@@ -26,12 +26,12 @@ public class MessageServiceImpl implements MessageService {
   }
 
   @Override
-  public List<Message> getMessageas(String threadNumber) {
+  public List<Message> getMessageas(Integer threadNumber) {
     return mapper.selectMessageList(threadNumber);
   }
 
   @Override
-  public String getThreadName(String threadNumber) {
+  public String getThreadName(Integer threadNumber) {
     return mapper.selectThreadName(threadNumber);
   }
 

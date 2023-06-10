@@ -21,10 +21,10 @@ public interface BulletinBoardMapper {
   public Integer threadMaxNumber();
 
   /** メッセージ一覧取得 */
-  public List<Message> selectMessageList(String threadNumber);
+  public List<Message> selectMessageList(Integer threadNumber);
 
   /** スレッド名取得 */
-  public String selectThreadName(String threadNumber);
+  public String selectThreadName(Integer threadNumber);
 
   /** スレッド数取得 */
   public Integer selectThreadCount();

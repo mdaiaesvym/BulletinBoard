@@ -64,7 +64,7 @@ public class BulletinBoardTest {
 
   @Test
   public void メッセージ一覧取得() {
-    List<Message> messageList = mapper.selectMessageList("1");
+    List<Message> messageList = mapper.selectMessageList(1);
 
     assertThat(messageList.get(0).getThreadNumber()).isEqualTo(1);
     assertThat(messageList.get(0).getMessage()).isEqualTo("今何をしていますか？");
@@ -74,7 +74,7 @@ public class BulletinBoardTest {
 
   @Test
   public void スレッド名取得() {
-    String threadName = mapper.selectThreadName("1");
+    String threadName = mapper.selectThreadName(1);
 
     assertThat(threadName).isEqualTo("雑談");
   }

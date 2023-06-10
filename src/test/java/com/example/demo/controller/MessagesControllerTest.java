@@ -40,9 +40,9 @@ public class MessagesControllerTest {
         // ビュー名をテスト
         .andExpect(view().name("messages"))
         // modelに存在することのテスト
-        .andExpect(model().attribute("messageList", messageService.getMessageas("1")))
-        .andExpect(model().attribute("threadName", messageService.getThreadName("1")))
-        .andExpect(model().attribute("threadNumber", "1"));
+        .andExpect(model().attribute("messageList", messageService.getMessageas(1)))
+        .andExpect(model().attribute("threadName", messageService.getThreadName(1)))
+        .andExpect(model().attribute("threadNumber", 1));
   }
 
   @Test
