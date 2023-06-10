@@ -30,7 +30,7 @@ public class BulletinBoardTest {
   @Test
   public void スレッド一覧取得() {
     List<Thread> threadList = mapper.selectThreadList();
-    assertThat(threadList.get(0).getThreadNumber()).isEqualTo("2");
+    assertThat(threadList.get(0).getThreadNumber()).isEqualTo(2);
     assertThat(threadList.get(0).getThreadName()).isEqualTo("今年のベストゲームソフト");
     assertThat(threadList.get(0).getUpdatedAt()).isEqualTo("2022-01-01T10:25:10.000");
     assertThat(threadList.get(0).getMessageCount()).isEqualTo(3);

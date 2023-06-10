@@ -7,7 +7,7 @@ import lombok.Data;
 public class Thread {
 
   // スレッド番号
-  private String threadNumber;
+  private Integer threadNumber;
   // スレッド名
   private String threadName;
   // 更新日時

@@ -24,6 +24,6 @@ public interface ThreadService {
    * 
    * @return
    */
-  public int getThreadMaxNumber();
+  public Integer getThreadMaxNumber();
 
 }
