@@ -8,6 +8,8 @@
 
 #### 掲示板一覧画面
 
+URL：http://localhost:8080/threads
+
 ![2022-05-21 17_13_29](https://user-images.githubusercontent.com/76608722/169642710-de60f8f5-64d2-4a86-9842-b275864376f7.png)
 
 - スレッドの一覧を見ることが出来る。
@@ -15,12 +17,15 @@
 
 #### スレッド作成画面
 
+URL：http://localhost:8080/makeThread
+
 ![2022-05-21 17_13_48](https://user-images.githubusercontent.com/76608722/169642715-0576e392-97d9-4471-8c00-501a1a181408.png)
 
 - スレッドの新規作成が出来る。
 
 #### メッセージ一覧画面
 
+URL：http://localhost:8080/messages?threadNumber=2
 ![2022-05-21 17_21_04](https://user-images.githubusercontent.com/76608722/169642911-4096a80b-2202-4326-a2fb-6d46006176d4.png)
 
 - 対象スレッドのメッセージを見ることが出来る。
@@ -30,7 +35,7 @@
 
 - spring boot：Ver2.6.2
   - maven
-  - h2 
+  - h2
 - html
 - css
   - boot strap：Ver4.6.1
@@ -39,6 +44,6 @@
 
 ### 使用方法
 
-1. Eclipseのワークスペースタブで右クリックして「インポート」を選択
-2. インポートウィンドウでMaven/既存 Maven プロジェクトを選択
-3. インポートしたプロジェクトを右クリックして、実行／Spring Bootアプリケーション
+1. Eclipse のワークスペースタブで右クリックして「インポート」を選択
+2. インポートウィンドウで Maven/既存 Maven プロジェクトを選択
+3. インポートしたプロジェクトを右クリックして、実行／Spring Boot アプリケーション
