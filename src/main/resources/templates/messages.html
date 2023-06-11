@@ -29,7 +29,7 @@
             <form method="post" th:action="@{/messages} + '?threadNumber=' + ${threadNumber}" th:object="${makeMessageForm}">
               <div class="form-group">
                 <label class="font-weight-bold" for="message" th:text="#{message} + #{asterisk}">メッセージ</label>
-                <textarea id="message" class="form-control change-space" rows="5" th:field="*{message}" th:errorclass="is-invalid"></textarea>
+                <textarea id="message" class="form-control" rows="5" th:field="*{message}" th:errorclass="is-invalid"></textarea>
                 <div th:errors="*{message}" class="text-danger"></div>
               </div>
               <div class="form-check form-check-inline">
@@ -42,7 +42,7 @@
               </div>
               <div id="contributorNameForm" class="form-group w-25" th:hidden="*{!hasContributorName}">
                 <label class="font-weight-bold" for="contributorName" th:text="#{contributorName} + #{asterisk}">投稿者名</label>
-                <input type="text" class="form-control change-space" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
+                <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
                 <div th:errors="*{contributorName}" class="text-danger text-nowrap"></div>
               </div>
               <div class="text-left mt-2 mb-5">

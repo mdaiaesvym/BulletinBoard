@@ -22,7 +22,7 @@ function contributorNameOpenHidden() {
 
 //全角スペースを半角スペースに置換
 function changeSpace() {
-  changeTexts = document.querySelectorAll(".change-space");
+  changeTexts = document.querySelectorAll("input[type='text']");
   for (const changeText of changeTexts) {
     changeText.value = changeText.value.replace(/　/g, " ");
   }
