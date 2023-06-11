@@ -5,6 +5,8 @@ window.addEventListener("DOMContentLoaded", function () {
   const onymous = document.querySelector("#onymous");
   onymous.addEventListener("change", () => contributorNameOpenHidden());
 
+  //@NotBlankは全角スペースがバリデーションエラー対象外のため、
+  //全角スペースを半角スペースに変換する
   document.querySelectorAll("input[type='text'],textarea").forEach((changeText) => {
     changeText.addEventListener("input", () => {
       changeText.value = changeText.value.replace(/　/g, " ");
