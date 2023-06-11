@@ -37,15 +37,14 @@ public class MessagesController {
    */
   @GetMapping(MESSAGES)
   public String getMessages(Model model, RedirectAttributes redirectAttributes,
-      @RequestParam(name = "threadNumber", required = false) String threadNumber,
+      @RequestParam(name = "threadNumber", required = false) Integer threadNumber,
       @ModelAttribute("makeMessageForm") MakeMessageForm form) {
 
     // スレッド数取得
     Integer threadCounts = messageService.getThreadCount();
 
     // 存在するページにアクセスした場合
-    if (threadCounts.compareTo(Integer.valueOf(threadNumber)) >= 0
-        && Integer.valueOf(form.getThreadNumber()) > 0) {
+    if (threadCounts.compareTo(threadNumber) >= 0 && form.getThreadNumber() > 0) {
       // 共通処理呼び出し
       showCommon(model, form);
 
