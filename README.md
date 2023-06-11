@@ -12,8 +12,8 @@ URL：http://localhost:8080/threads
 
 <img src="https://user-images.githubusercontent.com/76608722/169642710-de60f8f5-64d2-4a86-9842-b275864376f7.png" width="700px">
 
-- スレッドの一覧を見ることが出来る。
-- スレッド作成画面に遷移することが出来る。
+- スレッドの一覧を見ることができる。
+- スレッド作成画面に遷移することができる。
 
 #### スレッド作成画面
 
@@ -21,7 +21,7 @@ URL：http://localhost:8080/makeThread
 
 <img src="https://user-images.githubusercontent.com/76608722/169642715-0576e392-97d9-4471-8c00-501a1a181408.png" width="700px">
 
-- スレッドの新規作成が出来る。
+- スレッドの新規作成ができる。
 
 #### メッセージ一覧画面
 
@@ -29,8 +29,8 @@ URL：http://localhost:8080/messages?threadNumber=2
 
 <img src="https://github.com/mdaiaesvym/BulletinBoard/assets/76608722/2d330ed8-1b04-423d-84c5-d4837521ae58" width="700px">
 
-- 対象スレッドのメッセージを見ることが出来る。
-- メッセージ投稿が出来る。
+- 対象スレッドのメッセージを見ることができる。
+- メッセージ投稿ができる。
 
 ### 構成
 
