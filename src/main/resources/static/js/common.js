@@ -4,6 +4,12 @@ window.addEventListener("DOMContentLoaded", function () {
   anonymous.addEventListener("change", () => contributorNameOpenHidden());
   const onymous = document.querySelector("#onymous");
   onymous.addEventListener("change", () => contributorNameOpenHidden());
+
+  document.querySelectorAll("input[type='text'],textarea").forEach((changeText) => {
+    changeText.addEventListener("input", () => {
+      changeText.value = changeText.value.replace(/　/g, " ");
+    });
+  });
 });
 
 //投稿者名の表示・非表示
@@ -17,13 +23,5 @@ function contributorNameOpenHidden() {
     contributorNameTextArea.value = "";
   } else {
     contributorNameForm.removeAttribute("hidden");
-  }
-}
-
-//全角スペースを半角スペースに置換
-function changeSpace() {
-  changeTexts = document.querySelectorAll("input[type='text']");
-  for (const changeText of changeTexts) {
-    changeText.value = changeText.value.replace(/　/g, " ");
   }
 }
