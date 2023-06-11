@@ -27,8 +27,7 @@ URL：http://localhost:8080/makeThread
 
 URL：http://localhost:8080/messages?threadNumber=2
 
-![2023-06-11 17_49_24](https://github.com/mdaiaesvym/BulletinBoard/assets/76608722/2d330ed8-1b04-423d-84c5-d4837521ae58)
-<img src="[https://user-images.githubusercontent.com/76608722/169642715-0576e392-97d9-4471-8c00-501a1a181408.png](https://github.com/mdaiaesvym/BulletinBoard/assets/76608722/2d330ed8-1b04-423d-84c5-d4837521ae58)" width="700px">
+<img src="https://github.com/mdaiaesvym/BulletinBoard/assets/76608722/2d330ed8-1b04-423d-84c5-d4837521ae58" width="700px">
 
 - 対象スレッドのメッセージを見ることが出来る。
 - メッセージ投稿が出来る。
