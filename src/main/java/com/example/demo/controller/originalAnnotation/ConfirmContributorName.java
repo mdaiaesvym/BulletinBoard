@@ -1,4 +1,4 @@
-package com.example.demo.controller.originAnnotation;
+package com.example.demo.controller.originalAnnotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

@@ -2,7 +2,7 @@ package com.example.demo.form;
 
 import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
-import com.example.demo.controller.originAnnotation.ConfirmContributorName;
+import com.example.demo.controller.originalAnnotation.ConfirmContributorName;
 import lombok.Data;
 
 @Data

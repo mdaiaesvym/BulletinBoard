@@ -1,4 +1,4 @@
-package com.example.demo.controller.originAnnotation;
+package com.example.demo.controller.originalAnnotation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
