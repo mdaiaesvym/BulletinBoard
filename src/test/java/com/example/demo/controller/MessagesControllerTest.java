@@ -31,7 +31,7 @@ public class MessagesControllerTest {
   }
 
   @Test
-  public void アクセス成功() throws Exception {
+  public void 存在するページにアクセス() throws Exception {
     when(messageService.getThreadCount()).thenReturn(10);
 
     mockMvc.perform(get("/messages?threadNumber=1"))
@@ -43,6 +43,23 @@ public class MessagesControllerTest {
         .andExpect(model().attribute("messageList", messageService.getMessageas(1)))
         .andExpect(model().attribute("threadName", messageService.getThreadName(1)))
         .andExpect(model().attribute("threadNumber", 1));
+  }
+
+  @Test
+  public void 存在しないページにアクセス() throws Exception {
+    when(messageService.getThreadCount()).thenReturn(10);
+
+    mockMvc.perform(get("/messages?threadNumber=11"))
+        // リダイレクトに成功することのテスト
+        .andExpect(status().isFound())
+        // リダイレクト先URLのテスト
+        .andExpect(redirectedUrl("threads"));
+
+    mockMvc.perform(get("/messages?threadNumber=0"))
+        // リダイレクトに成功することのテスト
+        .andExpect(status().isFound())
+        // リダイレクト先URLのテスト
+        .andExpect(redirectedUrl("threads"));
   }
 
   @Test
