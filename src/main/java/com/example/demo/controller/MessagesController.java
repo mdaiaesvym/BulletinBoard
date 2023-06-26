@@ -44,7 +44,7 @@ public class MessagesController {
     // 存在しないページにアクセスした場合
     if (threadCounts.compareTo(form.getThreadNumber()) < 0 || form.getThreadNumber() <= 0) {
       // 失敗メッセージ
-      messageUtil.addErrorMessage(redirectAttributes, "threads.urlErrormessage");
+      messageUtil.addErrorMessage(redirectAttributes, "threads.notFoundPageMessage");
 
       return "redirect:" + THREADS;
     }

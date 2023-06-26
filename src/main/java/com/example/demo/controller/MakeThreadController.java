@@ -54,7 +54,7 @@ public class MakeThreadController {
     // 入力チェック
     if (bindingResult.hasErrors()) {
       // 失敗メッセージ
-      messageUtil.addErrorMessage(model, "threads.postFailThread");
+      messageUtil.addErrorMessage(model, "threads.postFailMessage");
 
       return MAKETHREAD;
     }
@@ -65,7 +65,7 @@ public class MakeThreadController {
     // スレッド作成処理
     if (!threadService.makeThread(thread)) {
       // 失敗メッセージ
-      messageUtil.addErrorMessage(model, "threads.postFailThread");
+      messageUtil.addErrorMessage(model, "threads.postFailMessage");
 
       return MAKETHREAD;
     }
@@ -79,12 +79,12 @@ public class MakeThreadController {
     // メッセージ作成処理
     if (!messageService.addMessage(message)) {
       // 失敗メッセージ
-      messageUtil.addErrorMessage(model, "threads.postFailThread");
+      messageUtil.addErrorMessage(model, "threads.postFailMessage");
 
       return MAKETHREAD;
     }
     // 成功メッセージ
-    messageUtil.addInfoMessage(redirectAttributes, "threads.postSuccessThread");
+    messageUtil.addInfoMessage(redirectAttributes, "threads.postSuccessMessage");
 
     return "redirect:" + THREADS;
 
