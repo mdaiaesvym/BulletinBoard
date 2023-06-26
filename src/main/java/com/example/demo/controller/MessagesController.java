@@ -9,7 +9,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.controller.utils.MessageUtil;
 import com.example.demo.form.MakeMessageForm;
@@ -37,14 +36,13 @@ public class MessagesController {
    */
   @GetMapping(MESSAGES)
   public String getMessages(Model model, RedirectAttributes redirectAttributes,
-      @RequestParam(name = "threadNumber", required = false) Integer threadNumber,
       @ModelAttribute("makeMessageForm") MakeMessageForm form) {
 
     // スレッド数取得
     Integer threadCounts = messageService.getThreadCount();
 
     // 存在しないページにアクセスした場合
-    if (threadCounts.compareTo(threadNumber) < 0 || form.getThreadNumber() <= 0) {
+    if (threadCounts.compareTo(form.getThreadNumber()) < 0 || form.getThreadNumber() <= 0) {
       // 失敗メッセージ
       messageUtil.addErrorMessage(redirectAttributes, "threads.urlErrormessage");
 
