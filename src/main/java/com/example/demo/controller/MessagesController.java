@@ -43,18 +43,17 @@ public class MessagesController {
     // スレッド数取得
     Integer threadCounts = messageService.getThreadCount();
 
-    // 存在するページにアクセスした場合
-    if (threadCounts.compareTo(threadNumber) >= 0 && form.getThreadNumber() > 0) {
-      // 共通処理呼び出し
-      showCommon(model, form);
-
-      return MESSAGES;
-    } else {
+    // 存在しないページにアクセスした場合
+    if (threadCounts.compareTo(threadNumber) < 0 || form.getThreadNumber() <= 0) {
       // 失敗メッセージ
       messageUtil.addErrorMessage(redirectAttributes, "threads.urlErrormessage");
 
       return "redirect:" + THREADS;
     }
+    // 共通処理呼び出し
+    showCommon(model, form);
+
+    return MESSAGES;
   }
 
   /**
@@ -82,14 +81,7 @@ public class MessagesController {
     message = modelMapper.map(form, Message.class);
 
     // メッセージ追加処理
-    if (messageService.addMessage(message)) {
-      // 成功メッセージ
-      messageUtil.addInfoMessage(redirectAttributes, "messages.postSuccessMessage");
-      // リダイレクト用にスレッド番号を設定
-      redirectAttributes.addAttribute("threadNumber", form.getThreadNumber());
-
-      return "redirect:" + MESSAGES;
-    } else {
+    if (!messageService.addMessage(message)) {
       // 共通処理呼び出し
       showCommon(model, form);
 
@@ -98,6 +90,12 @@ public class MessagesController {
 
       return MESSAGES;
     }
+    // 成功メッセージ
+    messageUtil.addInfoMessage(redirectAttributes, "messages.postSuccessMessage");
+    // リダイレクト用にスレッド番号を設定
+    redirectAttributes.addAttribute("threadNumber", form.getThreadNumber());
+
+    return "redirect:" + MESSAGES;
   }
 
   /**

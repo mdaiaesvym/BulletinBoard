@@ -77,17 +77,16 @@ public class MakeThreadController {
     message.setThreadNumber(threadService.getThreadMaxNumber());
 
     // メッセージ作成処理
-    if (messageService.addMessage(message)) {
-      // 成功メッセージ
-      messageUtil.addInfoMessage(redirectAttributes, "threads.postSuccessThread");
-
-      return "redirect:" + THREADS;
-    } else {
+    if (!messageService.addMessage(message)) {
       // 失敗メッセージ
       messageUtil.addErrorMessage(model, "threads.postFailThread");
 
       return MAKETHREAD;
     }
+    // 成功メッセージ
+    messageUtil.addInfoMessage(redirectAttributes, "threads.postSuccessThread");
+
+    return "redirect:" + THREADS;
 
   }
 }
