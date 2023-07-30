@@ -22,7 +22,7 @@ public class ThreadServiceImpl implements ThreadService {
 
   @Override
   public Integer getThreadMaxNumber() {
-    return mapper.threadMaxNumber();
+    return mapper.selectThreadMaxNumber();
   }
 
   @Override

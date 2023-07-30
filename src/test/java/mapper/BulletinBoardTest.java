@@ -57,7 +57,7 @@ public class BulletinBoardTest {
 
   @Test
   public void オートインクリメント取得() {
-    Integer threadMaxNumber = mapper.threadMaxNumber();
+    Integer threadMaxNumber = mapper.selectThreadMaxNumber();
 
     assertThat(threadMaxNumber).isEqualTo(3);
   }
