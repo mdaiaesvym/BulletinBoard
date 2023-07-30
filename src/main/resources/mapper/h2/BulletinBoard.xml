@@ -44,17 +44,17 @@
   <!-- メッセージ登録 -->
   <insert id="insertMessage">
   insert into messages(
-  	thread_number,
-  	message,
-  	created_at,
+    thread_number,
+    message,
+    created_at,
     <if test="contributorName != null and contributorName != ''" >created_name,</if>
-  	updated_at
+    updated_at
   ) values (
-  	#{threadNumber},
-  	#{message},
-  	CURRENT_TIMESTAMP,
+    #{threadNumber},
+    #{message},
+    CURRENT_TIMESTAMP,
     <if test="contributorName != null and contributorName != ''" >#{contributorName},</if>
-  	CURRENT_TIMESTAMP
+    CURRENT_TIMESTAMP
   )
   </insert>
 
