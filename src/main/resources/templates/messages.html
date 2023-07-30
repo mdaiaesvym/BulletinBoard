@@ -13,7 +13,7 @@
             <h2 class="font-weight-bold my-5" th:text="${threadName}">スレッド名</h2>
             <!--メッセージのセット-->
             <div th:each="message,status:${messageList}">
-              <span th:text="'#' + ${status.count} + '.'" th:id="|messageNum${status.count}|"></span>
+              <span th:text="|#${status.count}.|" th:id="|messageNum${status.count}|"></span>
               <span th:text="${#dates.format(message.updatedAt,'yyyy/MM/dd HH:mm:ss')}"> 2022/01/01(土) 10:00:00 </span>
               <span th:text="${message.contributorName}"> 名無しさん </span>
               <i class="fas fa-reply replay-mark pointer" th:onclick="|replay(__${status.count}__)|">
@@ -26,9 +26,9 @@
             </div>
 
             <!--メッセージフォーム-->
-            <form id="makeMessageForm" method="post" th:action="@{/messages} + '?threadNumber=' + ${threadNumber}" th:object="${makeMessageForm}">
+            <form id="makeMessageForm" method="post" th:action="|@{/messages}?threadNumber=${threadNumber}|" th:object="${makeMessageForm}">
               <div class="form-group">
-                <label class="font-weight-bold" for="message" th:text="#{message} + #{asterisk}">メッセージ</label>
+                <label class="font-weight-bold" for="message" th:text="|#{message}#{asterisk}|">メッセージ</label>
                 <textarea id="message" class="form-control" rows="5" th:field="*{message}" th:errorclass="is-invalid"></textarea>
                 <div th:errors="*{message}" class="text-danger"></div>
               </div>
@@ -41,7 +41,7 @@
                 <label class="form-check-label" for="onymous">記名で投稿</label>
               </div>
               <div id="contributorNameForm" class="form-group w-25" th:hidden="*{!hasContributorName}">
-                <label class="font-weight-bold" for="contributorName" th:text="#{contributorName} + #{asterisk}">投稿者名</label>
+                <label class="font-weight-bold" for="contributorName" th:text="|#{contributorName}#{asterisk}|">投稿者名</label>
                 <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
                 <div th:errors="*{contributorName}" class="text-danger text-nowrap"></div>
               </div>
