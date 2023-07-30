@@ -44,6 +44,9 @@ public class MakeThreadController {
    * スレッド作成メソッド
    * 
    * @param makeThreadForm
+   * @param bindingResult
+   * @param model
+   * @param redirectAttributes
    * @return
    */
   @PostMapping(value = MAKETHREAD, params = "makeThread")

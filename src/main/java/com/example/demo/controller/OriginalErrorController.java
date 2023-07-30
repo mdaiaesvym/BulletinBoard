@@ -14,6 +14,12 @@ public class OriginalErrorController implements ErrorController {
 
   private final String THREADS = "threads";
 
+  /**
+   * 存在しないページにアクセスしたときの処理
+   * 
+   * @param redirectAttributes
+   * @return
+   */
   @RequestMapping("/error")
   public String redirect(RedirectAttributes redirectAttributes) {
     // メッセージ設定

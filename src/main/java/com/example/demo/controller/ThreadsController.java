@@ -15,6 +15,12 @@ public class ThreadsController {
 
   private final String THREADS = "threads";
 
+  /**
+   * 画面表示
+   * 
+   * @param model
+   * @return
+   */
   @GetMapping(THREADS)
   public String getThreads(Model model) {
 

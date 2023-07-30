@@ -31,7 +31,8 @@ public class MessagesController {
    * 画面表示メソッド
    * 
    * @param model
-   * @param threadNumber
+   * @param redirectAttributes
+   * @param form
    * @return
    */
   @GetMapping(MESSAGES)
