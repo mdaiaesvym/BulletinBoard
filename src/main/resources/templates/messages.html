@@ -26,7 +26,7 @@
             </div>
 
             <!--メッセージフォーム-->
-            <form method="post" th:action="@{/messages} + '?threadNumber=' + ${threadNumber}" th:object="${makeMessageForm}">
+            <form id="makeMessageForm" method="post" th:action="@{/messages} + '?threadNumber=' + ${threadNumber}" th:object="${makeMessageForm}">
               <div class="form-group">
                 <label class="font-weight-bold" for="message" th:text="#{message} + #{asterisk}">メッセージ</label>
                 <textarea id="message" class="form-control" rows="5" th:field="*{message}" th:errorclass="is-invalid"></textarea>
@@ -46,12 +46,14 @@
                 <div th:errors="*{contributorName}" class="text-danger text-nowrap"></div>
               </div>
               <div class="text-left mt-2 mb-5">
-                <input type="submit" class="btn btn-secondary" th:value="#{post}" name="postMessage" />
+                <button id="makeMessageButton" class="btn btn-secondary" type="button" th:text="#{post}">投稿</button>
               </div>
+              <input type="hidden" name="postMessage" />
             </form>
           </div>
         </div>
       </div>
+      <input type="hidden" id="postMessage" th:value="#{messages.postMessage}" />
       <script th:src="@{/js/messages.js}" defer></script>
       <!--「>>数字」にリンク元参照を付与-->
       <script type="text/javascript" th:inline="javascript">
