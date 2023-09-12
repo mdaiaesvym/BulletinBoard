@@ -19,6 +19,7 @@ public class ThreadServiceImpl implements ThreadService {
   public Integer makeThread(Thread thread) {
     mapper.makeThread(thread);
 
+    // 追加されたオートインクリメントの値（スレッド番号）を返却
     return thread.getThreadNumber();
   }
 
