@@ -65,7 +65,7 @@ public class MakeThreadController {
     // formをTheradクラスにマッピング
     Thread thread = modelMapper.map(makeThreadForm, Thread.class);
 
-    // スレッド作成処理
+    // スレッドを作成し、スレッド番号を取得
     Integer threadNumber = threadService.makeThread(thread);
 
     if (threadNumber <= 0) {
