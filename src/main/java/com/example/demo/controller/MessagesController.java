@@ -42,6 +42,7 @@ public class MessagesController {
     // スレッド番号一覧を取得
     List<Integer> threadNumberList = messageService.getThreadNumberList();
 
+    // ページがスレッド番号一覧に含まれているかを確認
     boolean notExist =
         threadNumberList.stream().noneMatch(item -> item.equals(form.getThreadNumber()));
 
