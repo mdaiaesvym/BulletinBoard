@@ -66,7 +66,9 @@ public class MakeThreadController {
     Thread thread = modelMapper.map(makeThreadForm, Thread.class);
 
     // スレッド作成処理
-    if (!threadService.makeThread(thread)) {
+    Integer threadNumber = threadService.makeThread(thread);
+
+    if (threadNumber <= 0) {
       // 失敗メッセージ
       messageUtil.addErrorMessage(model, "threads.postFailMessage");
 
@@ -77,7 +79,7 @@ public class MakeThreadController {
     Message message = new Message();
     message = modelMapper.map(makeThreadForm, Message.class);
     // スレッド番号を設定
-    message.setThreadNumber(threadService.getThreadMaxNumber());
+    message.setThreadNumber(threadNumber);
 
     // メッセージ作成処理
     if (!messageService.addMessage(message)) {

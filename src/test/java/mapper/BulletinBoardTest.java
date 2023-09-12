@@ -24,7 +24,7 @@ public class BulletinBoardTest {
     Thread thread = new Thread();
     thread.setThreadName("テスト");
 
-    assertTrue(mapper.insertThread(thread));
+    assertThat(mapper.insertThread(thread)).isEqualTo(1);
   }
 
   @Test
@@ -53,13 +53,6 @@ public class BulletinBoardTest {
     message.setMessage("テストメッセージ");
 
     assertTrue(mapper.insertMessage(message));
-  }
-
-  @Test
-  public void オートインクリメント取得() {
-    Integer threadMaxNumber = mapper.selectThreadMaxNumber();
-
-    assertThat(threadMaxNumber).isEqualTo(3);
   }
 
   @Test

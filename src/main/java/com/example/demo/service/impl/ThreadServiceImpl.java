@@ -16,13 +16,10 @@ public class ThreadServiceImpl implements ThreadService {
   private BulletinBoardMapper mapper;
 
   @Override
-  public boolean makeThread(Thread thread) {
-    return mapper.insertThread(thread);
-  }
+  public Integer makeThread(Thread thread) {
+    mapper.insertThread(thread);
 
-  @Override
-  public Integer getThreadMaxNumber() {
-    return mapper.selectThreadMaxNumber();
+    return thread.getThreadNumber();
   }
 
   @Override

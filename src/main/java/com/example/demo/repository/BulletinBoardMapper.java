@@ -9,16 +9,13 @@ import com.example.demo.model.Thread;
 public interface BulletinBoardMapper {
 
   /** スレッド追加 */
-  public boolean insertThread(Thread thread);
+  public Integer insertThread(Thread thread);
 
   /** スレッドナンバー・スレッド名・メッセージ数取得 */
   public List<Thread> selectThreadList();
 
   /** メッセージ追加 */
   public boolean insertMessage(Message message);
-
-  /** オートインクリメント取得 */
-  public Integer selectThreadMaxNumber();
 
   /** メッセージ一覧取得 */
   public List<Message> selectMessageList(Integer threadNumber);

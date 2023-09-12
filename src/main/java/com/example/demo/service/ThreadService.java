@@ -10,7 +10,7 @@ public interface ThreadService {
    * 
    * @param thread
    */
-  public boolean makeThread(Thread thread);
+  public Integer makeThread(Thread thread);
 
   /**
    * スレッド名・スレッドごとのメッセージ数取得
@@ -18,12 +18,5 @@ public interface ThreadService {
    * @return
    */
   public List<Thread> getThreadNameCount();
-
-  /**
-   * スレッド数の最大値を取得
-   * 
-   * @return
-   */
-  public Integer getThreadMaxNumber();
 
 }

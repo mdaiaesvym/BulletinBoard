@@ -5,7 +5,7 @@
 <!--Mapperとxmlのマッピング-->
 <mapper namespace="com.example.demo.repository.BulletinBoardMapper">
   <!--スレッド登録-->
-  <insert id="insertThread" >
+  <insert id="insertThread" useGeneratedKeys="true" keyProperty="threadNumber">
   insert into threads(
     thread_name,
     created_at,
@@ -31,14 +31,6 @@
     messages.thread_number
   order by
     max(messages.updated_at) desc;
-  </select>
-
-  <!-- オートインクリメントの値を取得 -->
-  <select id="selectThreadMaxNumber" resultType="Integer">
-  select
-    max(thread_number)
-  from
-    threads;
   </select>
   
   <!-- メッセージ登録 -->
