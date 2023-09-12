@@ -39,11 +39,14 @@ public class MessagesController {
   public String getMessages(Model model, RedirectAttributes redirectAttributes,
       @ModelAttribute("makeMessageForm") MakeMessageForm form) {
 
-    // スレッド数取得
-    Integer threadCounts = messageService.getThreadCount();
+    // スレッド番号一覧を取得
+    List<Integer> threadNumberList = messageService.getThreadNumberList();
+
+    boolean notExist =
+        threadNumberList.stream().noneMatch(item -> item.equals(form.getThreadNumber()));
 
     // 存在しないページにアクセスした場合
-    if (threadCounts.compareTo(form.getThreadNumber()) < 0 || form.getThreadNumber() <= 0) {
+    if (notExist) {
       // 失敗メッセージ
       messageUtil.addErrorMessage(redirectAttributes, "threads.notFoundPageMessage");
 
@@ -109,8 +112,8 @@ public class MessagesController {
     model.addAttribute("threadNumber", threadNumber);
 
     // 対象スレッドのメッセージ一覧を取得
-    List<Message> message = messageService.getMessageas(threadNumber);
-    model.addAttribute("messageList", message);
+    List<Message> messageList = messageService.getMessageList(threadNumber);
+    model.addAttribute("messageList", messageList);
 
     // スレッド名取得
     String threadName = messageService.getThreadName(threadNumber);

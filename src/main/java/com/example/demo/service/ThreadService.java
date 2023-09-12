@@ -13,10 +13,10 @@ public interface ThreadService {
   public Integer makeThread(Thread thread);
 
   /**
-   * スレッド名・スレッドごとのメッセージ数取得
+   * スレッド情報取得
    * 
    * @return
    */
-  public List<Thread> getThreadsInfo();
+  public List<Thread> getThreadList();
 
 }

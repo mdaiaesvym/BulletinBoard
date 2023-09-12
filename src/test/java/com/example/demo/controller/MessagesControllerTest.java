@@ -4,6 +4,8 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -32,7 +34,8 @@ public class MessagesControllerTest {
 
   @Test
   public void 存在するページにアクセス() throws Exception {
-    when(messageService.getThreadCount()).thenReturn(10);
+    List<Integer> threadNumberList = Arrays.asList(1, 2, 3);
+    when(messageService.getThreadNumberList()).thenReturn(threadNumberList);
 
     mockMvc.perform(get("/messages?threadNumber=1"))
         // リクエスト成功をテスト
@@ -40,14 +43,15 @@ public class MessagesControllerTest {
         // ビュー名をテスト
         .andExpect(view().name("messages"))
         // modelに存在することのテスト
-        .andExpect(model().attribute("messageList", messageService.getMessageas(1)))
+        .andExpect(model().attribute("messageList", messageService.getMessageList(1)))
         .andExpect(model().attribute("threadName", messageService.getThreadName(1)))
         .andExpect(model().attribute("threadNumber", 1));
   }
 
   @Test
   public void 存在しないページにアクセス() throws Exception {
-    when(messageService.getThreadCount()).thenReturn(10);
+    List<Integer> threadNumberList = Arrays.asList(1, 2, 3);
+    when(messageService.getThreadNumberList()).thenReturn(threadNumberList);
 
     mockMvc.perform(get("/messages?threadNumber=11"))
         // リダイレクトに成功することのテスト
@@ -100,7 +104,8 @@ public class MessagesControllerTest {
 
   @Test
   public void メッセージ投稿失敗_メッセージが空() throws Exception {
-    when(messageService.getThreadCount()).thenReturn(10);
+    List<Integer> threadNumberList = Arrays.asList(1, 2, 3);
+    when(messageService.getThreadNumberList()).thenReturn(threadNumberList);
 
     mockMvc.perform(post("/messages")
         // params = "postMessage"の呼び出し
@@ -120,7 +125,8 @@ public class MessagesControllerTest {
 
   @Test
   public void メッセージ投稿失敗_投稿者が空() throws Exception {
-    when(messageService.getThreadCount()).thenReturn(10);
+    List<Integer> threadNumberList = Arrays.asList(1, 2, 3);
+    when(messageService.getThreadNumberList()).thenReturn(threadNumberList);
 
     mockMvc.perform(post("/messages?threadNumber=1")
         // params = "postMessage"の呼び出し
@@ -140,7 +146,8 @@ public class MessagesControllerTest {
 
   @Test
   public void メッセージ投稿失敗_投稿者フラグがオンで投稿者名が空() throws Exception {
-    when(messageService.getThreadCount()).thenReturn(10);
+    List<Integer> threadNumberList = Arrays.asList(1, 2, 3);
+    when(messageService.getThreadNumberList()).thenReturn(threadNumberList);
 
     mockMvc.perform(post("/messages?threadNumber=1")
         // params = "postMessage"の呼び出し

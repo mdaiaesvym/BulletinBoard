@@ -16,8 +16,8 @@ public class MessageServiceImpl implements MessageService {
   private BulletinBoardMapper mapper;
 
   @Override
-  public Integer getThreadCount() {
-    return mapper.getThreadCount();
+  public List<Integer> getThreadNumberList() {
+    return mapper.getThreadNumberList();
   }
 
   @Override
@@ -26,8 +26,8 @@ public class MessageServiceImpl implements MessageService {
   }
 
   @Override
-  public List<Message> getMessageas(Integer threadNumber) {
-    return mapper.getMessageas(threadNumber);
+  public List<Message> getMessageList(Integer threadNumber) {
+    return mapper.getMessageList(threadNumber);
   }
 
   @Override

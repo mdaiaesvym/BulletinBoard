@@ -29,7 +29,7 @@ public class BulletinBoardTest {
 
   @Test
   public void スレッド一覧取得() {
-    List<Thread> threadList = mapper.getThreadsInfo();
+    List<Thread> threadList = mapper.getThreadList();
     assertThat(threadList.get(0).getThreadNumber()).isEqualTo(2);
     assertThat(threadList.get(0).getThreadName()).isEqualTo("今年のベストゲームソフト");
     assertThat(threadList.get(0).getUpdatedAt()).isEqualTo("2022-01-01T10:25:10.000");
@@ -57,7 +57,7 @@ public class BulletinBoardTest {
 
   @Test
   public void メッセージ一覧取得() {
-    List<Message> messageList = mapper.getMessageas(1);
+    List<Message> messageList = mapper.getMessageList(1);
 
     assertThat(messageList.get(0).getThreadNumber()).isEqualTo(1);
     assertThat(messageList.get(0).getMessage()).isEqualTo("今何をしていますか？");
@@ -73,9 +73,11 @@ public class BulletinBoardTest {
   }
 
   @Test
-  public void スレッド数取得() {
-    Integer threadCount = mapper.getThreadCount();
+  public void スレッド番号一覧を取得() {
+    List<Integer> threadNumberList = mapper.getThreadNumberList();
 
-    assertThat(threadCount).isEqualTo(3);
+    assertThat(threadNumberList.get(0)).isEqualTo(1);
+    assertThat(threadNumberList.get(1)).isEqualTo(2);
+    assertThat(threadNumberList.get(2)).isEqualTo(3);
   }
 }

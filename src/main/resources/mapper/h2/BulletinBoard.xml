@@ -18,7 +18,7 @@
   </insert>
   
   <!--スレッドナンバー、スレッド名、メッセージ数、最終メッセージ更新日時取得-->
-  <select id="getThreadsInfo" resultType="Thread">
+  <select id="getThreadList" resultType="Thread">
   select
     threads.thread_number,
     threads.thread_name,count(*) as message_count,
@@ -51,7 +51,7 @@
   </insert>
 
   <!--メッセージ一覧取得-->
-  <select id="getMessageas" resultType="Message">
+  <select id="getMessageList" resultType="Message">
   select 
     thread_number,
     message,
@@ -74,10 +74,10 @@
     thread_number = #{threadNumber};
   </select>
 
-  <!--スレッド数取得-->
-  <select id="getThreadCount" resultType="Integer">
+  <!-- スレッド番号一覧を取得 -->
+  <select id="getThreadNumberList" resultType="Integer">
   select
-    count(*)
+    thread_number
   from
     threads;
   </select>
