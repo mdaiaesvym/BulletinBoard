@@ -17,7 +17,7 @@ public class ThreadServiceImpl implements ThreadService {
 
   @Override
   public Integer makeThread(Thread thread) {
-    mapper.insertThread(thread);
+    mapper.makeThread(thread);
 
     return thread.getThreadNumber();
   }

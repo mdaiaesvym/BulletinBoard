@@ -5,7 +5,7 @@
 <!--Mapperとxmlのマッピング-->
 <mapper namespace="com.example.demo.repository.BulletinBoardMapper">
   <!--スレッド登録-->
-  <insert id="insertThread" useGeneratedKeys="true" keyProperty="threadNumber">
+  <insert id="makeThread" useGeneratedKeys="true" keyProperty="threadNumber">
   insert into threads(
     thread_name,
     created_at,

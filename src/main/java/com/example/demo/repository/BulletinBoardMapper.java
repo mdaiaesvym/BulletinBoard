@@ -9,7 +9,7 @@ import com.example.demo.model.Thread;
 public interface BulletinBoardMapper {
 
   /** スレッド追加 */
-  public Integer insertThread(Thread thread);
+  public Integer makeThread(Thread thread);
 
   /** スレッドナンバー・スレッド名・メッセージ数取得 */
   public List<Thread> getThreadList();
