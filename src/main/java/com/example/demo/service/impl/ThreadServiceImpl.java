@@ -23,8 +23,8 @@ public class ThreadServiceImpl implements ThreadService {
   }
 
   @Override
-  public List<Thread> getThreadNameCount() {
-    return mapper.selectThreadList();
+  public List<Thread> getThreadsInfo() {
+    return mapper.getThreadsInfo();
   }
 
 }

@@ -17,22 +17,22 @@ public class MessageServiceImpl implements MessageService {
 
   @Override
   public Integer getThreadCount() {
-    return mapper.selectThreadCount();
+    return mapper.getThreadCount();
   }
 
   @Override
   public boolean addMessage(Message message) {
-    return mapper.insertMessage(message);
+    return mapper.addMessage(message);
   }
 
   @Override
   public List<Message> getMessageas(Integer threadNumber) {
-    return mapper.selectMessageList(threadNumber);
+    return mapper.getMessageas(threadNumber);
   }
 
   @Override
   public String getThreadName(Integer threadNumber) {
-    return mapper.selectThreadName(threadNumber);
+    return mapper.getThreadName(threadNumber);
   }
 
 }

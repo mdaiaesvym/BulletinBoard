@@ -12,17 +12,17 @@ public interface BulletinBoardMapper {
   public Integer insertThread(Thread thread);
 
   /** スレッドナンバー・スレッド名・メッセージ数取得 */
-  public List<Thread> selectThreadList();
+  public List<Thread> getThreadsInfo();
 
   /** メッセージ追加 */
-  public boolean insertMessage(Message message);
+  public boolean addMessage(Message message);
 
   /** メッセージ一覧取得 */
-  public List<Message> selectMessageList(Integer threadNumber);
+  public List<Message> getMessageas(Integer threadNumber);
 
   /** スレッド名取得 */
-  public String selectThreadName(Integer threadNumber);
+  public String getThreadName(Integer threadNumber);
 
   /** スレッド数取得 */
-  public Integer selectThreadCount();
+  public Integer getThreadCount();
 }

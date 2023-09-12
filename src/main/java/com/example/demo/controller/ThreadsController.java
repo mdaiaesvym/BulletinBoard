@@ -25,8 +25,8 @@ public class ThreadsController {
   public String getThreads(Model model) {
 
     // スレッド名・メッセージ数・メッセージ最終更新日時取得
-    List<Thread> threadNameCount = threadService.getThreadNameCount();
-    model.addAttribute("threadList", threadNameCount);
+    List<Thread> threadList = threadService.getThreadsInfo();
+    model.addAttribute("threadList", threadList);
 
     return THREADS;
   }

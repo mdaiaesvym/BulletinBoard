@@ -17,6 +17,6 @@ public interface ThreadService {
    * 
    * @return
    */
-  public List<Thread> getThreadNameCount();
+  public List<Thread> getThreadsInfo();
 
 }

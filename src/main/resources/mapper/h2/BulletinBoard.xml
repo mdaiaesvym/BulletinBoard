@@ -18,7 +18,7 @@
   </insert>
   
   <!--スレッドナンバー、スレッド名、メッセージ数、最終メッセージ更新日時取得-->
-  <select id="selectThreadList" resultType="Thread">
+  <select id="getThreadsInfo" resultType="Thread">
   select
     threads.thread_number,
     threads.thread_name,count(*) as message_count,
@@ -34,7 +34,7 @@
   </select>
   
   <!-- メッセージ登録 -->
-  <insert id="insertMessage">
+  <insert id="addMessage">
   insert into messages(
     thread_number,
     message,
@@ -51,7 +51,7 @@
   </insert>
 
   <!--メッセージ一覧取得-->
-  <select id="selectMessageList" resultType="Message">
+  <select id="getMessageas" resultType="Message">
   select 
     thread_number,
     message,
@@ -65,7 +65,7 @@
   </select>
 
   <!--スレッド名取得-->
-  <select id="selectThreadName" resultType="String">
+  <select id="getThreadName" resultType="String">
   select
     thread_name
   from
@@ -75,7 +75,7 @@
   </select>
 
   <!--スレッド数取得-->
-  <select id="selectThreadCount" resultType="Integer">
+  <select id="getThreadCount" resultType="Integer">
   select
     count(*)
   from

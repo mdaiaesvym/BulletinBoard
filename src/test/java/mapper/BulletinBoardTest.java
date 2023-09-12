@@ -29,7 +29,7 @@ public class BulletinBoardTest {
 
   @Test
   public void スレッド一覧取得() {
-    List<Thread> threadList = mapper.selectThreadList();
+    List<Thread> threadList = mapper.getThreadsInfo();
     assertThat(threadList.get(0).getThreadNumber()).isEqualTo(2);
     assertThat(threadList.get(0).getThreadName()).isEqualTo("今年のベストゲームソフト");
     assertThat(threadList.get(0).getUpdatedAt()).isEqualTo("2022-01-01T10:25:10.000");
@@ -43,7 +43,7 @@ public class BulletinBoardTest {
     message.setContributorName("テスト 投稿者");
     message.setMessage("テストメッセージ");
 
-    assertTrue(mapper.insertMessage(message));
+    assertTrue(mapper.addMessage(message));
   }
 
   @Test
@@ -52,12 +52,12 @@ public class BulletinBoardTest {
     message.setThreadNumber(1);
     message.setMessage("テストメッセージ");
 
-    assertTrue(mapper.insertMessage(message));
+    assertTrue(mapper.addMessage(message));
   }
 
   @Test
   public void メッセージ一覧取得() {
-    List<Message> messageList = mapper.selectMessageList(1);
+    List<Message> messageList = mapper.getMessageas(1);
 
     assertThat(messageList.get(0).getThreadNumber()).isEqualTo(1);
     assertThat(messageList.get(0).getMessage()).isEqualTo("今何をしていますか？");
@@ -67,14 +67,14 @@ public class BulletinBoardTest {
 
   @Test
   public void スレッド名取得() {
-    String threadName = mapper.selectThreadName(1);
+    String threadName = mapper.getThreadName(1);
 
     assertThat(threadName).isEqualTo("雑談");
   }
 
   @Test
   public void スレッド数取得() {
-    Integer threadCount = mapper.selectThreadCount();
+    Integer threadCount = mapper.getThreadCount();
 
     assertThat(threadCount).isEqualTo(3);
   }
