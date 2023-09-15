@@ -21,7 +21,8 @@
   <select id="getThreadList" resultType="Thread">
   select
     threads.thread_number,
-    threads.thread_name,count(*) as message_count,
+    threads.thread_name,
+    count(*) as message_count,
     max(messages.updated_at) as updated_at
   from
     messages 
