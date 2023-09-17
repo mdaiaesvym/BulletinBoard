@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.controller.utils.MessageUtil;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class OriginalErrorController implements ErrorController {
    * @param redirectAttributes
    * @return
    */
-  @RequestMapping("/error")
+  @GetMapping("/error")
   public String redirect(RedirectAttributes redirectAttributes) {
     // メッセージ設定
     messageUtil.addErrorMessage(redirectAttributes, "urlNotFound");
