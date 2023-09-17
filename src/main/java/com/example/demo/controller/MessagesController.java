@@ -30,14 +30,14 @@ public class MessagesController {
   /**
    * 画面表示メソッド
    * 
+   * @param form
    * @param model
    * @param redirectAttributes
-   * @param form
    * @return
    */
   @GetMapping(MESSAGES)
-  public String getMessages(Model model, RedirectAttributes redirectAttributes,
-      @ModelAttribute("makeMessageForm") MakeMessageForm form) {
+  public String getMessages(@ModelAttribute("makeMessageForm") MakeMessageForm form, Model model,
+      RedirectAttributes redirectAttributes) {
 
     // スレッド番号一覧を取得
     List<Integer> threadNumberList = messageService.getThreadNumberList();
@@ -61,7 +61,11 @@ public class MessagesController {
   /**
    * メッセージ追加するメソッド
    * 
+   * @param form
+   * @param bindingResult
    * @param model
+   * @param redirectAttributes
+   * @return
    */
   @PostMapping(value = MESSAGES, params = "postMessage")
   public String postMessage(@ModelAttribute("makeMessageForm") @Validated MakeMessageForm form,
