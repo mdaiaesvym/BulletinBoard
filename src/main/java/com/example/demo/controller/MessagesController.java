@@ -25,7 +25,7 @@ public class MessagesController {
   private final MessageUtil messageUtil;
 
   private final String MESSAGES = "messages";
-  private final String THREADS = "threads";
+  private final String NOTFOUND = "notFound";
 
   /**
    * 画面表示メソッド
@@ -48,10 +48,9 @@ public class MessagesController {
 
     // 存在しないページにアクセスした場合
     if (notExist) {
-      // 失敗メッセージ
-      messageUtil.addErrorMessage(redirectAttributes, "threads.notFoundPageMessage");
 
-      return "redirect:" + THREADS;
+      // エラー画面を表示
+      return NOTFOUND;
     }
     // 共通処理呼び出し
     showCommon(model, form);
