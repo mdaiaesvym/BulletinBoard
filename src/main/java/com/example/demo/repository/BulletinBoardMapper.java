@@ -23,6 +23,4 @@ public interface BulletinBoardMapper {
   /** スレッド名取得 */
   public String getThreadName(Integer threadNumber);
 
-  /** スレッド番号一覧を取得 */
-  public List<Integer> getThreadNumberList();
 }

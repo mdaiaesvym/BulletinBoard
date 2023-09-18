@@ -72,12 +72,4 @@ public class BulletinBoardTest {
     assertThat(threadName).isEqualTo("雑談");
   }
 
-  @Test
-  public void スレッド番号一覧を取得() {
-    List<Integer> threadNumberList = mapper.getThreadNumberList();
-
-    assertThat(threadNumberList.get(0)).isEqualTo(1);
-    assertThat(threadNumberList.get(1)).isEqualTo(2);
-    assertThat(threadNumberList.get(2)).isEqualTo(3);
-  }
 }

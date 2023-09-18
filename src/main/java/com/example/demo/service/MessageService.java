@@ -6,13 +6,6 @@ import com.example.demo.model.Message;
 public interface MessageService {
 
   /**
-   * スレッド番号一覧を取得
-   * 
-   * @return
-   */
-  public List<Integer> getThreadNumberList();
-
-  /**
    * メッセージ追加
    * 
    * @param message

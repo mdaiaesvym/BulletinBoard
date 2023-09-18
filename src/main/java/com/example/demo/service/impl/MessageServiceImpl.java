@@ -16,11 +16,6 @@ public class MessageServiceImpl implements MessageService {
   private BulletinBoardMapper mapper;
 
   @Override
-  public List<Integer> getThreadNumberList() {
-    return mapper.getThreadNumberList();
-  }
-
-  @Override
   public boolean addMessage(Message message) {
     return mapper.addMessage(message);
   }

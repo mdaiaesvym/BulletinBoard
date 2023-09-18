@@ -75,12 +75,4 @@
     thread_number = #{threadNumber};
   </select>
 
-  <!-- スレッド番号一覧を取得 -->
-  <select id="getThreadNumberList" resultType="Integer">
-  select
-    thread_number
-  from
-    threads;
-  </select>
-
 </mapper>
