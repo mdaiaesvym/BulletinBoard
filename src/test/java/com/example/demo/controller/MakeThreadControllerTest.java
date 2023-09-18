@@ -15,22 +15,25 @@ public class MakeThreadControllerTest {
   @Autowired
   private MockMvc mockMvc;
 
+  private final String ENDPOINT_THREAD = "/makeThread";
+  private final String MAKE_THREAD = "makeThread";
+
   @Test
   public void アクセス成功() throws Exception {
     // アクセス
-    mockMvc.perform(get("/makeThread"))
+    mockMvc.perform(get(ENDPOINT_THREAD))
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
-        .andExpect(view().name("makeThread"));
+        .andExpect(view().name(MAKE_THREAD));
   }
 
   @Test
   public void 新規作成成功_投稿者名フラグオフ() throws Exception {
     // ポスト
-    mockMvc.perform(post("/makeThread")
+    mockMvc.perform(post(ENDPOINT_THREAD)
         // params = "makeThread"の呼び出し
-        .param("makeThread", "")
+        .param(MAKE_THREAD, "")
         // formに値を設定
         .param("threadName", "スレッド名テスト").param("message", "メッセージテスト")
         .param("hasContributorName", "false").param("contributorName", ""))
@@ -47,9 +50,9 @@ public class MakeThreadControllerTest {
   @Test
   public void 新規作成成功_投稿者名フラグオン() throws Exception {
     // ポスト
-    mockMvc.perform(post("/makeThread")
+    mockMvc.perform(post(ENDPOINT_THREAD)
         // params = "makeThread"の呼び出し
-        .param("makeThread", "")
+        .param(MAKE_THREAD, "")
         // formに値を設定
         .param("threadName", "スレッド名テスト").param("message", "メッセージテスト")
         .param("hasContributorName", "true").param("contributorName", "投稿者テスト"))
@@ -66,9 +69,9 @@ public class MakeThreadControllerTest {
   @Test
   public void 新規作成失敗_スレッド名が空() throws Exception {
     // ポスト
-    mockMvc.perform(post("/makeThread")
+    mockMvc.perform(post(ENDPOINT_THREAD)
         // params = "makeThread"の呼び出し
-        .param("makeThread", "")
+        .param(MAKE_THREAD, "")
         // formに値を設定
         .param("threadName", "").param("message", "メッセージテスト").param("hasContributorName", "true")
         .param("contributorName", "投稿者テスト"))
@@ -79,15 +82,15 @@ public class MakeThreadControllerTest {
         // エラーメッセージがあること
         .andExpect(model().attributeExists("errorMessage"))
         // ビュー名をテスト
-        .andExpect(view().name("makeThread"));
+        .andExpect(view().name(MAKE_THREAD));
   }
 
   @Test
   public void 新規作成失敗_メッセージが空() throws Exception {
     // ポスト
-    mockMvc.perform(post("/makeThread")
+    mockMvc.perform(post(ENDPOINT_THREAD)
         // params = "makeThread"の呼び出し
-        .param("makeThread", "")
+        .param(MAKE_THREAD, "")
         // formに値を設定
         .param("threadName", "スレッド名テスト").param("message", "").param("hasContributorName", "true")
         .param("contributorName", "投稿者テスト"))
@@ -98,15 +101,15 @@ public class MakeThreadControllerTest {
         // エラーメッセージがあること
         .andExpect(model().attributeExists("errorMessage"))
         // ビュー名をテスト
-        .andExpect(view().name("makeThread"));
+        .andExpect(view().name(MAKE_THREAD));
   }
 
   @Test
   public void 新規作成失敗_投稿者フラグがオンで投稿者名が空() throws Exception {
     // ポスト
-    mockMvc.perform(post("/makeThread")
+    mockMvc.perform(post(ENDPOINT_THREAD)
         // params = "makeThread"の呼び出し
-        .param("makeThread", "")
+        .param(MAKE_THREAD, "")
         // formに値を設定
         .param("threadName", "スレッド名テスト").param("message", "メッセージテスト")
         .param("hasContributorName", "true").param("contributorName", ""))
@@ -117,6 +120,6 @@ public class MakeThreadControllerTest {
         // エラーメッセージがあること
         .andExpect(model().attributeExists("errorMessage"))
         // ビュー名をテスト
-        .andExpect(view().name("makeThread"));
+        .andExpect(view().name(MAKE_THREAD));
   }
 }
