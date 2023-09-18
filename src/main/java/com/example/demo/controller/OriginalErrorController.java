@@ -18,7 +18,7 @@ public class OriginalErrorController implements ErrorController {
    * @return
    */
   @GetMapping("/error")
-  public String redirect(RedirectAttributes redirectAttributes) {
+  public String show(RedirectAttributes redirectAttributes) {
 
     // エラー画面を表示
     return NOTFOUND;

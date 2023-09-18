@@ -22,7 +22,7 @@ public class ThreadsController {
    * @return
    */
   @GetMapping(THREADS)
-  public String getThreads(Model model) {
+  public String show(Model model) {
 
     // スレッド名・メッセージ数・メッセージ最終更新日時取得
     List<Thread> threadList = threadService.getThreadList();

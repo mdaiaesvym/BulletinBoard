@@ -36,7 +36,7 @@ public class MakeThreadController {
    * @return
    */
   @GetMapping(MAKETHREAD)
-  public String getMakeThread(@ModelAttribute("makeThreadForm") MakeThreadForm makeThreadForm) {
+  public String show(@ModelAttribute("makeThreadForm") MakeThreadForm makeThreadForm) {
     return MAKETHREAD;
   }
 

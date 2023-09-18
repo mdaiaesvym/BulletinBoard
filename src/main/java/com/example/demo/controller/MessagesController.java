@@ -46,7 +46,7 @@ public class MessagesController {
    */
   @SuppressWarnings("unchecked")
   @GetMapping(MESSAGES)
-  public String getMessages(@ModelAttribute("makeMessageForm") MakeMessageForm form, Model model,
+  public String show(@ModelAttribute("makeMessageForm") MakeMessageForm form, Model model,
       RedirectAttributes redirectAttributes) {
     // メッセージ一覧をモデルから取得
     List<Message> messageList = (List<Message>) model.getAttribute("messageList");
@@ -58,7 +58,7 @@ public class MessagesController {
     }
 
     // 共通処理呼び出し
-    showCommon(model, form);
+    common(model, form);
 
     return MESSAGES;
   }
@@ -88,7 +88,7 @@ public class MessagesController {
     // 入力チェック
     if (bindingResult.hasErrors()) {
       // 共通処理呼び出し
-      showCommon(model, form);
+      common(model, form);
 
       // 失敗メッセージ
       messageUtil.addErrorMessage(model, "messages.postFailMessage");
@@ -103,7 +103,7 @@ public class MessagesController {
     // メッセージ追加処理
     if (!messageService.addMessage(message)) {
       // 共通処理呼び出し
-      showCommon(model, form);
+      common(model, form);
 
       // 失敗メッセージ
       messageUtil.addErrorMessage(model, "messages.postFailMessage");
@@ -124,7 +124,7 @@ public class MessagesController {
    * @param model
    * @param form
    */
-  private void showCommon(Model model, MakeMessageForm form) {
+  private void common(Model model, MakeMessageForm form) {
     // スレッド番号取得
     Integer threadNumber = form.getThreadNumber();
     model.addAttribute("threadNumber", threadNumber);
