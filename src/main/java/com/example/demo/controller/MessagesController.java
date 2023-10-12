@@ -9,7 +9,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.controller.utils.MessageUtil;
 import com.example.demo.form.MakeMessageForm;
@@ -28,14 +27,6 @@ public class MessagesController {
   private final String MESSAGES = "messages";
   private final String NOTFOUND = "notFound";
 
-  @ModelAttribute
-  public void setMessages(@RequestParam("threadNumber") Integer threadNumber, Model model) {
-    // 対象スレッドのメッセージ一覧を取得
-    List<Message> messageList = messageService.getMessageList(threadNumber);
-    model.addAttribute("messageList", messageList);
-  }
-
-
   /**
    * 画面表示メソッド
    * 
@@ -44,21 +35,14 @@ public class MessagesController {
    * @param redirectAttributes
    * @return
    */
-  @SuppressWarnings("unchecked")
   @GetMapping(MESSAGES)
   public String show(@ModelAttribute("makeMessageForm") MakeMessageForm form, Model model,
       RedirectAttributes redirectAttributes) {
-    // メッセージ一覧をモデルから取得
-    List<Message> messageList = (List<Message>) model.getAttribute("messageList");
-
-    // メッセージがない場合（＝存在しないスレッドの場合）
-    if (messageList.isEmpty()) {
+    // 共通処理呼び出し
+    if (!common(model, form)) {
       // エラー画面を表示
       return NOTFOUND;
     }
-
-    // 共通処理呼び出し
-    common(model, form);
 
     return MESSAGES;
   }
@@ -72,23 +56,17 @@ public class MessagesController {
    * @param redirectAttributes
    * @return
    */
-  @SuppressWarnings("unchecked")
   @PostMapping(value = MESSAGES, params = "postMessage")
   public String postMessage(@ModelAttribute("makeMessageForm") @Validated MakeMessageForm form,
       BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-    // メッセージ一覧をモデルから取得
-    List<Message> messageList = (List<Message>) model.getAttribute("messageList");
-
-    // メッセージがない場合（＝存在しないスレッドの場合）
-    if (messageList.isEmpty()) {
+    // 共通処理呼び出し
+    if (!common(model, form)) {
       // エラー画面を表示
       return NOTFOUND;
     }
 
     // 入力チェック
     if (bindingResult.hasErrors()) {
-      // 共通処理呼び出し
-      common(model, form);
 
       // 失敗メッセージ
       messageUtil.addErrorMessage(model, "messages.postFailMessage");
@@ -97,13 +75,10 @@ public class MessagesController {
     }
 
     // formをMessageクラスにマッピング
-    Message message = new Message();
-    message = modelMapper.map(form, Message.class);
+    Message message = modelMapper.map(form, Message.class);
 
     // メッセージ追加処理
     if (!messageService.addMessage(message)) {
-      // 共通処理呼び出し
-      common(model, form);
 
       // 失敗メッセージ
       messageUtil.addErrorMessage(model, "messages.postFailMessage");
@@ -124,7 +99,7 @@ public class MessagesController {
    * @param model
    * @param form
    */
-  private void common(Model model, MakeMessageForm form) {
+  private boolean common(Model model, MakeMessageForm form) {
     // スレッド番号取得
     Integer threadNumber = form.getThreadNumber();
     model.addAttribute("threadNumber", threadNumber);
@@ -132,5 +107,16 @@ public class MessagesController {
     // スレッド名取得
     String threadName = messageService.getThreadName(threadNumber);
     model.addAttribute("threadName", threadName);
+
+    // 対象スレッドのメッセージ一覧を取得
+    List<Message> messageList = messageService.getMessageList(threadNumber);
+    model.addAttribute("messageList", messageList);
+
+    // メッセージ一覧が存在しない場合
+    if (messageList.isEmpty()) {
+      return false;
+    }
+    return true;
   }
+
 }
