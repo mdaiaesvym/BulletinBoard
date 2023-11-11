@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.InitBinder;
 
 /**
- * アプリケーション内のすべてのコントローラーに対する処理を提供
+ * アプリケーション内のすべてのコントローラーに対する事前処理
  */
 @ControllerAdvice
 public class BulletinBoardAdvice {

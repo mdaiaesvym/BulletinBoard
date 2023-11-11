@@ -3,10 +3,6 @@ package com.example.demo.utility;
 import java.beans.PropertyEditorSupport;
 import org.apache.commons.lang3.StringUtils;
 
-/**
- * 全半角スペースのみ文字列をnullに変換する<br>
- * （@NotBlankは全角スペースがバリデーションエラー対象外のための対応）
- */
 public class CustomStringTrimmer extends PropertyEditorSupport {
 
   private final boolean emptyAsNull;
@@ -15,12 +11,11 @@ public class CustomStringTrimmer extends PropertyEditorSupport {
     this.emptyAsNull = emptyAsNull;
   }
 
-  @Override
-  public String getAsText() {
-    Object value = this.getValue();
-    return value != null ? value.toString() : "";
-  }
-
+  /**
+   * ポスト時のみに呼び出される<br>
+   * 全半角スペースのみの文字列をnullに変換する<br>
+   * （@NotBlankは全角スペースがバリデーションエラー対象外のための対応）
+   */
   @Override
   public void setAsText(String text) {
     if (text == null) {
