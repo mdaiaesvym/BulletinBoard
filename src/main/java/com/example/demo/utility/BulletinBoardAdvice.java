@@ -12,6 +12,6 @@ public class BulletinBoardAdvice {
 
   @InitBinder
   public void initBinder(WebDataBinder binder) {
-    binder.registerCustomEditor(String.class, new CustomStringTrimmer(true));
+    binder.registerCustomEditor(String.class, new CustomStringTrimmer());
   }
 }

@@ -5,12 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 
 public class CustomStringTrimmer extends PropertyEditorSupport {
 
-  private final boolean emptyAsNull;
-
-  public CustomStringTrimmer(boolean emptyAsNull) {
-    this.emptyAsNull = emptyAsNull;
-  }
-
   /**
    * ポスト時のみに呼び出される<br>
    * 全半角スペースのみの文字列をnullに変換する<br>
@@ -23,7 +17,7 @@ public class CustomStringTrimmer extends PropertyEditorSupport {
     } else {
       String value = StringUtils.strip(text);
 
-      if (this.emptyAsNull && "".equals(value)) {
+      if ("".equals(value)) {
         this.setValue((Object) null);
       } else {
         this.setValue(value);
