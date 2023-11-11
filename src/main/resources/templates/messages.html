@@ -26,7 +26,7 @@
             </div>
 
             <!--メッセージフォーム-->
-            <form id="makeMessageForm" method="post" th:action="@{/messages}" th:object="${makeMessageForm}">
+            <form id="makeMessageForm" method="post" th:action="|@{/messages?threadNumber=}${makeMessageForm.threadNumber}|" th:object="${makeMessageForm}">
               <div class="form-group">
                 <label class="font-weight-bold" for="message" th:text="|#{message}#{asterisk}|">メッセージ</label>
                 <textarea id="message" class="form-control" rows="5" th:field="*{message}" th:errorclass="is-invalid"></textarea>
@@ -48,7 +48,6 @@
               <div class="text-left mt-2 mb-5">
                 <button id="makeMessageButton" class="btn btn-secondary" type="button" th:text="#{post}">投稿</button>
               </div>
-              <input type="hidden" th:field="*{threadNumber}" />
               <input type="hidden" name="postMessage" />
             </form>
           </div>
