@@ -6,9 +6,10 @@ import org.apache.commons.lang3.StringUtils;
 public class CustomStringTrimmer extends PropertyEditorSupport {
 
   /**
-   * ポスト時のみに呼び出される<br>
-   * 全半角スペースのみの文字列をnullに変換する<br>
-   * （@NotBlankは全角スペースがバリデーションエラー対象外のための対応）
+   * ポスト時のみに呼び出されるメソッド<br>
+   * 文字列内の余分な空白を削除<br>
+   * 削除後、空文字のみであればnullに変換する<br>
+   * （@NotBlankは全角スペースがバリデーションエラー対象外のための対応を含む）
    */
   @Override
   public void setAsText(String text) {
