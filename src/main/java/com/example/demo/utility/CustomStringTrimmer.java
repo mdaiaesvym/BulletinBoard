@@ -4,7 +4,7 @@ import java.beans.PropertyEditorSupport;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * 空（全半角スペースのみ）の文字列をnullに変換する<br>
+ * 全半角スペースのみ文字列をnullに変換する<br>
  * （@NotBlankは全角スペースがバリデーションエラー対象外のための対応）
  */
 public class CustomStringTrimmer extends PropertyEditorSupport {
