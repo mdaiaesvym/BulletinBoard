@@ -1,10 +1,10 @@
-package com.example.demo.utils;
+package com.example.demo.utility;
 
 import java.beans.PropertyEditorSupport;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * 空（全半角スペース含む）の文字列をnullに変換する<br>
+ * 空（全半角スペースのみ）の文字列をnullに変換する<br>
  * （@NotBlankは全角スペースがバリデーションエラー対象外のための対応）
  */
 public class CustomStringTrimmer extends PropertyEditorSupport {

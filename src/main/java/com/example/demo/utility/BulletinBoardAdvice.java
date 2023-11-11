@@ -1,4 +1,4 @@
-package com.example.demo.utils;
+package com.example.demo.utility;
 
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
