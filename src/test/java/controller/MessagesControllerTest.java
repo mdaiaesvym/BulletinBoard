@@ -158,4 +158,76 @@ public class MessagesControllerTest {
         .andExpect(view().name(MESSAGES));
   }
 
+  @Test
+  public void メッセージ投稿失敗_メッセージが全角スペースのみ() throws Exception {
+    mockMvc.perform(post("/messages?threadNumber=1")
+        // params = "postMessage"の呼び出し
+        .param("postMessage", "")
+        // formに値を設定
+        .param("message", "　").param("hasContributorName", "true")
+        .param("contributorName", "投稿者テスト"))
+        // エラーがあることのテスト
+        .andExpect(model().hasErrors())
+        // リクエスト成功をテスト
+        .andExpect(status().isOk())
+        // エラーメッセージがあること
+        .andExpect(model().attributeExists("errorMessage"))
+        // ビュー名をテスト
+        .andExpect(view().name(MESSAGES));
+  }
+
+  @Test
+  public void メッセージ投稿失敗_投稿者フラグがオンで投稿者名が全角スペースのみ() throws Exception {
+    mockMvc.perform(post("/messages?threadNumber=1")
+        // params = "postMessage"の呼び出し
+        .param("postMessage", "")
+        // formに値を設定
+        .param("message", "メッセージテスト").param("hasContributorName", "true")
+        .param("contributorName", "　"))
+        // エラーがあることのテスト
+        .andExpect(model().hasErrors())
+        // リクエスト成功をテスト
+        .andExpect(status().isOk())
+        // エラーメッセージがあること
+        .andExpect(model().attributeExists("errorMessage"))
+        // ビュー名をテスト
+        .andExpect(view().name(MESSAGES));
+  }
+
+  @Test
+  public void メッセージ投稿失敗_メッセージが半角スペースのみ() throws Exception {
+    mockMvc.perform(post("/messages?threadNumber=1")
+        // params = "postMessage"の呼び出し
+        .param("postMessage", "")
+        // formに値を設定
+        .param("message", " ").param("hasContributorName", "true")
+        .param("contributorName", "投稿者テスト"))
+        // エラーがあることのテスト
+        .andExpect(model().hasErrors())
+        // リクエスト成功をテスト
+        .andExpect(status().isOk())
+        // エラーメッセージがあること
+        .andExpect(model().attributeExists("errorMessage"))
+        // ビュー名をテスト
+        .andExpect(view().name(MESSAGES));
+  }
+
+  @Test
+  public void メッセージ投稿失敗_投稿者フラグがオンで投稿者名が半角スペースのみ() throws Exception {
+    mockMvc.perform(post("/messages?threadNumber=1")
+        // params = "postMessage"の呼び出し
+        .param("postMessage", "")
+        // formに値を設定
+        .param("message", "メッセージテスト").param("hasContributorName", "true")
+        .param("contributorName", " "))
+        // エラーがあることのテスト
+        .andExpect(model().hasErrors())
+        // リクエスト成功をテスト
+        .andExpect(status().isOk())
+        // エラーメッセージがあること
+        .andExpect(model().attributeExists("errorMessage"))
+        // ビュー名をテスト
+        .andExpect(view().name(MESSAGES));
+  }
+
 }

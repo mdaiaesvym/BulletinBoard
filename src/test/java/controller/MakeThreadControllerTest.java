@@ -128,4 +128,119 @@ public class MakeThreadControllerTest {
         // ビュー名をテスト
         .andExpect(view().name(MAKE_THREAD));
   }
+
+
+  @Test
+  public void 新規作成失敗_スレッド名が半角スペース() throws Exception {
+    // ポスト
+    mockMvc.perform(post(ENDPOINT_THREAD)
+        // params = "makeThread"の呼び出し
+        .param(MAKE_THREAD, "")
+        // formに値を設定
+        .param("threadName", " ").param("message", "メッセージテスト").param("hasContributorName", "true")
+        .param("contributorName", "投稿者テスト"))
+        // エラーがあることのテスト
+        .andExpect(model().hasErrors())
+        // リクエスト成功をテスト
+        .andExpect(status().isOk())
+        // エラーメッセージがあること
+        .andExpect(model().attributeExists("errorMessage"))
+        // ビュー名をテスト
+        .andExpect(view().name(MAKE_THREAD));
+  }
+
+  @Test
+  public void 新規作成失敗_メッセージが半角スペース() throws Exception {
+    // ポスト
+    mockMvc.perform(post(ENDPOINT_THREAD)
+        // params = "makeThread"の呼び出し
+        .param(MAKE_THREAD, "")
+        // formに値を設定
+        .param("threadName", "スレッド名テスト").param("message", " ").param("hasContributorName", "true")
+        .param("contributorName", "投稿者テスト"))
+        // エラーがあることのテスト
+        .andExpect(model().hasErrors())
+        // リクエスト成功をテスト
+        .andExpect(status().isOk())
+        // エラーメッセージがあること
+        .andExpect(model().attributeExists("errorMessage"))
+        // ビュー名をテスト
+        .andExpect(view().name(MAKE_THREAD));
+  }
+
+  @Test
+  public void 新規作成失敗_投稿者フラグがオンで投稿者名が半角スペース() throws Exception {
+    // ポスト
+    mockMvc.perform(post(ENDPOINT_THREAD)
+        // params = "makeThread"の呼び出し
+        .param(MAKE_THREAD, "")
+        // formに値を設定
+        .param("threadName", "スレッド名テスト").param("message", "メッセージテスト")
+        .param("hasContributorName", "true").param("contributorName", " "))
+        // エラーがあることのテスト
+        .andExpect(model().hasErrors())
+        // リクエスト成功をテスト
+        .andExpect(status().isOk())
+        // エラーメッセージがあること
+        .andExpect(model().attributeExists("errorMessage"))
+        // ビュー名をテスト
+        .andExpect(view().name(MAKE_THREAD));
+  }
+
+  @Test
+  public void 新規作成失敗_スレッド名が全角スペース() throws Exception {
+    // ポスト
+    mockMvc.perform(post(ENDPOINT_THREAD)
+        // params = "makeThread"の呼び出し
+        .param(MAKE_THREAD, "")
+        // formに値を設定
+        .param("threadName", "　").param("message", "メッセージテスト").param("hasContributorName", "true")
+        .param("contributorName", "投稿者テスト"))
+        // エラーがあることのテスト
+        .andExpect(model().hasErrors())
+        // リクエスト成功をテスト
+        .andExpect(status().isOk())
+        // エラーメッセージがあること
+        .andExpect(model().attributeExists("errorMessage"))
+        // ビュー名をテスト
+        .andExpect(view().name(MAKE_THREAD));
+  }
+
+  @Test
+  public void 新規作成失敗_メッセージが全角スペース() throws Exception {
+    // ポスト
+    mockMvc.perform(post(ENDPOINT_THREAD)
+        // params = "makeThread"の呼び出し
+        .param(MAKE_THREAD, "")
+        // formに値を設定
+        .param("threadName", "スレッド名テスト").param("message", "　").param("hasContributorName", "true")
+        .param("contributorName", "投稿者テスト"))
+        // エラーがあることのテスト
+        .andExpect(model().hasErrors())
+        // リクエスト成功をテスト
+        .andExpect(status().isOk())
+        // エラーメッセージがあること
+        .andExpect(model().attributeExists("errorMessage"))
+        // ビュー名をテスト
+        .andExpect(view().name(MAKE_THREAD));
+  }
+
+  @Test
+  public void 新規作成失敗_投稿者フラグがオンで投稿者名が全角スペース() throws Exception {
+    // ポスト
+    mockMvc.perform(post(ENDPOINT_THREAD)
+        // params = "makeThread"の呼び出し
+        .param(MAKE_THREAD, "")
+        // formに値を設定
+        .param("threadName", "スレッド名テスト").param("message", "メッセージテスト")
+        .param("hasContributorName", "true").param("contributorName", "　"))
+        // エラーがあることのテスト
+        .andExpect(model().hasErrors())
+        // リクエスト成功をテスト
+        .andExpect(status().isOk())
+        // エラーメッセージがあること
+        .andExpect(model().attributeExists("errorMessage"))
+        // ビュー名をテスト
+        .andExpect(view().name(MAKE_THREAD));
+  }
 }
