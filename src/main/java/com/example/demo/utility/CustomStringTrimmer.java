@@ -9,7 +9,8 @@ public class CustomStringTrimmer extends PropertyEditorSupport {
    * ポスト時のみに呼び出されるメソッド<br>
    * 文字列内の余分な空白を削除<br>
    * 削除後、空文字のみであればnullに変換する<br>
-   * （@NotBlankは全角スペースがバリデーションエラー対象外のための対応を含む）
+   * （@NotBlank、@NotEmpty、@NotNullは全て全角スペースがバリデーションエラー対象外。<br>
+   * 全て全角スペースをバリデーションエラーにするための対応を含む）
    */
   @Override
   public void setAsText(String text) {
