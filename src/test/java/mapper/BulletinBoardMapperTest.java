@@ -14,7 +14,7 @@ import com.example.demo.repository.BulletinBoardMapper;
 
 @MybatisTest
 @ContextConfiguration(classes = BulletinBoardApplication.class)
-public class BulletinBoardTest {
+public class BulletinBoardMapperTest {
 
   @Autowired
   private BulletinBoardMapper mapper;
