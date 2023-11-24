@@ -25,6 +25,7 @@ public class BulletinBoardMapperTest {
     thread.setThreadName("テスト");
 
     assertThat(mapper.makeThread(thread)).isEqualTo(1);
+    assertThat(thread.getThreadNumber()).isEqualTo(4);
   }
 
   @Test
