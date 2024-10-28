@@ -48,7 +48,7 @@ public class MessageServiceTest {
     assertEquals(1, argumentCaptor.getValue().getThreadNumber());
     assertEquals("テスト投稿者", argumentCaptor.getValue().getContributorName());
     assertEquals("テストメッセージ", argumentCaptor.getValue().getMessage());
-    assertEquals(null, argumentCaptor.getValue().getUpdatedAt());
+    assertEquals(null, argumentCaptor.getValue().getCreatedYmdhms());
   }
 
   @Test

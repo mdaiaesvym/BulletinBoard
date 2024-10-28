@@ -14,7 +14,7 @@
             <!--メッセージのセット-->
             <div th:each="message,status:${messageList}">
               <span th:text="|#${status.count}.|" th:id="|messageNum${status.count}|"></span>
-              <span th:text="${message.formatUpdatedAt}"> 2022/01/01(土) 10:00:00 </span>
+              <span th:text="${message.formatedCreatedYmdhms}">2022/01/01 10:10:10</span>
               <span th:text="${message.contributorName}"> 名無しさん </span>
               <i class="fas fa-reply replay-mark pointer" th:onclick="|replay(__${status.count}__)|">
                 <span>返信</span>

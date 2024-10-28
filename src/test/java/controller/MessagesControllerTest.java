@@ -5,7 +5,6 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,9 +49,7 @@ public class MessagesControllerTest {
     message.setThreadNumber(1);
     message.setMessage("テスト");
     message.setContributorName("テスト投稿者");
-    String strDate = "20230918101010";
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
-    message.setUpdatedAt(dateFormat.parse(strDate));
+    message.setCreatedYmdhms("20230918101010");
     messageList.add(message);
 
     when(messageService.getMessageList(1)).thenReturn(messageList);

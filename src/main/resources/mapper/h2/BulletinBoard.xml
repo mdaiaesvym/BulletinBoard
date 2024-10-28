@@ -8,12 +8,12 @@
   <insert id="makeThread" useGeneratedKeys="true" keyProperty="threadNumber">
   insert into threads(
     thread_name,
-    created_at,
-    updated_at
+    created_ymdhms,
+    updated_ymdhms
   ) values (
     #{threadName},
-    CURRENT_TIMESTAMP,
-    CURRENT_TIMESTAMP
+    FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss'),
+    FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss')
   )
   </insert>
   
@@ -23,7 +23,7 @@
     threads.thread_number,
     threads.thread_name,
     count(*) as message_count,
-    max(messages.updated_at) as updated_at
+    max(messages.updated_ymdhms) as updated_ymdhms
   from
     messages 
   inner join
@@ -31,7 +31,7 @@
   group by
     messages.thread_number
   order by
-    max(messages.updated_at) desc;
+    max(messages.updated_ymdhms) desc;
   </select>
   
   <!-- メッセージ登録 -->
@@ -39,15 +39,15 @@
   insert into messages(
     thread_number,
     message,
-    created_at,
+    created_ymdhms,
     <if test="contributorName != null and contributorName != ''" >created_name,</if>
-    updated_at
+    updated_ymdhms
   ) values (
     #{threadNumber},
     #{message},
-    CURRENT_TIMESTAMP,
+    FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss'),
     <if test="contributorName != null and contributorName != ''" >#{contributorName},</if>
-    CURRENT_TIMESTAMP
+    FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss')
   )
   </insert>
 
@@ -57,12 +57,12 @@
     thread_number,
     message,
     created_name as contributorName,
-    updated_at
+    created_ymdhms
   from
     messages 
   where
     thread_number = #{threadNumber}
-  order by created_at asc;
+  order by created_ymdhms asc;
   </select>
 
   <!--スレッド名取得-->

@@ -46,7 +46,7 @@ public class ThreadServiceTest {
     assertEquals(null, argumentCaptor.getValue().getThreadNumber());
     assertEquals("テスト_スレッド名", argumentCaptor.getValue().getThreadName());
     assertEquals(null, argumentCaptor.getValue().getMessageCount());
-    assertEquals(null, argumentCaptor.getValue().getUpdatedAt());
+    assertEquals(null, argumentCaptor.getValue().getUpdatedYmdhms());
   }
 
   @Test

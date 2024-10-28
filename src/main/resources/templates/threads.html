@@ -15,7 +15,7 @@
             <a th:href="@{/messages?threadNumber=__${thread.threadNumber}__}" class="linkStyle">
               <div th:text="${thread.threadName}" class="threadname threadname-size font-weight-bold box-format">スレッド名</div>
               <span class="threadcounts font-weight-bold"><i class="fas fa-comments afterIndent"></i><th:block th:text="${thread.messageCount}"></th:block>コメント</span>
-              <span class="beforeIndent">最終更新日時：</span><span th:text="${thread.formatUpdatedAt}"></span>
+              <span class="beforeIndent">最終更新日時：</span><span th:text="${thread.formatedUpdatedYmdhms}">2022/01/01 10:10:10</span>
             </a>
             <hr />
           </div>
