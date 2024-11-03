@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
   <head>
-    <link rel="stylesheet" th:href="@{/css/messages.css}" />
+    <link rel="stylesheet" th:href="@{/css/messageList.css}" />
     <title th:text="#{app.window(#{messageList.window})}"></title>
   </head>
 
@@ -26,7 +26,7 @@
             </div>
 
             <!--メッセージフォーム-->
-            <form id="makeMessageForm" method="post" th:action="|@{/messages?threadNumber=}${makeMessageForm.threadNumber}|" th:object="${makeMessageForm}">
+            <form id="makeMessageForm" method="post" th:action="|@{/messageList?threadNumber=}${makeMessageForm.threadNumber}|" th:object="${makeMessageForm}">
               <div class="form-group">
                 <label class="font-weight-bold" for="message" th:text="|#{message}#{asterisk}|">メッセージ</label>
                 <textarea id="message" class="form-control" rows="5" th:field="*{message}" th:errorclass="is-invalid"></textarea>
@@ -53,14 +53,14 @@
           </div>
         </div>
       </div>
-      <input type="hidden" id="postMessage" th:value="#{messages.postMessage}" />
-      <script th:src="@{/js/messages.js}" defer></script>
+      <input type="hidden" id="postMessage" th:value="#{messageList.postMessage}" />
+      <script th:src="@{/js/messageList.js}" defer></script>
       <!--「>>数字」にリンク元参照を付与-->
       <script type="text/javascript" th:inline="javascript">
         //正規表現設定「>>数字」
         const regex = new RegExp("\>\>\\d*", "g");
-        messages = document.querySelectorAll(".message");
-        for (const message of messages) {
+        messageList = document.querySelectorAll(".message");
+        for (const message of messageList) {
           //正規表現とマッチしたら
           if (regex.test(message.textContent)) {
             //メッセージ取得
@@ -71,7 +71,7 @@
               //「>>」を省く
               var linkNum = matchNum.substr(2);
               //変更後のテキスト
-              var linkText = "<a href=messages?threadNumber=" + [[${threadNumber}]] +"#messageNum" + linkNum + ">" + matchNum + "</a>"
+              var linkText = "<a href=messageList?threadNumber=" + [[${threadNumber}]] +"#messageNum" + linkNum + ">" + matchNum + "</a>"
               message.innerHTML = messageText.replace(matchNum, linkText);
               messageText = messageText.replace(matchNum, linkText);
             }

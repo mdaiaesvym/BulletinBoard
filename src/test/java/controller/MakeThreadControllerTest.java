@@ -50,7 +50,7 @@ public class MakeThreadControllerTest {
         // 成功メッセージがあること
         .andExpect(flash().attributeExists("infoMessage"))
         // リダイレクト先URLのテスト
-        .andExpect(redirectedUrl("threads"));
+        .andExpect(redirectedUrl("threadList"));
   }
 
   @Test
@@ -69,7 +69,7 @@ public class MakeThreadControllerTest {
         // 成功メッセージがあること
         .andExpect(flash().attributeExists("infoMessage"))
         // リダイレクト先URLのテスト
-        .andExpect(redirectedUrl("threads"));
+        .andExpect(redirectedUrl("threadList"));
   }
 
   @Test

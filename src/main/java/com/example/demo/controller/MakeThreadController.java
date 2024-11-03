@@ -27,7 +27,7 @@ public class MakeThreadController {
   private final MessageUtil messageUtil;
 
   private final String MAKETHREAD = "makeThread";
-  private final String THREADS = "threads";
+  private final String THREADLIST = "threadList";
 
   /**
    * 画面表示メソッド
@@ -57,7 +57,7 @@ public class MakeThreadController {
     // 入力チェック
     if (bindingResult.hasErrors()) {
       // 失敗メッセージ
-      messageUtil.addErrorMessage(model, "threads.postFailMessage");
+      messageUtil.addErrorMessage(model, "threadList.postFailMessage");
 
       return MAKETHREAD;
     }
@@ -70,7 +70,7 @@ public class MakeThreadController {
 
     if (threadNumber <= 0) {
       // 失敗メッセージ
-      messageUtil.addErrorMessage(model, "threads.postFailMessage");
+      messageUtil.addErrorMessage(model, "threadList.postFailMessage");
 
       return MAKETHREAD;
     }
@@ -84,14 +84,14 @@ public class MakeThreadController {
     // メッセージ作成処理
     if (!messageService.addMessage(message)) {
       // 失敗メッセージ
-      messageUtil.addErrorMessage(model, "threads.postFailMessage");
+      messageUtil.addErrorMessage(model, "threadList.postFailMessage");
 
       return MAKETHREAD;
     }
     // 成功メッセージ
-    messageUtil.addInfoMessage(redirectAttributes, "threads.postSuccessMessage");
+    messageUtil.addInfoMessage(redirectAttributes, "threadList.postSuccessMessage");
 
-    return "redirect:" + THREADS;
+    return "redirect:" + THREADLIST;
 
   }
 }

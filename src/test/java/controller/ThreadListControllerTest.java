@@ -18,7 +18,7 @@ import com.example.demo.service.ThreadService;
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ThreadsControllerTest {
+public class ThreadListControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -29,11 +29,11 @@ public class ThreadsControllerTest {
   @Test
   public void アクセス成功() throws Exception {
     // アクセス
-    mockMvc.perform(get("/threads"))
+    mockMvc.perform(get("/threadList"))
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
-        .andExpect(view().name("threads"))
+        .andExpect(view().name("threadList"))
         // modelに存在することをテスト
         .andExpect(model().attribute("threadList", threadService.getThreadList()));
   }

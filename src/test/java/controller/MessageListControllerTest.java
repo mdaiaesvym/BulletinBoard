@@ -25,10 +25,10 @@ import com.example.demo.service.MessageService;
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class MessagesControllerTest {
+public class MessageListControllerTest {
 
   private final String NOTFOUND = "notFound";
-  private final String MESSAGES = "messages";
+  private final String MESSAGELIST = "messageList";
 
   @Autowired
   private MockMvc mockMvc;
@@ -57,11 +57,11 @@ public class MessagesControllerTest {
 
   @Test
   public void 存在するページにアクセス() throws Exception {
-    mockMvc.perform(get("/messages?threadNumber=1"))
+    mockMvc.perform(get("/messageList?threadNumber=1"))
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
-        .andExpect(view().name(MESSAGES))
+        .andExpect(view().name(MESSAGELIST))
         // modelに存在することのテスト
         .andExpect(model().attribute("messageList", messageService.getMessageList(1)))
         .andExpect(model().attribute("threadName", messageService.getThreadName(1)))
@@ -70,13 +70,13 @@ public class MessagesControllerTest {
 
   @Test
   public void 存在しないページにアクセス() throws Exception {
-    mockMvc.perform(get("/messages?threadNumber=2"))
+    mockMvc.perform(get("/messageList?threadNumber=2"))
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
         .andExpect(view().name(NOTFOUND));
 
-    mockMvc.perform(get("/messages?threadNumber=0"))
+    mockMvc.perform(get("/messageList?threadNumber=0"))
         // リクエスト成功をテスト
         .andExpect(status().isOk())
         // ビュー名をテスト
@@ -85,7 +85,7 @@ public class MessagesControllerTest {
 
   @Test
   public void メッセージ投稿成功_投稿者名フラグオフ() throws Exception {
-    mockMvc.perform(post("/messages?threadNumber=1")
+    mockMvc.perform(post("/messageList?threadNumber=1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
@@ -98,12 +98,12 @@ public class MessagesControllerTest {
         // 成功メッセージがあること
         .andExpect(flash().attributeExists("infoMessage"))
         // リダイレクト先URLのテスト
-        .andExpect(redirectedUrl("messages?threadNumber=1"));
+        .andExpect(redirectedUrl("messageList?threadNumber=1"));
   }
 
   @Test
   public void メッセージ投稿成功_投稿者名フラグオン() throws Exception {
-    mockMvc.perform(post("/messages?threadNumber=1")
+    mockMvc.perform(post("/messageList?threadNumber=1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
@@ -116,12 +116,12 @@ public class MessagesControllerTest {
         // 成功メッセージがあること
         .andExpect(flash().attributeExists("infoMessage"))
         // リダイレクト先URLのテスト
-        .andExpect(redirectedUrl("messages?threadNumber=1"));
+        .andExpect(redirectedUrl("messageList?threadNumber=1"));
   }
 
   @Test
   public void メッセージ投稿失敗_メッセージが空() throws Exception {
-    mockMvc.perform(post("/messages?threadNumber=1")
+    mockMvc.perform(post("/messageList?threadNumber=1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
@@ -134,12 +134,12 @@ public class MessagesControllerTest {
         // エラーメッセージがあること
         .andExpect(model().attributeExists("errorMessage"))
         // ビュー名をテスト
-        .andExpect(view().name(MESSAGES));
+        .andExpect(view().name(MESSAGELIST));
   }
 
   @Test
   public void メッセージ投稿失敗_投稿者フラグがオンで投稿者名が空() throws Exception {
-    mockMvc.perform(post("/messages?threadNumber=1")
+    mockMvc.perform(post("/messageList?threadNumber=1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
@@ -152,12 +152,12 @@ public class MessagesControllerTest {
         // エラーメッセージがあること
         .andExpect(model().attributeExists("errorMessage"))
         // ビュー名をテスト
-        .andExpect(view().name(MESSAGES));
+        .andExpect(view().name(MESSAGELIST));
   }
 
   @Test
   public void メッセージ投稿失敗_メッセージが全角スペースのみ() throws Exception {
-    mockMvc.perform(post("/messages?threadNumber=1")
+    mockMvc.perform(post("/messageList?threadNumber=1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
@@ -170,12 +170,12 @@ public class MessagesControllerTest {
         // エラーメッセージがあること
         .andExpect(model().attributeExists("errorMessage"))
         // ビュー名をテスト
-        .andExpect(view().name(MESSAGES));
+        .andExpect(view().name(MESSAGELIST));
   }
 
   @Test
   public void メッセージ投稿失敗_投稿者フラグがオンで投稿者名が全角スペースのみ() throws Exception {
-    mockMvc.perform(post("/messages?threadNumber=1")
+    mockMvc.perform(post("/messageList?threadNumber=1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
@@ -188,12 +188,12 @@ public class MessagesControllerTest {
         // エラーメッセージがあること
         .andExpect(model().attributeExists("errorMessage"))
         // ビュー名をテスト
-        .andExpect(view().name(MESSAGES));
+        .andExpect(view().name(MESSAGELIST));
   }
 
   @Test
   public void メッセージ投稿失敗_メッセージが半角スペースのみ() throws Exception {
-    mockMvc.perform(post("/messages?threadNumber=1")
+    mockMvc.perform(post("/messageList?threadNumber=1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
@@ -206,12 +206,12 @@ public class MessagesControllerTest {
         // エラーメッセージがあること
         .andExpect(model().attributeExists("errorMessage"))
         // ビュー名をテスト
-        .andExpect(view().name(MESSAGES));
+        .andExpect(view().name(MESSAGELIST));
   }
 
   @Test
   public void メッセージ投稿失敗_投稿者フラグがオンで投稿者名が半角スペースのみ() throws Exception {
-    mockMvc.perform(post("/messages?threadNumber=1")
+    mockMvc.perform(post("/messageList?threadNumber=1")
         // params = "postMessage"の呼び出し
         .param("postMessage", "")
         // formに値を設定
@@ -224,7 +224,7 @@ public class MessagesControllerTest {
         // エラーメッセージがあること
         .andExpect(model().attributeExists("errorMessage"))
         // ビュー名をテスト
-        .andExpect(view().name(MESSAGES));
+        .andExpect(view().name(MESSAGELIST));
   }
 
 }

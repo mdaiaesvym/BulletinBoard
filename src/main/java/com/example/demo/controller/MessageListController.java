@@ -18,13 +18,13 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class MessagesController {
+public class MessageListController {
 
   private final MessageService messageService;
   private final ModelMapper modelMapper;
   private final MessageUtil messageUtil;
 
-  private final String MESSAGES = "messages";
+  private final String MESSAGELIST = "messageList";
   private final String NOTFOUND = "notFound";
 
   /**
@@ -35,7 +35,7 @@ public class MessagesController {
    * @param redirectAttributes
    * @return
    */
-  @GetMapping(MESSAGES)
+  @GetMapping(MESSAGELIST)
   public String show(@ModelAttribute("makeMessageForm") MakeMessageForm form, Model model,
       RedirectAttributes redirectAttributes) {
     // 共通処理呼び出し
@@ -44,7 +44,7 @@ public class MessagesController {
       return NOTFOUND;
     }
 
-    return MESSAGES;
+    return MESSAGELIST;
   }
 
   /**
@@ -56,7 +56,7 @@ public class MessagesController {
    * @param redirectAttributes
    * @return
    */
-  @PostMapping(value = MESSAGES, params = "postMessage")
+  @PostMapping(value = MESSAGELIST, params = "postMessage")
   public String postMessage(@ModelAttribute("makeMessageForm") @Validated MakeMessageForm form,
       BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
     // 共通処理呼び出し
@@ -69,9 +69,9 @@ public class MessagesController {
     if (bindingResult.hasErrors()) {
 
       // 失敗メッセージ
-      messageUtil.addErrorMessage(model, "messages.postFailMessage");
+      messageUtil.addErrorMessage(model, "messageList.postFailMessage");
 
-      return MESSAGES;
+      return MESSAGELIST;
     }
 
     // formをMessageクラスにマッピング
@@ -81,16 +81,16 @@ public class MessagesController {
     if (!messageService.addMessage(message)) {
 
       // 失敗メッセージ
-      messageUtil.addErrorMessage(model, "messages.postFailMessage");
+      messageUtil.addErrorMessage(model, "messageList.postFailMessage");
 
-      return MESSAGES;
+      return MESSAGELIST;
     }
     // 成功メッセージ
-    messageUtil.addInfoMessage(redirectAttributes, "messages.postSuccessMessage");
+    messageUtil.addInfoMessage(redirectAttributes, "messageList.postSuccessMessage");
     // リダイレクト用にスレッド番号を設定
     redirectAttributes.addAttribute("threadNumber", form.getThreadNumber());
 
-    return "redirect:" + MESSAGES;
+    return "redirect:" + MESSAGELIST;
   }
 
   /**

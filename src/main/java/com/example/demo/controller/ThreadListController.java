@@ -10,10 +10,10 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class ThreadsController {
+public class ThreadListController {
   private final ThreadService threadService;
 
-  private final String THREADS = "threads";
+  private final String THREADLIST = "threadList";
 
   /**
    * 画面表示
@@ -21,13 +21,13 @@ public class ThreadsController {
    * @param model
    * @return
    */
-  @GetMapping(THREADS)
+  @GetMapping(THREADLIST)
   public String show(Model model) {
 
     // スレッド名・メッセージ数・メッセージ最終更新日時取得
     List<Thread> threadList = threadService.getThreadList();
     model.addAttribute("threadList", threadList);
 
-    return THREADS;
+    return THREADLIST;
   }
 }

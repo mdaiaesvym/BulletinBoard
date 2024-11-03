@@ -8,7 +8,7 @@
 
 #### 掲示板一覧画面
 
-URL：http://localhost:8080/threads
+URL：http://localhost:8080/threadList
 
 <img src="https://user-images.githubusercontent.com/76608722/169642710-de60f8f5-64d2-4a86-9842-b275864376f7.png" width="700px">
 
@@ -25,7 +25,7 @@ URL：http://localhost:8080/makeThread
 
 #### メッセージ一覧画面
 
-URL：http://localhost:8080/messages?threadNumber=2
+URL：http://localhost:8080/messageList?threadNumber=2
 
 <img src="https://github.com/mdaiaesvym/BulletinBoard/assets/76608722/2d330ed8-1b04-423d-84c5-d4837521ae58" width="700px">
 

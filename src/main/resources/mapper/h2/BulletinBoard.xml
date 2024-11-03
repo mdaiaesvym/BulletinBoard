@@ -6,7 +6,7 @@
 <mapper namespace="com.example.demo.repository.BulletinBoardMapper">
   <!--スレッド登録-->
   <insert id="makeThread" useGeneratedKeys="true" keyProperty="threadNumber">
-  insert into threads(
+  insert into thread(
     thread_name,
     created_ymdhms,
     updated_ymdhms
@@ -20,23 +20,23 @@
   <!--スレッドナンバー、スレッド名、メッセージ数、最終メッセージ更新日時取得-->
   <select id="getThreadList" resultType="Thread">
   select
-    threads.thread_number,
-    threads.thread_name,
+    thread.thread_number,
+    thread.thread_name,
     count(*) as message_count,
-    max(messages.updated_ymdhms) as updated_ymdhms
+    max(message.updated_ymdhms) as updated_ymdhms
   from
-    messages 
+    message 
   inner join
-    threads on messages.thread_number = threads.thread_number
+    thread on message.thread_number = thread.thread_number
   group by
-    messages.thread_number
+    message.thread_number
   order by
-    max(messages.updated_ymdhms) desc;
+    max(message.updated_ymdhms) desc;
   </select>
   
   <!-- メッセージ登録 -->
   <insert id="addMessage">
-  insert into messages(
+  insert into message(
     thread_number,
     message,
     created_ymdhms,
@@ -59,7 +59,7 @@
     created_name as contributorName,
     created_ymdhms
   from
-    messages 
+    message
   where
     thread_number = #{threadNumber}
   order by created_ymdhms asc;
@@ -70,7 +70,7 @@
   select
     thread_name
   from
-    threads
+    thread
   where
     thread_number = #{threadNumber};
   </select>

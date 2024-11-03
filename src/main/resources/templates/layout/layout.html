@@ -14,7 +14,7 @@
   <body>
     <!--ヘッダー-->
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand mx-auto" th:href="@{/threads}" th:text="#{bulletinBoard}">掲示板</a>
+      <a class="navbar-brand mx-auto" th:href="@{/threadList}" th:text="#{bulletinBoard}">掲示板</a>
     </nav>
 
     <!--メッセージ-->
@@ -24,6 +24,6 @@
     </div>
 
     <!--コンテンツ-->
-    <div layout:replace="~{threads::content}"></div>
+    <div layout:replace="~{threadList::content}"></div>
   </body>
 </html>

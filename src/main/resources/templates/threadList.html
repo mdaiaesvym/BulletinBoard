@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
   <head>
-    <link rel="stylesheet" th:href="@{/css/threads.css}" />
-    <title th:text="#{app.window(#{bulletinBoardList.window})}"></title>
+    <link rel="stylesheet" th:href="@{/css/threadList.css}" />
+    <title th:text="#{app.window(#{threadList.window})}"></title>
   </head>
 
   <body>
@@ -12,7 +12,7 @@
         <div class="row">
           <a class="btn btn-secondary my-5 offset-md-2" th:href="@{/makeThread}"> <i class="fas fa-plus"></i><span class="beforeIndent" th:text="#{makeThread}">スレッド作成</span> </a>
           <div th:each="thread:${threadList}" class="offset-md-2 col-md-8">
-            <a th:href="@{/messages?threadNumber=__${thread.threadNumber}__}" class="linkStyle">
+            <a th:href="@{/messageList?threadNumber=__${thread.threadNumber}__}" class="linkStyle">
               <div th:text="${thread.threadName}" class="threadname threadname-size font-weight-bold box-format">スレッド名</div>
               <span class="threadcounts font-weight-bold"><i class="fas fa-comments afterIndent"></i><th:block th:text="${thread.messageCount}"></th:block>コメント</span>
               <span class="beforeIndent">最終更新日時：</span><span th:text="${thread.formatedUpdatedYmdhms}">2022/01/01 10:10:10</span>
