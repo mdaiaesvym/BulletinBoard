@@ -1,83 +1,82 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{commonLayout :: layout(~{::head/content()},~{::body/content()})}">
   <head>
     <link rel="stylesheet" th:href="@{/css/messageList.css}" />
     <title th:text="#{app.window(#{messageList.window})}"></title>
   </head>
 
+  <!--コンテンツ-->
   <body>
-    <div layout:fragment="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-8 offset-md-2">
-            <h2 class="font-weight-bold my-5" th:text="${threadName}">スレッド名</h2>
-            <!--メッセージのセット-->
-            <div th:each="message,status:${messageList}">
-              <span th:text="|#${status.count}.|" th:id="|messageNum${status.count}|"></span>
-              <span th:text="${message.formatedCreatedYmdhms}">2022/01/01 10:10:10</span>
-              <span th:text="${message.contributorName}"> 名無しさん </span>
-              <i class="fas fa-reply replay-mark pointer" th:onclick="|replay(__${status.count}__)|">
-                <span>返信</span>
-              </i>
-              <div class="my-3">
-                <span class="font-weight-bold message-size box-format message" th:text="${message.message}">メッセージ</span>
-              </div>
-              <hr />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <h2 class="font-weight-bold my-5" th:text="${threadName}">スレッド名</h2>
+          <!--メッセージのセット-->
+          <div th:each="message,status:${messageList}">
+            <span th:text="|#${status.count}.|" th:id="|messageNum${status.count}|"></span>
+            <span th:text="${message.formatedCreatedYmdhms}">2022/01/01 10:10:10</span>
+            <span th:text="${message.contributorName}"> 名無しさん </span>
+            <i class="fas fa-reply replay-mark pointer" th:onclick="|replay(__${status.count}__)|">
+              <span>返信</span>
+            </i>
+            <div class="my-3">
+              <span class="font-weight-bold message-size box-format message" th:text="${message.message}">メッセージ</span>
             </div>
-
-            <!--メッセージフォーム-->
-            <form id="makeMessageForm" method="post" th:action="|@{/messageList?threadNumber=}${makeMessageForm.threadNumber}|" th:object="${makeMessageForm}">
-              <div class="form-group">
-                <label class="font-weight-bold" for="message" th:text="|#{message}#{asterisk}|">メッセージ</label>
-                <textarea id="message" class="form-control" rows="5" th:field="*{message}" th:errorclass="is-invalid"></textarea>
-                <div th:errors="*{message}" class="text-danger"></div>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="contributorName form-check-input" type="radio" id="anonymous" value="false" th:field="*{hasContributorName}" />
-                <label class="form-check-label" for="anonymous">匿名で投稿</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="contributorName form-check-input" type="radio" id="onymous" value="true" th:field="*{hasContributorName}" />
-                <label class="form-check-label" for="onymous">記名で投稿</label>
-              </div>
-              <div id="contributorNameForm" class="form-group w-25" th:hidden="*{!hasContributorName}">
-                <label class="font-weight-bold" for="contributorName" th:text="|#{contributorName}#{asterisk}|">投稿者名</label>
-                <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
-                <div th:errors="*{contributorName}" class="text-danger text-nowrap"></div>
-              </div>
-              <div class="text-left mt-2 mb-5">
-                <button id="makeMessageButton" class="btn btn-secondary" type="button" th:text="#{post}">投稿</button>
-              </div>
-              <input type="hidden" name="postMessage" />
-            </form>
+            <hr />
           </div>
+
+          <!--メッセージフォーム-->
+          <form id="makeMessageForm" method="post" th:action="|@{/messageList?threadNumber=}${makeMessageForm.threadNumber}|" th:object="${makeMessageForm}">
+            <div class="form-group">
+              <label class="font-weight-bold" for="message" th:text="|#{message}#{asterisk}|">メッセージ</label>
+              <textarea id="message" class="form-control" rows="5" th:field="*{message}" th:errorclass="is-invalid"></textarea>
+              <div th:errors="*{message}" class="text-danger"></div>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="contributorName form-check-input" type="radio" id="anonymous" value="false" th:field="*{hasContributorName}" />
+              <label class="form-check-label" for="anonymous">匿名で投稿</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="contributorName form-check-input" type="radio" id="onymous" value="true" th:field="*{hasContributorName}" />
+              <label class="form-check-label" for="onymous">記名で投稿</label>
+            </div>
+            <div id="contributorNameForm" class="form-group w-25" th:hidden="*{!hasContributorName}">
+              <label class="font-weight-bold" for="contributorName" th:text="|#{contributorName}#{asterisk}|">投稿者名</label>
+              <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
+              <div th:errors="*{contributorName}" class="text-danger text-nowrap"></div>
+            </div>
+            <div class="text-left mt-2 mb-5">
+              <button id="makeMessageButton" class="btn btn-secondary" type="button" th:text="#{post}">投稿</button>
+            </div>
+            <input type="hidden" name="postMessage" />
+          </form>
         </div>
       </div>
-      <input type="hidden" id="postMessage" th:value="#{messageList.postMessage}" />
-      <script th:src="@{/js/messageList.js}" defer></script>
-      <!--「>>数字」にリンク元参照を付与-->
-      <script type="text/javascript" th:inline="javascript">
-        //正規表現設定「>>数字」
-        const regex = new RegExp("\>\>\\d*", "g");
-        messageList = document.querySelectorAll(".message");
-        for (const message of messageList) {
-          //正規表現とマッチしたら
-          if (regex.test(message.textContent)) {
-            //メッセージ取得
-            var messageText = message.textContent;
-            //マッチした記号数字配列取得
-            var matchNums = messageText.match(regex);
-            for (const matchNum of matchNums) {
-              //「>>」を省く
-              var linkNum = matchNum.substr(2);
-              //変更後のテキスト
-              var linkText = "<a href=messageList?threadNumber=" + [[${threadNumber}]] +"#messageNum" + linkNum + ">" + matchNum + "</a>"
-              message.innerHTML = messageText.replace(matchNum, linkText);
-              messageText = messageText.replace(matchNum, linkText);
-            }
+    </div>
+    <input type="hidden" id="postMessage" th:value="#{messageList.postMessage}" />
+    <script th:src="@{/js/messageList.js}" defer></script>
+    <!--「>>数字」にリンク元参照を付与-->
+    <script type="text/javascript" th:inline="javascript">
+      //正規表現設定「>>数字」
+      const regex = new RegExp("\>\>\\d*", "g");
+      messageList = document.querySelectorAll(".message");
+      for (const message of messageList) {
+        //正規表現とマッチしたら
+        if (regex.test(message.textContent)) {
+          //メッセージ取得
+          var messageText = message.textContent;
+          //マッチした記号数字配列取得
+          var matchNums = messageText.match(regex);
+          for (const matchNum of matchNums) {
+            //「>>」を省く
+            var linkNum = matchNum.substr(2);
+            //変更後のテキスト
+            var linkText = "<a href=messageList?threadNumber=" + [[${threadNumber}]] +"#messageNum" + linkNum + ">" + matchNum + "</a>"
+            message.innerHTML = messageText.replace(matchNum, linkText);
+            messageText = messageText.replace(matchNum, linkText);
           }
         }
-      </script>
-    </div>
+      }
+    </script>
   </body>
 </html>

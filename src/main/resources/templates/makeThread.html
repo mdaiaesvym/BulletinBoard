@@ -1,47 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{commonLayout :: layout(~{::head/content()},~{::body/content()})}">
   <head>
     <title th:text="#{app.window(#{makeThread.window})}"></title>
   </head>
 
+  <!--コンテンツ-->
   <body>
-    <div layout:fragment="content">
-      <div class="container-fluid">
-        <!--スレッド名フォーム-->
-        <form class="row" id="makeThreadForm" method="post" th:action="@{/makeThread}" th:object="${makeThreadForm}">
-          <div class="col-md-6 offset-md-3 mt-5">
-            <div class="form-group">
-              <label class="font-weight-bold" for="threadname" th:text="|#{threadName}#{asterisk}|">スレッド名</label>
-              <input type="text" class="form-control" id="threadname" th:field="*{threadName}" th:errorclass="is-invalid" />
-              <div th:errors="*{threadName}" class="text-danger"></div>
-            </div>
-            <div class="form-group">
-              <label class="font-weight-bold" for="message" th:text="|#{message}#{asterisk}|">メッセージ</label>
-              <textarea id="message" class="form-control" rows="10" th:field="*{message}" th:errorclass="is-invalid"></textarea>
-              <div th:errors="*{message}" class="text-danger"></div>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="contributorName form-check-input" type="radio" id="anonymous" value="false" th:field="*{hasContributorName}" />
-              <label class="form-check-label" for="anonymous">匿名で投稿</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="contributorName form-check-input" type="radio" id="onymous" value="true" th:field="*{hasContributorName}" />
-              <label class="form-check-label" for="onymous">記名で投稿</label>
-            </div>
-            <div id="contributorNameForm" class="form-group w-25" th:hidden="*{!hasContributorName}">
-              <label class="font-weight-bold" for="contributorName" th:text="|#{contributorName}#{asterisk}|">投稿者名</label>
-              <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
-              <div th:errors="*{contributorName}" class="text-danger text-nowrap"></div>
-            </div>
-            <div class="text-left mt-2 mb-5">
-              <button id="makeThreadButton" class="btn btn-secondary" type="button" th:text="#{makeThread}">作成</button>
-            </div>
+    <div class="container-fluid">
+      <!--スレッド名フォーム-->
+      <form class="row" id="makeThreadForm" method="post" th:action="@{/makeThread}" th:object="${makeThreadForm}">
+        <div class="col-md-6 offset-md-3 mt-5">
+          <div class="form-group">
+            <label class="font-weight-bold" for="threadname" th:text="|#{threadName}#{asterisk}|">スレッド名</label>
+            <input type="text" class="form-control" id="threadname" th:field="*{threadName}" th:errorclass="is-invalid" />
+            <div th:errors="*{threadName}" class="text-danger"></div>
           </div>
-          <input type="hidden" name="makeThread" />
-        </form>
-      </div>
-      <input type="hidden" id="postMessage" th:value="#{makeThread.postMessage}" />
-      <script th:src="@{/js/makeThread.js}" defer></script>
+          <div class="form-group">
+            <label class="font-weight-bold" for="message" th:text="|#{message}#{asterisk}|">メッセージ</label>
+            <textarea id="message" class="form-control" rows="10" th:field="*{message}" th:errorclass="is-invalid"></textarea>
+            <div th:errors="*{message}" class="text-danger"></div>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="contributorName form-check-input" type="radio" id="anonymous" value="false" th:field="*{hasContributorName}" />
+            <label class="form-check-label" for="anonymous">匿名で投稿</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="contributorName form-check-input" type="radio" id="onymous" value="true" th:field="*{hasContributorName}" />
+            <label class="form-check-label" for="onymous">記名で投稿</label>
+          </div>
+          <div id="contributorNameForm" class="form-group w-25" th:hidden="*{!hasContributorName}">
+            <label class="font-weight-bold" for="contributorName" th:text="|#{contributorName}#{asterisk}|">投稿者名</label>
+            <input type="text" class="form-control" id="contributorName" th:field="*{contributorName}" th:errorclass="is-invalid" />
+            <div th:errors="*{contributorName}" class="text-danger text-nowrap"></div>
+          </div>
+          <div class="text-left mt-2 mb-5">
+            <button id="makeThreadButton" class="btn btn-secondary" type="button" th:text="#{makeThread}">作成</button>
+          </div>
+        </div>
+        <input type="hidden" name="makeThread" />
+      </form>
     </div>
+    <input type="hidden" id="postMessage" th:value="#{makeThread.postMessage}" />
+    <script th:src="@{/js/makeThread.js}" defer></script>
   </body>
 </html>
