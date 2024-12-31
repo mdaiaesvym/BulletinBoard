@@ -15,6 +15,8 @@ public class Thread {
   private String updatedYmdhms;
   // コメント数
   private Integer messageCount;
+  // 投稿者名
+  private String contributorName;
 
   // yyyyMMddhhmmss→yyyy/MM/dd hh:mm:ssに変換
   public String getFormatedUpdatedYmdhms() {

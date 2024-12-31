@@ -7,23 +7,27 @@
   <!--スレッド登録-->
   <insert id="makeThread" useGeneratedKeys="true" keyProperty="threadNumber">
   insert into thread(
-    thread_name,
-    created_ymdhms,
-    updated_ymdhms
+    thread_name
+    ,created_ymdhms
+    <if test="contributorName != null and contributorName != ''" >,created_name</if>
+    ,updated_ymdhms
+    <if test="contributorName != null and contributorName != ''" >,updated_name</if>
   ) values (
-    #{threadName},
-    FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss'),
-    FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss')
+    #{threadName}
+    ,FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss')
+    <if test="contributorName != null and contributorName != ''" >,#{contributorName}</if>
+    ,FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss')
+    <if test="contributorName != null and contributorName != ''" >,#{contributorName}</if>
   )
   </insert>
   
   <!--スレッドナンバー、スレッド名、メッセージ数、最終メッセージ更新日時取得-->
   <select id="getThreadList" resultType="Thread">
   select
-    thread.thread_number,
-    thread.thread_name,
-    count(*) as message_count,
-    max(message.updated_ymdhms) as updated_ymdhms
+    thread.thread_number
+    ,thread.thread_name
+    ,count(*) as message_count
+    ,max(message.updated_ymdhms) as updated_ymdhms
   from
     message 
   inner join
@@ -37,27 +41,29 @@
   <!-- メッセージ登録 -->
   <insert id="addMessage">
   insert into message(
-    thread_number,
-    message,
-    created_ymdhms,
-    <if test="contributorName != null and contributorName != ''" >created_name,</if>
-    updated_ymdhms
+    thread_number
+    ,message
+    ,created_ymdhms
+    <if test="contributorName != null and contributorName != ''" >,created_name</if>
+    ,updated_ymdhms
+    <if test="contributorName != null and contributorName != ''" >,updated_name</if>
   ) values (
-    #{threadNumber},
-    #{message},
-    FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss'),
-    <if test="contributorName != null and contributorName != ''" >#{contributorName},</if>
-    FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss')
+    #{threadNumber}
+    ,#{message}
+    ,FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss')
+    <if test="contributorName != null and contributorName != ''" >,#{contributorName}</if>
+    ,FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss')
+    <if test="contributorName != null and contributorName != ''" >,#{contributorName}</if>
   )
   </insert>
 
   <!--メッセージ一覧取得-->
   <select id="getMessageList" resultType="Message">
   select 
-    thread_number,
-    message,
-    created_name as contributorName,
-    created_ymdhms
+    thread_number
+    ,message
+    ,created_name as contributorName
+    ,created_ymdhms
   from
     message
   where
