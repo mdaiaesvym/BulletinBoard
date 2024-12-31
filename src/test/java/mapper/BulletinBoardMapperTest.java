@@ -33,7 +33,7 @@ public class BulletinBoardMapperTest {
     List<Thread> threadList = mapper.getThreadList();
     assertThat(threadList.get(0).getThreadNumber()).isEqualTo(2);
     assertThat(threadList.get(0).getThreadName()).isEqualTo("今年のベストゲームソフト");
-    assertThat(threadList.get(0).getUpdatedYmdhms()).isEqualTo("20220101102510");
+    assertThat(threadList.get(0).getUpdatedYmdhms()).isEqualTo("20220101102010");
     assertThat(threadList.get(0).getMessageCount()).isEqualTo(3);
   }
 
@@ -63,7 +63,7 @@ public class BulletinBoardMapperTest {
     assertThat(messageList.get(0).getThreadNumber()).isEqualTo(1);
     assertThat(messageList.get(0).getMessage()).isEqualTo("今何をしていますか？");
     assertThat(messageList.get(0).getCreatedYmdhms()).isEqualTo("20220101101010");
-    assertThat(messageList.get(0).getContributorName()).isEqualTo("匿名");
+    assertThat(messageList.get(0).getContributorName()).isEqualTo("山田一郎");
   }
 
   @Test
@@ -73,4 +73,12 @@ public class BulletinBoardMapperTest {
     assertThat(threadName).isEqualTo("雑談");
   }
 
+  @Test
+  public void スレッド更新_成功() {
+    Message message = new Message();
+    message.setThreadNumber(1);
+    message.setContributorName("テスト 投稿者");
+
+    assertTrue(mapper.updateThread(message));
+  }
 }

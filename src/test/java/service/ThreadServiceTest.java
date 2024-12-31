@@ -29,6 +29,7 @@ public class ThreadServiceTest {
     // データ作成
     Thread thread = new Thread();
     thread.setThreadName("テスト_スレッド名");
+    thread.setContributorName("テスト_投稿者名");
 
     // ArgumentCaptorの作成
     ArgumentCaptor<Thread> argumentCaptor = ArgumentCaptor.forClass(Thread.class);
@@ -47,6 +48,7 @@ public class ThreadServiceTest {
     assertEquals("テスト_スレッド名", argumentCaptor.getValue().getThreadName());
     assertEquals(null, argumentCaptor.getValue().getMessageCount());
     assertEquals(null, argumentCaptor.getValue().getUpdatedYmdhms());
+    assertEquals("テスト_投稿者名", argumentCaptor.getValue().getContributorName());
   }
 
   @Test

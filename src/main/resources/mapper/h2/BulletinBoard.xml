@@ -21,13 +21,13 @@
   )
   </insert>
   
-  <!--スレッドナンバー、スレッド名、メッセージ数、最終メッセージ更新日時取得-->
+  <!--スレッドナンバー、スレッド名、メッセージ数、スレッド更新日時取得-->
   <select id="getThreadList" resultType="Thread">
   select
     thread.thread_number
     ,thread.thread_name
     ,count(*) as message_count
-    ,max(message.updated_ymdhms) as updated_ymdhms
+    ,thread.updated_ymdhms
   from
     message 
   inner join
@@ -35,7 +35,7 @@
   group by
     message.thread_number
   order by
-    max(message.updated_ymdhms) desc;
+    thread.updated_ymdhms desc;
   </select>
   
   <!-- メッセージ登録 -->
@@ -80,5 +80,18 @@
   where
     thread_number = #{threadNumber};
   </select>
+
+  <!--スレッド更新-->
+  <update id="updateThread">
+  update
+    thread
+  set
+    updated_ymdhms = FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyyMMddHHmmss')
+    <if test="contributorName != null and contributorName != ''" >
+    ,updated_name = #{contributorName}
+    </if>
+  where
+    thread_number = #{threadNumber};
+  </update>
 
 </mapper>

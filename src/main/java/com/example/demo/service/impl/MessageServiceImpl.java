@@ -17,7 +17,9 @@ public class MessageServiceImpl implements MessageService {
 
   @Override
   public boolean addMessage(Message message) {
-    return mapper.addMessage(message);
+    mapper.addMessage(message);
+
+    return mapper.updateThread(message);
   }
 
   @Override

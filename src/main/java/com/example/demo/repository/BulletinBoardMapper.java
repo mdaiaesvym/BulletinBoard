@@ -23,4 +23,6 @@ public interface BulletinBoardMapper {
   /** スレッド名取得 */
   public String getThreadName(Integer threadNumber);
 
+  /** スレッド更新 */
+  public boolean updateThread(Message message);
 }

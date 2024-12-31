@@ -33,22 +33,28 @@ public class MessageServiceTest {
     message.setMessage("テストメッセージ");
 
     // ArgumentCaptorの作成
-    ArgumentCaptor<Message> argumentCaptor = ArgumentCaptor.forClass(Message.class);
+    ArgumentCaptor<Message> argumentAddMessage = ArgumentCaptor.forClass(Message.class);
+    ArgumentCaptor<Message> argumentUpdateThread = ArgumentCaptor.forClass(Message.class);
 
     // 実行
     messageService.addMessage(message);
 
     // ArgumentCaptorを使用して引数をキャプチャ
-    verify(mapper).addMessage(argumentCaptor.capture());
+    verify(mapper).addMessage(argumentAddMessage.capture());
+    verify(mapper).updateThread(argumentUpdateThread.capture());
 
     // 呼び出されたことを確認
     verify(mapper, times(1)).addMessage(message);
 
     // 引数確認
-    assertEquals(1, argumentCaptor.getValue().getThreadNumber());
-    assertEquals("テスト投稿者", argumentCaptor.getValue().getContributorName());
-    assertEquals("テストメッセージ", argumentCaptor.getValue().getMessage());
-    assertEquals(null, argumentCaptor.getValue().getCreatedYmdhms());
+    assertEquals(1, argumentAddMessage.getValue().getThreadNumber());
+    assertEquals("テスト投稿者", argumentAddMessage.getValue().getContributorName());
+    assertEquals("テストメッセージ", argumentAddMessage.getValue().getMessage());
+    assertEquals(null, argumentAddMessage.getValue().getCreatedYmdhms());
+    assertEquals(1, argumentUpdateThread.getValue().getThreadNumber());
+    assertEquals("テスト投稿者", argumentUpdateThread.getValue().getContributorName());
+    assertEquals("テストメッセージ", argumentUpdateThread.getValue().getMessage());
+    assertEquals(null, argumentUpdateThread.getValue().getCreatedYmdhms());
   }
 
   @Test
